@@ -6,6 +6,8 @@ import play.api.mvc._
 import ChessScala.controller.IController
 import ChessScala.controller.Controller
 
+import scala.collection.mutable
+
 /**
  * This controller creates an `Action` to handle HTTP requests to the
  * application's home page.
@@ -21,25 +23,28 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
    * a path of `/`.
    */
 
-    var controller: IController = new Controller()
+  private var controllerMapping: Map[String, IController] = Map.empty
 
-
-  def index() = Action { implicit request: Request[AnyContent] =>
-    controller = new Controller()
-    Ok(views.html.chess(""))
+  def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    val gameID = java.util.UUID.randomUUID().toString
+    val controller = new Controller()
+    controllerMapping = controllerMapping + (gameID -> controller)
+    Redirect(f"/game?id=$gameID")
   }
 
-  def playChess(command: String): Action[AnyContent] = Action {
-    controller.computeInput(command)
-    val controllerAsText: String = controller.output
-    Ok(views.html.chess(controllerAsText))
-  }
-
-  def playChess2() = Action { implicit request: Request[AnyContent] =>
+  def playChess2(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     val parameter1 = request.body.asFormUrlEncoded.get("command").headOption.getOrElse("")
+    val controller = controllerMapping(id)
     controller.computeInput(parameter1)
     val controllerAsText: String = controller.output
-    Ok(views.html.chess(controllerAsText))
+    Ok(views.html.chess(controllerAsText, id))
+  }
+
+  def joinGame(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    val gameID = id
+    val controller = controllerMapping(gameID)
+    val controllerAsText: String = controller.output
+    Ok(views.html.chess(controllerAsText, gameID))
   }
 
 }

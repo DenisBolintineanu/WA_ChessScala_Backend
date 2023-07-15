@@ -1,11 +1,11 @@
-@(input: String)
+@(input: String, gameID: String)
 
 @main("Chess") {
     <h3>@input</h3>
-    <form method="post">
-        <label for="textfeld">Texteingabe:</label>
+    <form method="post" action="/game?id=@gameID">
+        <label for="textfeld">Input:</label>
         <input type="text" id="textfeld" name="command" autofocus>
-        <input type="submit" value="Absenden">
+        <input type="submit" value="Submit">
     </form>
-
+    <span>GameID: @gameID</span>
 }

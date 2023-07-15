@@ -40,3 +40,5 @@ target
 /.project
 /.settings
 /RUNNING_PID
+
+/lib/ChessScala-assembly-0.1.0-SNAPSHOT.jar

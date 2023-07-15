@@ -31,3 +31,12 @@ project/metals.sbt
 
 src/main/scala/ChessScala/Test.sc
 codecov
+
+logs
+target
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID

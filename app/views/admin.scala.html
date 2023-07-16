@@ -1,0 +1,9 @@
+@(gameSessions: Map[String, Boolean])
+
+@main("Admin to Play") {
+  <ul>
+  @for(session <- gameSessions) {
+    <li>GameID: @session._1 : &ensp; active ? @session._2</li>
+  }
+  </ul>
+}

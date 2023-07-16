@@ -1,4 +1,4 @@
-@(input: String, gameID: String)
+@(input: String, gameID: String, moves: List[String])
 
 @main("Chess") {
     <h3>@input</h3>
@@ -7,5 +7,9 @@
         <input type="text" id="textfeld" name="command" autofocus>
         <input type="submit" value="Submit">
     </form>
+    <br>
     <span>GameID: @gameID</span>
+    <br>
+    <br>
+    @moves.mkString(", ")
 }

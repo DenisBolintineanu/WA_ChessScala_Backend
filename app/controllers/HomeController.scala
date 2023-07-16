@@ -29,7 +29,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     val gameID = java.util.UUID.randomUUID().toString
     val controller = new Controller()
     controllerMapping = controllerMapping + (gameID -> controller)
-    Redirect(f"/game?id=$gameID")
+    Ok(views.html.index(gameID))
   }
 
   def playChess2(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>

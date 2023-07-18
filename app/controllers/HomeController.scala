@@ -27,7 +27,9 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
   def playChess2(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     val parameter1 = request.body.asFormUrlEncoded.get("command").headOption.getOrElse("")
     val controller = cleanUpTask.controllerMapping(id)
-    cleanUpTask.garbageCollector = cleanUpTask.garbageCollector.map(x => if (x._1 == id) (x._1, true) else x)
+    synchronized {
+      cleanUpTask.garbageCollector = cleanUpTask.garbageCollector.map(x => if (x._1 == id) (x._1, true) else x)
+    }
     controller.computeInput(parameter1)
     val controllerAsText: String = controller.output
     Ok(views.html.chess(controllerAsText, id, controller.returnMoveList()))

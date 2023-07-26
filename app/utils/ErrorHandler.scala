@@ -14,5 +14,7 @@ class ErrorHandler extends HttpErrorHandler {
     Future.successful(NotFound(views.html.error()))
   }
 
-  override def onServerError(request: RequestHeader, exception: Throwable): Future[Result] = ???
+  override def onServerError(request: RequestHeader, exception: Throwable): Future[Result] = {
+    Future.successful(NotFound(views.html.error()))
+  }
 }

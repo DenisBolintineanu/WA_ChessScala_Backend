@@ -8,6 +8,8 @@ GET     /                           controllers.HomeController.index()
 
 GET     /game                controllers.HomeController.joinGame(id)
 
+GET     /newGame             controllers.HomeController.newGame()
+
 + nocsrf
 POST     /game            controllers.HomeController.playChess2(id)
 

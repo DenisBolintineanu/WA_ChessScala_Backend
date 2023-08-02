@@ -1,7 +1,7 @@
 package controllers
 
 import play.api.mvc._
-import utils.CleanUpTask
+import utils.{ChesspieceImageManager, CleanUpTask}
 
 import javax.inject._
 
@@ -21,7 +21,8 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
       cleanUpTask.garbageCollector(id) = true
       controller.computeInput(parameter1)
       val controllerAsText: String = controller.output
-      Ok(views.html.chess(controllerAsText, id, controller.returnMoveList()))
+      val chesspieceImageManager: ChesspieceImageManager = new ChesspieceImageManager(controller.state.board)
+      Ok(views.html.chess(controllerAsText, id, controller.returnMoveList(), chesspieceImageManager))
     }
   }
 
@@ -35,12 +36,21 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
     } else {
       val controller = cleanUpTask.controllerMapping(id)
       val controllerAsText: String = controller.output
-      Ok(views.html.chess(controllerAsText, id, controller.returnMoveList()))
+      val chesspieceImageManager: ChesspieceImageManager = new ChesspieceImageManager(controller.state.board)
+      Ok(views.html.chess(controllerAsText, id, controller.returnMoveList(), chesspieceImageManager))
     }
   }
 
   def adminPage(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.admin(Map.from(cleanUpTask.garbageCollector)))
+  }
+
+  def rules(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.rules())
+  }
+
+  def about(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.about())
   }
 
 }

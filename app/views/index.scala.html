@@ -1,17 +1,28 @@
-@(gameID: String)
+@()
 
 @main("Welcome to Play") {
   <table border="0">
+    <tr></tr>
+    <td height="200"></td>
     <tr>
-      <td height="250">
+      <td width="400"></td>
+      <td>
+        <img src=@routes.Assets.versioned("images/logo.png") width="400">
       </td>
     </tr>
+  </table>
+  <table border="0">
+
     <tr>
+      <td height="50">
+      </td>
+    </tr>
+    <td>
       <td width="500">
       </td>
       <td>
         <h2>ChessScala</h2>
-        <a href="/game?id=@gameID">Start new Game</a>
+        <a href="@routes.HomeController.newGame()">Start new Game</a>
         <br>
         <a href="/rules">Rules</a>
         <br>

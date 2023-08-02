@@ -44,4 +44,8 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
     Ok(views.html.admin(cleanUpTask.garbageCollector))
   }
 
+  def rules(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.rules())
+  }
+
 }

@@ -1,34 +1,22 @@
 @()
-
-@main("Welcome to Play") {
-  <table border="0">
-    <tr></tr>
-    <td height="200"></td>
-    <tr>
-      <td width="400"></td>
-      <td>
-        <img src=@routes.Assets.versioned("images/logo.png") width="400">
-      </td>
-    </tr>
-  </table>
-  <table border="0">
-
-    <tr>
-      <td height="50">
-      </td>
-    </tr>
-    <td>
-      <td width="500">
-      </td>
-      <td>
-        <h2>ChessScala</h2>
+@header()
+@main("Welcome to Play") {  
+  <div class="content-area">
+    <div class="main">
+      <img class="logo--large" src=@routes.Assets.versioned("images/logo.png")>
+      <h2 class="index-heading">ChessScala</h2>
+      <div class="start-game-wrapper">
         <a href="@routes.HomeController.newGame()">Start new Game</a>
-        <br>
-        <a href="/rules">Rules</a>
-        <br>
-        <a href="/about">About</a>
-      </td>
-
-    </tr>
-  </table>
+      </div>
+      <div class="join-game">
+        <h3>Have a session Id?</h3>
+        <div class="join-game-form">
+          <form action="/game" method="GET">
+            <input type="text" name="id" autocomplete="off" placeholder="Session ID">
+            <input type="submit" value="Join now">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 }

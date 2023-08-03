@@ -1,0 +1,17 @@
+@()
+<link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
+<header>
+    <div class="heading">
+      <div class="logo">
+        <a href="@routes.HomeController.index()">
+            <img src=@routes.Assets.versioned("images/logo.png")>
+        </a>
+      </div>
+      <div class="nav-links">
+        <ul class="links">
+          <li><a href="/rules">Rules</a></li>
+          <li><a href="/about">About</a></li>  
+        </ul>
+      </div>
+    </div>
+</header>

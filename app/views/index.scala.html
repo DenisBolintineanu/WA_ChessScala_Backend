@@ -13,10 +13,42 @@
         <div class="join-game-form">
           <form action="/game" method="GET">
             <input type="text" name="id" autocomplete="off" placeholder="Session ID">
+            <label class="placeholder-label" for="id">Session ID</label>
             <input type="submit" value="Join now">
           </form>
         </div>
       </div>
     </div>
+    <div class="widgets">
+      <div class="widget-view">
+          <a href="#" class="index-card">
+            <div>
+              <img src=@routes.Assets.versioned("images/chesspieces/whiteKnight.png")>
+            </div>
+            <h3>Lobby</h3>
+          </a>
+          <a href="/rules" class="index-card">
+            <div>
+              <img src=@routes.Assets.versioned("images/chesspieces/whiteRook.png")>
+            </div>
+            <h3>Rules</h3>
+          </a>
+          <a href="/about" class="index-card">
+            <div>
+              <img src=@routes.Assets.versioned("images/chesspieces/blackBishop.png")>
+            </div>
+            <h3>About</h3>
+          </a>
+          <!--
+            <div class="index-card">
+            <div>
+              <img src=@routes.Assets.versioned("images/chesspieces/blackKing.png")>
+            </div>
+            <h3>Admin</h3>
+          </div>
+          -->
+      </div>
+    </div>
   </div>
 }
+@footer()

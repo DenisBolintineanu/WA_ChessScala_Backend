@@ -342,7 +342,7 @@ header {
 }
 
 .basic-text-1-2 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .m-bottom-2 {
@@ -378,7 +378,7 @@ header {
 
 .footer-container {
     height: 15vh;
-    background: linear-gradient(to bottom, var(--primary-color), #170202d3);
+    background: -webkit-linear-gradient(top, #f89bc2 0%, var(--primary-color) 70%, #6a002c 100%);
     padding: 6rem;
     padding-top: 3rem;
     padding-bottom: 3rem;

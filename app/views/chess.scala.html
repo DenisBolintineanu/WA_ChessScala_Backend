@@ -1,52 +1,51 @@
 @import utils.ChesspieceImageManager
 @(input: String, gameID: String, moves: List[String], board: ChesspieceImageManager)
-
 @main("Chess") {
-    <table border="0">
-        <tr>
-            <td height="50"></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td width="400"></td>
-            <td width="560" height="560">
-                <table border="1">
-                    <tbody>
-                    @for(i <- (-7 to 0)){
-                        <tr>
-                        @for(j <- 0 to 7){
-                            <td height="70" width="70">
-                            @if(board.getImage(j,-i) != ""){
-                                <img src=@routes.Assets.versioned(board.getImage(j,-i)) width="60">
-                                }
-                            </td>
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <div class="chessboard-container">
+        <table border="0" id="chessboard">
+            <tbody>
+            @for(i <- (-7 to 0)){
+                <tr>
+                @for(j <- 0 to 7){
+                    <td class="chessfield" id=@{if((i+j) % 2 != 0) "white-field" else "black-field"}>
+                    @if(board.getImage(j,-i) != ""){
+                        <img class="figure" src=@routes.Assets.versioned(board.getImage(j,-i))>
                         }
-                        </tr>
-                    }
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-    </table>
+                    </td>
+                }
+                </tr>
+            }
+            </tbody>
+        </table>
 
-    <br>
+        <div class="game-information-container">
 
-    <table>
-        <tr>
-            <td width="500"></td>
-            <td>
-                <h3>@input</h3>
-                <form method="post" action="/game?id=@gameID">
-                    <label for="textfeld">Input:</label>
-                    <input type="text" id="textfeld" name="command" autofocus>
-                    <input type="submit" value="Submit">
-                </form>
-                <br>
+            <div id="game-id">
                 <span>GameID: @gameID</span>
-                <br>
-                <br>
-                @moves.mkString(", ")
-            </td>
-        </tr>
-    </table>
+            </div>
+
+            <div class="move-control-container">
+                <div class="input-field">
+                    <div>@input</div>
+                    <br>
+                    <form method="post" action="/game?id=@gameID">
+                        <label for="textfeld">Input:</label>
+                        <input type="text" id="textfeld" name="command" autofocus style="color: black">
+                        <input type="submit" value="Submit"style="background-color: #f41874">
+                    </form>
+
+                </div>
+                <div id="move-textfield">
+                    Moves:
+                    <br>
+                    <br>
+                    @moves.mkString(", ")
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
 }

@@ -1,48 +1,49 @@
-@()
+@()(implicit messages: Messages)
+
 @header()
 @main("Welcome to ChessScala"){
 
     <div class="about-content-area">
-        <h1 class="section-header m-bottom-2">About the ChessScala Project</h1>
+        <h1 class="section-header m-bottom-2">@messages("about.title")</h1>
         <div class="section-skewed m-bottom-2">
             <div>
-                <p class="basic-text-1-2">The ChessScala project is being developed during the Winter Semester 2023/2024 at HTWG Konstanz for the "Web Applications" course.</p>
+                <p class="basic-text-1-2">@messages("about.intro.text")</p>
             </div>
         </div>
     
-        <h2 class="section-subheader m-bottom-1">Project Background</h2>
+        <h2 class="section-subheader m-bottom-1">@messages("about.background.title")</h2>
         <div class="section-skewed m-bottom-2">
             <div>
-                <p class="basic-text-1-2">This project builds on the "Software Engineering" course, in which a chess game was created using the Scala programming language. In the "Web Applications" course, the chess game serves as the backend, and the goal of the course is to extend the game using the Play framework to build a web application with a frontend interface.</p>
+                <p class="basic-text-1-2">@messages("about.background.text")</p>
             </div>
         </div>
     
-        <h2 class="section-subheader m-bottom-1">Course Objectives</h2>
+        <h2 class="section-subheader m-bottom-1">@messages("about.objectives.title")</h2>
         <div class="section-skewed m-bottom-2">
             <div>
                 <ul class="basic-text-1-2">
-                    <li>Gain experience with the Play framework.</li>
-                    <li>Learn HTML, CSS, Bootstrap, JavaScript, Ajax, Vue.js, jQuery, and Web-Sockets.</li>
-                    <li>Develop a complete web application integrating both frontend and backend.</li>
+                    <li>@messages("about.objectives.play.text")</li>
+                    <li>@messages("about.objectives.technologies.text")</li>
+                    <li>@messages("about.objectives.goal.text")</li>
                 </ul>
             </div>
         </div>
 
-        <h2 class="section-subheader m-bottom-1">Project Developers</h2>
+        <h2 class="section-subheader m-bottom-1">@messages("about.project.developers.title")</h2>
         <div class="section-skewed m-bottom-2 m-bottom-1">
             <div class="basic-text-1-2">
-                <p>This project is being developed by:</p>
+                <p>@messages("about.project.developers.text"):</p>
                 <ul class="m-top-1">
-                    <li><a class="link-style" href="mailto:denis.bolintineanu@@htwg-konstanz.de">@@Denis Bolintineanu</a></li>
-                    <li><a class="link-style" href="mailto:andre.koeniger@@htwg-konstanz.de">@@André Königer</a></li>
+                    <li><a class="link-style" href="mailto:denis.bolintineanu@@htwg-konstanz.de">@messages("about.project.developers.denis")</a></li>
+                    <li><a class="link-style" href="mailto:andre.koeniger@@htwg-konstanz.de">@messages("about.project.developers.andre")</a></li>
                 </ul>
             </div>
         </div>
     
-        <h2 class="section-subheader m-bottom-1">Contact Information</h2>
+        <h2 class="section-subheader m-bottom-1">@messages("about.contact.information.title")</h2>
         <div class="section-skewed m-bottom-2 m-bottom-1">
             <div class="basic-text-1-2">
-                <p>For further inquiries and details about the project, please contact the developers via the provided email links, or reach out to the Computer Science Department at HTWG Konstanz.</p>
+                <p>@messages("about.contact.information.text")</p>
             </div>
         </div>    
     </div>

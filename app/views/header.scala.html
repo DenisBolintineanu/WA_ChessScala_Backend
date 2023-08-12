@@ -1,4 +1,4 @@
-@()
+@()(implicit messages: Messages)
 <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
 <header>
     <div class="heading">
@@ -9,11 +9,16 @@
       </div>
       <div class="nav-links">
         <ul class="links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/lobby">Lobby</a></li>
-          <li><a href="/rules">Rules</a></li>
-          <li><a href="/about">About</a></li>  
+          <li><a href="/">@messages("header.home")</a></li>
+          <li><a href="/lobby">@messages("header.lobby")</a></li>
+          <li><a href="/rules">@messages("header.rules")</a></li>
+          <li><a href="/about">@messages("header.about")</a></li>  
         </ul>
+
+        <div class="language-select">
+            <a href="@routes.HomeController.reloadCurrentPageWithLang("de")"><img class="image-icon" src="@routes.Assets.versioned("images/flags/DE_flag.png")"</src></a>
+            <a href="@routes.HomeController.reloadCurrentPageWithLang("en")"><img class="image-icon" src="@routes.Assets.versioned("images/flags/UK_flag.png")"</src></a>
+        </div>
       </div>
     </div>
 </header>

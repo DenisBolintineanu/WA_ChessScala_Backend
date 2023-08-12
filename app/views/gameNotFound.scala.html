@@ -1,7 +1,10 @@
-@(gameID: String)
+@(gameID: String)(implicit messages: Messages)
+
 @header()
 @main("Welcome to Play") {
-    <h1>404 Not Found</h1>
-    <h3>A gameNotFound with id @gameID does not exist</h3>
+    <div class="error-content-area">
+        <h1 class="section-header">404 Not Found</h1>
+        <h3 class="section-subsubheader">A Game with id @gameID does not exist</h3>
+    </div>
 }
 @footer()

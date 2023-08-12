@@ -1,5 +1,5 @@
 @import utils.ChesspieceImageManager
-@(input: String, gameID: String, moves: List[String], board: ChesspieceImageManager)
+@(input: String, gameID: String, moves: List[String], board: ChesspieceImageManager)(implicit messages: Messages)
 @main("Chess") {
     <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
     <div class="chessboard-container">

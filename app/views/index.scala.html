@@ -1,4 +1,4 @@
-@()
+@()(implicit messages: Messages)
 @header()
 @main("Welcome to Play") {  
   <div class="content-area">
@@ -6,15 +6,15 @@
       <img class="logo--large" src=@routes.Assets.versioned("images/logo.png")>
       <h2 class="index-heading">ChessScala</h2>
       <div class="start-game-wrapper">
-        <a href="@routes.HomeController.newGame()">Start new Game</a>
+        <a href="@routes.HomeController.newGame()">@messages("index.start.game")</a>
       </div>
       <div class="join-game">
-        <h3>Have a session Id?</h3>
+        <h3>@messages("index.session.id.cta")</h3>
         <div class="join-game-form">
           <form action="/game" method="GET">
             <input type="text" name="id" autocomplete="off" placeholder="Session ID">
-            <label class="placeholder-label" for="id">Session ID</label>
-            <input type="submit" value="Join now">
+            <label class="placeholder-label" for="id">Session-ID</label>
+            <input type="submit" value="@messages("index.join.game.btn")">
           </form>
         </div>
       </div>
@@ -25,19 +25,19 @@
             <div>
               <img src=@routes.Assets.versioned("images/chesspieces/whiteKnight.png")>
             </div>
-            <h3>Lobby</h3>
+            <h3>@messages("header.lobby")</h3>
           </a>
           <a href="/rules" class="index-card">
             <div>
               <img src=@routes.Assets.versioned("images/chesspieces/whiteRook.png")>
             </div>
-            <h3>Rules</h3>
+            <h3>@messages("header.rules")</h3>
           </a>
           <a href="/about" class="index-card">
             <div>
               <img src=@routes.Assets.versioned("images/chesspieces/blackBishop.png")>
             </div>
-            <h3>About</h3>
+            <h3>@messages("header.about")</h3>
           </a>
           <!--
             <div class="index-card">

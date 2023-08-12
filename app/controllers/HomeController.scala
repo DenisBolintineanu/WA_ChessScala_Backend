@@ -1,12 +1,13 @@
 package controllers
 
+import play.api.i18n.{I18nSupport, Lang}
 import play.api.mvc._
 import utils.{ChesspieceImageManager, CleanUpTask}
 
 import javax.inject._
 
 @Singleton
-class HomeController @Inject()(val controllerComponents: ControllerComponents, val cleanUpTask: CleanUpTask) extends BaseController {
+class HomeController @Inject()(val controllerComponents: ControllerComponents, val cleanUpTask: CleanUpTask) extends BaseController with I18nSupport {
 
   def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
@@ -39,6 +40,10 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
       val chesspieceImageManager: ChesspieceImageManager = new ChesspieceImageManager(controller.state.board)
       Ok(views.html.chess(controllerAsText, id, controller.returnMoveList(), chesspieceImageManager))
     }
+  }
+
+  def reloadCurrentPageWithLang(lang: String) = Action { implicit request =>
+    Redirect(request.headers.get(REFERER).getOrElse(routes.HomeController.index().url)).withLang(Lang(lang))
   }
 
   def adminPage(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>

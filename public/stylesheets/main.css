@@ -25,7 +25,6 @@
     font-family: 'Roboto', 'sans-serif';
     padding: 0;
     margin: 0;
-    color: var(--secondary-color);
     overflow-x: hidden;
 }
 
@@ -84,6 +83,22 @@ header {
                 color: #fff;
             }
         }
+
+        & .language-select {
+            width: 50px;
+            display: flex;
+            align-self: flex-start;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            padding: 3px;
+
+            & .image-icon {
+                width: 20px;
+                height: auto;
+            }
+        }
     }
 }
 
@@ -122,11 +137,13 @@ header {
 
     & .main {
         height: 100vh;
-        background: -webkit-linear-gradient(top, var(--primary-color-dark) 0%, #ef5a9870 50%, var(--primary-color-dark) 100%);
         background-color: rgba(25,128,128, .4);
+        background: -webkit-linear-gradient(9deg, var(--primary-color-dark) 0%, #ef5a9870 50%, var(--primary-color-dark) 100%);
+        -webkit-animation: AnimateBG 20s ease infinite;
+        animation: AnimateBG 20s ease infinite;
+        background-size: 300% 300%;
 
         display: flex;
-
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -175,6 +192,8 @@ header {
             flex-direction: column;
             align-items: center;
             justify-content: space-evenly;
+            color: white;
+
         
             & input {
 
@@ -284,10 +303,34 @@ header {
     100% { transform: scale(1); }        /* Rückkehr zur ursprünglichen Größe */
 }
 
-@keyframes fillFromLeft {
+  @keyframes fillFromLeft {
     0%   { background-size: 0% 100%; }
     100% { background-size: 100% 100%; }
-}
+  }
+  
+  @-webkit-keyframes AnimateBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  @keyframes AnimateBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
 .error-content-area {
     height: 100vh;
@@ -326,19 +369,36 @@ header {
     background: linear-gradient(to right, var(--primary-color), var(--primary-color));
     color: white;
     padding: 2rem;
-    transition: all .3s .3s ease-in-out;
+    transition: background .3s .3s ease-in-out;
     transform: skewX(-5deg);
+    font-size: 1.5rem;
+
+    & summary {
+        list-style: none;
+        border-bottom: 1px solid white;
+        cursor: pointer;
+    }
 
     & div {
         transform: skewX(5deg);
+    }
+
+    & * {
+        color: white;
     }
 }
 
 .section-skewed:hover {
     background: linear-gradient(to right, white, #f4187458);
+    color: #f41874;
     & * {
         color: #f41874;
     }
+}
+
+.primary-link {
+    text-decoration: none;
+    color: var(--primary-color-dark);
 }
 
 .basic-text-1-2 {
@@ -377,14 +437,22 @@ header {
 }
 
 .footer-container {
+    font-size: 1rem;
     height: 15vh;
-    background: -webkit-linear-gradient(top, #f89bc2 0%, var(--primary-color) 70%, #6a002c 100%);
+    background: white;
+    color: var(--primary-color-dark);
+    border-top: 1px solid black;
     padding: 6rem;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    & a {
+        text-decoration: none;
+        color: var(--primary-color-dark);
+    }
 }
 
 .footer-links-container {
@@ -394,8 +462,35 @@ header {
     justify-content: center;
     align-items: flex-end;
 
-    & a {
-        text-decoration: none;
+    & ul {
+
+        width: 100%;
+
+        & li {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+    
+            & a {
+                color: var(--primary-color-dark);
+                text-decoration: none;
+            }
+
+            & .icon {
+                margin-right: 1.2rem;
+                color: white;
+                transition: all .2s .2s ease-in-out;
+            }
+        }
+
+        & li:hover {
+            & .icon {
+                color: var(--primary-color-dark);
+            }
+        }
+
     }
 }
 

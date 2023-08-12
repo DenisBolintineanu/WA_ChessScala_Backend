@@ -4,21 +4,26 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index()
+GET     /                   controllers.HomeController.index()
 
-GET     /game                controllers.HomeController.joinGame(id)
+GET     /game               controllers.HomeController.joinGame(id)
 
-GET     /newGame             controllers.HomeController.newGame()
+GET     /newGame            controllers.HomeController.newGame()
 
 + nocsrf
-POST     /game            controllers.HomeController.playChess2(id)
+POST    /game              controllers.HomeController.playChess2(id)
 
-GET     /admin            controllers.HomeController.adminPage()
+GET     /admin              controllers.HomeController.adminPage()
 
 GET     /rules              controllers.HomeController.rules()
 
 GET     /about              controllers.HomeController.about()
 
+GET     /changeLang/:lang   controllers.HomeController.reloadCurrentPageWithLang(lang: String)
+
+
+
+
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET     /assets/*file       controllers.Assets.versioned(path="/public", file: Asset)
 

@@ -1,43 +1,42 @@
 @()(implicit messages: Messages)
 @header()
 @main("Welcome to Play") {
-
-<div class="rule-content-area">
-    <h1 class="section-header m-bottom-2">@messages("rules.title")</h1>
-    <div class="section-skewed m-bottom-2">
+<div class="basic-page">
+    <h1 class="header-primary mb-2">@messages("rules.title")</h1>
+    <div class="bg-skewed mb-2">
         <div>
             <p class="basic-text-1-2">@messages("rules.intro.text")</p>
         </div>
     </div>
 
-    <h2 class="section-subheader m-bottom-1">@messages("rules.goal.title")</h2>
-    <div class="section-skewed m-bottom-2">
+    <h2 class="header-secondary mb-1">@messages("rules.goal.title")</h2>
+    <div class="bg-skewed mb-2">
         <div>
             <p class="basic-text-1-2">@messages("rules.goal.text")</p>
         </div>
     </div>
 
-    <h2 class="section-subheader m-bottom-1">@messages("rules.equipment.title")</h2>
-    <div class="section-skewed m-bottom-2">
+    <h2 class="header-secondary mb-1">@messages("rules.equipment.title")</h2>
+    <div class="bg-skewed mb-2">
         <div>
             <ul>
                 <li class="basic-text-1-2"><strong>@messages("chess.board.name")</strong>
                     <p>@messages("rules.equipment.text")</p>
                     <ul class="m-top-1">
-                        <li class="icon-img-container"><img class="icon-img" src=@routes.Assets.versioned("images/chesspieces/blackKing.png")>@messages("chess.figure.king.name")</li>
-                        <li class="icon-img-container"><img class="icon-img" src=@routes.Assets.versioned("images/chesspieces/whiteQueen.png")>@messages("chess.figure.queen.name")</li>
-                        <li class="icon-img-container"><img class="icon-img" src=@routes.Assets.versioned("images/chesspieces/blackRook.png")>@messages("chess.figure.rook.name")</li>
-                        <li class="icon-img-container"><img class="icon-img" src=@routes.Assets.versioned("images/chesspieces/whiteBishop.png")>@messages("chess.figure.bishop.name")</li>
-                        <li class="icon-img-container"><img class="icon-img" src=@routes.Assets.versioned("images/chesspieces/blackKnight.png")>@messages("chess.figure.knight.name")</li>
-                        <li class="icon-img-container"><img class="icon-img" src=@routes.Assets.versioned("images/chesspieces/whitePawn.png")>@messages("chess.figure.pawn.name")</li>
+                        <li class="icon-sm-container"><img class="icon-sm" src=@routes.Assets.versioned("images/chesspieces/blackKing.png")>@messages("chess.figure.king.name")</li>
+                        <li class="icon-sm-container"><img class="icon-sm" src=@routes.Assets.versioned("images/chesspieces/whiteQueen.png")>@messages("chess.figure.queen.name")</li>
+                        <li class="icon-sm-container"><img class="icon-sm" src=@routes.Assets.versioned("images/chesspieces/blackRook.png")>@messages("chess.figure.rook.name")</li>
+                        <li class="icon-sm-container"><img class="icon-sm" src=@routes.Assets.versioned("images/chesspieces/whiteBishop.png")>@messages("chess.figure.bishop.name")</li>
+                        <li class="icon-sm-container"><img class="icon-sm" src=@routes.Assets.versioned("images/chesspieces/blackKnight.png")>@messages("chess.figure.knight.name")</li>
+                        <li class="icon-sm-container"><img class="icon-sm" src=@routes.Assets.versioned("images/chesspieces/whitePawn.png")>@messages("chess.figure.pawn.name")</li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 
-    <h2 class="section-subheader m-bottom-1">@messages("rules.gameprep.title")</h2>
-    <div class="section-skewed m-bottom-2">
+    <h2 class="header-secondary mb-1">@messages("rules.gameprep.title")</h2>
+    <div class="bg-skewed mb-2">
         <div>
             <ol>
                 <li class="basic-text-1-2"><strong>@messages("rules.gameprep.board.setup.title")</strong>: <p>@messages("rules.gameprep.board.setup.text")</p></li>
@@ -46,35 +45,35 @@
         </div>
     </div>
 
-    <h2 class="section-subheader m-bottom-1">@messages("rules.game.rules.title"):</h2>
-    <h3 class="section-subsubheader m-bottom-1">@messages("rules.game.rules.movement.title"):</h3>
-    <details class="section-skewed m-bottom-2">
-        <summary><img class="icon-img" src=@routes.Assets.versioned("images/chesspieces/whiteKing.png")><strong>@messages("chess.figure.king.name")</strong></summary>
+    <h2 class="header-secondary mb-1">@messages("rules.game.rules.title"):</h2>
+    <h3 class="header-tertiary mb-1">@messages("rules.game.rules.movement.title"):</h3>
+    <details class="bg-skewed mb-2">
+        <summary><img class="icon-sm" src=@routes.Assets.versioned("images/chesspieces/whiteKing.png")><strong>@messages("chess.figure.king.name")</strong></summary>
         @messages("chess.figure.king.description")
     </details>
-    <details class="section-skewed m-bottom-2">
-        <summary><img class="icon-img" src=@routes.Assets.versioned("images/chesspieces/blackQueen.png")><strong>@messages("chess.figure.queen.name")</strong></summary>
+    <details class="bg-skewed mb-2">
+        <summary><img class="icon-sm" src=@routes.Assets.versioned("images/chesspieces/blackQueen.png")><strong>@messages("chess.figure.queen.name")</strong></summary>
         @messages("chess.figure.queen.description")
     </details>
-    <details class="section-skewed m-bottom-2">
-        <summary><img class="icon-img" src=@routes.Assets.versioned("images/chesspieces/whiteRook.png")><strong>@messages("chess.figure.rook.name")</strong></summary>
+    <details class="bg-skewed mb-2">
+        <summary><img class="icon-sm" src=@routes.Assets.versioned("images/chesspieces/whiteRook.png")><strong>@messages("chess.figure.rook.name")</strong></summary>
         @messages("chess.figure.rook.description")
     </details>
-    <details class="section-skewed m-bottom-2">
-        <summary><img class="icon-img" src=@routes.Assets.versioned("images/chesspieces/blackBishop.png")><strong>@messages("chess.figure.bishop.name")</strong></summary>
+    <details class="bg-skewed mb-2">
+        <summary><img class="icon-sm" src=@routes.Assets.versioned("images/chesspieces/blackBishop.png")><strong>@messages("chess.figure.bishop.name")</strong></summary>
         @messages("chess.figure.bishop.description")
     </details>
-    <details class="section-skewed m-bottom-2">
-        <summary><img class="icon-img" src=@routes.Assets.versioned("images/chesspieces/whiteKnight.png")><strong>@messages("chess.figure.knight.name")</strong></summary>
+    <details class="bg-skewed mb-2">
+        <summary><img class="icon-sm" src=@routes.Assets.versioned("images/chesspieces/whiteKnight.png")><strong>@messages("chess.figure.knight.name")</strong></summary>
         @messages("chess.figure.knight.description")
     </details>
-    <details class="section-skewed m-bottom-2">
-        <summary><img class="icon-img" src=@routes.Assets.versioned("images/chesspieces/blackPawn.png")><strong>@messages("chess.figure.pawn.name")</strong></summary>
+    <details class="bg-skewed mb-2">
+        <summary><img class="icon-sm" src=@routes.Assets.versioned("images/chesspieces/blackPawn.png")><strong>@messages("chess.figure.pawn.name")</strong></summary>
         @messages("chess.figure.pawn.description")
     </details>
 
-    <h3 class="section-subsubheader m-bottom-1">@messages("rules.game.rules.movement.special.title"):</h3>
-    <div class="section-skewed m-bottom-2">
+    <h3 class="header-tertiary mb-1">@messages("rules.game.rules.movement.special.title"):</h3>
+    <div class="bg-skewed mb-2">
         <div>
             <ul class="basic-text-1-2">
                 <li><strong>@messages("rules.game.rules.movement.special.castling.title")</strong>: @messages("rules.game.rules.movement.special.castling.text")</li>
@@ -84,8 +83,8 @@
         </div>
     </div>
 
-    <h3 class="section-subsubheader m-bottom-1">@messages("rules.gameplay.title"):</h3>
-    <div class="section-skewed m-bottom-2">
+    <h3 class="header-tertiary mb-1">@messages("rules.gameplay.title"):</h3>
+    <div class="bg-skewed mb-2">
         <div>
             <p class="basic-text-1-2">
                 @messages("rules.gameplay.text")
@@ -93,8 +92,8 @@
         </div>
     </div>
 
-    <h3 class="section-subsubheader m-bottom-1">@messages("rules.additional.rules.draw.title")</h3>
-    <div class="section-skewed m-bottom-2">
+    <h3 class="header-tertiary mb-1">@messages("rules.additional.rules.draw.title")</h3>
+    <div class="bg-skewed mb-2">
         <div>
             <ul class="basic-text-1-2">
                 <li><strong>@messages("rules.additional.rules.draw.title")</strong>: @messages("rules.additional.rules.draw.text")</li>

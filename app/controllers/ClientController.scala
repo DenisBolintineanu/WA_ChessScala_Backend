@@ -20,7 +20,7 @@ class ClientController @Inject()(val controllerComponents: ControllerComponents,
       val controller = cleanUpTask.controllerMapping(id)
       cleanUpTask.garbageCollector(id) = true
       controller.computeInput(moveAsString)
-      Ok(controller.output)
+      Ok(controller.returnBoardAsJson())
     }
   }
 

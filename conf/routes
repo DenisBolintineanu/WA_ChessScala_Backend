@@ -9,7 +9,7 @@
 GET     /clientRequest/createNewGameID  controllers.ClientController.createNewGame()
 
 + nocsrf
-POST    /clientRequest/move             controllers.ClientController.doMove(id, move)
+POST    /clientRequest/move             controllers.ClientController.doMove()
 
 
 

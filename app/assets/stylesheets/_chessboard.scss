@@ -1,0 +1,97 @@
+#chessboard {
+    height: 90%;
+    width: 90%;
+    max-height: 90vw;
+    max-width: 90vh;
+    background-color: rgba(208, 166, 113, 0.8);
+    border: 20px solid rgba(46, 35, 35, 0.83);
+    margin-top: 5vh;
+}
+
+#white-field {
+    background-color: #F0D9B5;
+}
+
+#black-field {
+    background-color: #B58863;
+}
+
+.move-control-container {
+    padding: 1rem;
+}
+
+.move-input-controls {
+    padding: 3rem;
+    border: 2px solid $primary-color;      
+    box-shadow: 0 2px 20px rgba(0,0,0,.3);
+    border-radius: 20px;
+
+    > form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        > *:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
+}
+
+.figure {
+    height: 90%;
+    width: 90%;
+}
+
+.chessfield{
+    height: 12.5%;
+    width: 12.5%;
+    text-align: center;
+}
+
+.chessboard-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background : linear-gradient(to right, rgba(40, 37, 77, 0.65) 50%,  var(--primary-color));
+}
+
+@media screen and (min-width: 1200px){
+    .chessboard-container{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+@media screen and (max-width: 1199px){
+    .chessboard-container{
+        margin-top: 3rem;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .game-information-container{
+        margin-top: 3rem;
+    }
+}
+
+.game-information-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#game-id {
+    padding: 1rem;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.24);
+    margin-top: 5vh;
+}
+
+#move-textfield {
+    font-size: 1.2rem;
+    margin-top: 5vh;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.35);
+    height: 30vh;
+    max-width: 30vw;
+}

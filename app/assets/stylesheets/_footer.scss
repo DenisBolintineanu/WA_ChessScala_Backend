@@ -4,7 +4,7 @@
 
 .footer-container {
     font-size: 1rem;
-    height: 15vh;
+    height: 25vh;
     background: white;
     color: $primary-color-dark;
     border-top: 1px solid black;
@@ -12,6 +12,7 @@
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     display: flex;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: space-between;
 
@@ -24,9 +25,18 @@
 .footer-links-container {
     height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+
+
+    @include respond(phone) {
+        align-items: flex-start;
+        flex-direction: row;
+    }
+
+    @include respond(tablet) {
+        flex-direction: column;
+        align-items: flex-end;
+    }
 
     ul {
         width: 100%;

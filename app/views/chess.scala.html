@@ -1,6 +1,7 @@
 @import utils.ChesspieceImageManager
 @(input: String, gameID: String, moves: List[String], board: ChesspieceImageManager)(implicit messages: Messages)
-@main("Chess") {
+@header()
+@main("Play Chess") {
     <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/main.css")">
     <div class="chessboard-container">
         <table border="0" id="chessboard">
@@ -22,19 +23,18 @@
         <div class="game-information-container">
 
             <div id="game-id">
-                <span>GameID: @gameID</span>
+                <span class="text-large text-colorized">GameID: @gameID</span>
             </div>
 
             <div class="move-control-container">
-                <div class="input-field">
-                    <div>@input</div>
+                <div class="move-input-controls">
+                    <div class="text-colorized">@input</div>
                     <br>
                     <form method="post" action="/game?id=@gameID">
-                        <label for="textfeld">Input:</label>
-                        <input type="text" id="textfeld" name="command" autofocus style="color: black">
-                        <input type="submit" value="Submit"style="background-color: #f41874">
+                        <label for="textfeld" class="header-secondary">Input:</label>
+                        <input type="text" class="text-input-primary" id="textfeld" name="command" autofocus>
+                        <input type="submit" class="btn-cta-primary" value="Submit">
                     </form>
-
                 </div>
                 <div id="move-textfield">
                     Moves:
@@ -47,5 +47,5 @@
         </div>
 
     </div>
-
 }
+@footer()

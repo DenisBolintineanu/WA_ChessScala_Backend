@@ -14,11 +14,13 @@
             font-size: .8rem;
         }
     }
+
     @include respond(tablet) {
         .main, .widgets {
             width: 50%;
         }
     }
+
     @include respond(desktop) {
         .main, .widgets {
             width: 50%;
@@ -28,6 +30,7 @@
 
 .main {
     height: 100vh;
+    width: 100%;
     background-color: rgba(25, 128, 128, .4);
     background: -webkit-linear-gradient(9deg, $primary-color-dark 0%, #ef5a9870 50%, $primary-color-dark 100%);
     -webkit-animation: AnimateBG 20s ease infinite;
@@ -106,6 +109,7 @@
 
 .widgets {
     height: 100vh;
+    width: 100%;
     overflow: hidden;
     background: -webkit-linear-gradient(left, #f4187485 0%, #f418741e 30%, #fff 100%);
 

@@ -1,7 +1,13 @@
-@mixin flex-center {
+@mixin flex-center($direction) {
   display: flex;
   justify-content: center;
   align-items: center;
+  @if $direction == row {
+    flex-direction: row;
+  }
+  @else {
+    flex-direction: column;
+  }
 }
 
 @mixin respond($breakpoint) {

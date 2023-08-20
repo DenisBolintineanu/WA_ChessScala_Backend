@@ -3,7 +3,7 @@
 @import 'animations';
 
 .content-center {
-    @include flex-center;
+    @include flex-center(row);
 }
 
 .text-input-primary {
@@ -108,9 +108,34 @@
     font-size: 1.5rem;
 }
 
+.text-responsive {
+    @include respond(phone) {
+        font-size: 0.7rem;
+    }
+
+    @include respond(desktop) {
+        font-size: 1rem;
+    }
+
+    > * {
+        @include respond(phone) {
+            font-size: 0.7rem;
+        }
+    
+        @include respond(desktop) {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.text-colorized {
+    color: $primary-color
+}
+
 .text-focus-page {
     height: 100vh;
-    @include flex-center;
+    @include flex-center(column);
+    color: $primary-color;
 }
 
 .basic-page {

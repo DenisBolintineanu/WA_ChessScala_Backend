@@ -6,11 +6,13 @@
 
 # Client routes
 
-GET     /clientRequest/createNewGameID  controllers.ClientController.createNewGame()
+GET     /clientRequest/createNewGameID       controllers.ClientController.createNewGame()
 
 + nocsrf
-POST    /clientRequest/move             controllers.ClientController.doMove()
+POST    /clientRequest/move                  controllers.ClientController.doMove()
 
++ nocsrf
+POST    /clientRequest/gameboard             controllers.ClientController.getGameBoard()
 
 
 # Map static resources from the /public folder to the /assets URL path

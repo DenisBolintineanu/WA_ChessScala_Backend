@@ -16,21 +16,29 @@ class ClientController @Inject()(val controllerComponents: ControllerComponents,
 
 
   def createNewGame(): Action[AnyContent] = Action {
-    val gameId = cleanUpTask.gameSetup
-    Ok(gameId)
+    Ok(cleanUpTask.gameSetup)
+  }
+
+  def getGameBoard(): Action[AnyContent] = Action { implicit request: Request[AnyContent] => {
+      val id = returnRequestParamAsString(request, GAME_ID)
+      if (!cleanUpTask.controllerMapping.contains(id)) {
+        Ok(ERROR_RESPONSE)
+      }
+      val controller = cleanUpTask.controllerMapping(id)
+      Ok(controller.returnBoardAsJson())
+    }
   }
 
   def doMove(): Action[AnyContent] = Action { implicit request: Request[AnyContent] => {
       val id = returnRequestParamAsString(request, GAME_ID)
       if (!cleanUpTask.controllerMapping.contains(id)) {
         Ok(ERROR_RESPONSE)
-      } else {
-        val moveAsString = returnRequestParamAsString(request, MOVE_ID)
-        val controller = cleanUpTask.controllerMapping(id)
-        cleanUpTask.garbageCollector(id) = true
-        controller.computeInput(moveAsString)
-        Ok(controller.returnBoardAsJson())
       }
+      val moveAsString = returnRequestParamAsString(request, MOVE_ID)
+      val controller = cleanUpTask.controllerMapping(id)
+      cleanUpTask.garbageCollector(id) = true
+      controller.computeInput(moveAsString)
+      Ok(controller.returnBoardAsJson())
     }
   }
 

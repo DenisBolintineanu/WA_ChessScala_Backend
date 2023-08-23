@@ -1,11 +1,10 @@
-package services
+package services.db
 
 import org.mongodb.scala.model.Filters.equal
 import org.mongodb.scala.model.ReplaceOptions
 import org.mongodb.scala.{Document, MongoClient, MongoCollection, MongoDatabase}
 import play.api.Configuration
 
-import javax.inject.Inject
 import scala.concurrent.Await
 import scala.concurrent.duration.DurationInt
 

@@ -2,16 +2,14 @@ package services.local
 
 import ChessScala.controller.{Controller, IController}
 import com.google.inject.Inject
-import services.IGameService
-import utils.CleanUpScheduler
+import services.IPersistenceService
 
 import akka.actor.ActorSystem
-import com.google.inject.Inject
 import scala.collection.mutable
 import scala.concurrent.ExecutionContext
 import scala.concurrent.duration.DurationInt
 
-class LocalPersistenceService @Inject()(actorSystem: ActorSystem)(implicit ec: ExecutionContext) extends IGameService {
+class LocalPersistenceService @Inject()(actorSystem: ActorSystem)(implicit ec: ExecutionContext) extends IPersistenceService {
 
   private val cleanUpIntervalTime = 1.minute
   private val garbageCollector: mutable.Map[String, Boolean] = mutable.Map.empty
@@ -26,19 +24,23 @@ class LocalPersistenceService @Inject()(actorSystem: ActorSystem)(implicit ec: E
     gameID
   }
 
-  def readGame(id: String): Option[String] = {
+  def readGame(id: String, asJson: Boolean = true): Option[String] = {
     controllerMapping.get(id) match {
-      case Some(controller) => Some(controller.returnBoardAsJson())
+      case Some(controller) =>
+        if (!asJson) Some(controller.output)
+        else Some(controller.returnBoardAsJson())
       case _ => None
     }
   }
 
-  def updateGame(move: String, id: String): Option[String] = {
+  def updateGame(move: String, id: String, asJson: Boolean = true): Option[String] = {
     controllerMapping.get(id) match {
       case Some(controller) =>
         controller.computeInput(move)
         garbageCollector(id) = true
-        Some(controllerMapping(id).returnBoardAsJson())
+        if (!asJson)
+          Some(controllerMapping(id).output)
+        else Some(controllerMapping(id).returnBoardAsJson())
       case _ => None
     }
   }

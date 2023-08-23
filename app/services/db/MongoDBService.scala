@@ -1,5 +1,6 @@
 package services.db
 
+import com.google.inject.Inject
 import org.mongodb.scala.model.Filters.equal
 import org.mongodb.scala.model.ReplaceOptions
 import org.mongodb.scala.{Document, MongoClient, MongoCollection, MongoDatabase}
@@ -8,7 +9,7 @@ import play.api.Configuration
 import scala.concurrent.Await
 import scala.concurrent.duration.DurationInt
 
-class MongoDBService (config: Configuration) {
+class MongoDBService @Inject()() (config: Configuration) {
   val mongoUri: String = config.get[String]("mongodb.uri")
   val dbName: String = config.get[String]("mongodb.database")
   val collectionName: String = config.get[String]("mongodb.collection")

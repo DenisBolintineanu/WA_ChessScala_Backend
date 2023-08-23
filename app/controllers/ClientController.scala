@@ -3,20 +3,18 @@ package controllers
 import ChessScala.controller.Controller
 import play.api.Configuration
 import play.api.mvc._
-import services.IGameService
+import services.IPersistenceService
 import services.db.MongoDBService
 import services.local.LocalPersistenceService
+import utils.DefaultServerResponses.{ERROR_RESPONSE, INVALID_RESPONSE, SUCCESS_RESPONSE}
 
 import javax.inject._
 
 @Singleton
-class ClientController @Inject()(val controllerComponents: ControllerComponents, val persistenceService: LocalPersistenceService) extends BaseController {
+class ClientController @Inject()(val controllerComponents: ControllerComponents, val persistenceService: IPersistenceService) extends BaseController {
 
   private val MOVE_ID: String = "move"
   private val GAME_ID: String = "id"
-  private val SUCCESS_RESPONSE: String = "SUCCESS"
-  private val INVALID_RESPONSE: String = "invalid"
-  private val ERROR_RESPONSE: String = "ERROR"
 
   def createNewGame(): Action[AnyContent] = Action {
     Ok(persistenceService.createGame())

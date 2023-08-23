@@ -17,6 +17,16 @@ POST    /clientRequest/gameboard             controllers.ClientController.getGam
 + nocsrf
 POST    /clientRequest/delete                controllers.ClientController.deleteGame()
 
+# Server routes
+
+GET     /index                               controllers.HomeController.index()
+
+GET     /game                                controllers.HomeController.joinGame(id)
+
+GET     /newGame                             controllers.HomeController.newGame()
+
++ nocsrf
+POST    /game                                controllers.HomeController.playChess2(id)
 
 
 # Map static resources from the /public folder to the /assets URL path

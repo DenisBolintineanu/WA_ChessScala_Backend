@@ -32,8 +32,9 @@ class ClientController @Inject()(val controllerComponents: ControllerComponents,
 
   def doMove(): Action[AnyContent] = Action { implicit request: Request[AnyContent] => {
       val id = returnRequestParamAsString(request, GAME_ID)
+      val playerID = returnRequestParamAsString(request, "PlayerID")
       val moveAsString = returnRequestParamAsString(request, MOVE_ID)
-      persistenceService.updateGame(moveAsString, id) match {
+      persistenceService.updateGame(moveAsString, id, playerID) match {
         case Some(board) => Ok(board)
         case _ => Ok(ERROR_RESPONSE)
       }
@@ -43,6 +44,12 @@ class ClientController @Inject()(val controllerComponents: ControllerComponents,
   def deleteGame(): Action[AnyContent] = Action { implicit request: Request[AnyContent] => {
     val id = returnRequestParamAsString(request, GAME_ID)
     if (persistenceService.deleteGame(id)) Ok(SUCCESS_RESPONSE) else Ok(ERROR_RESPONSE)
+  }}
+
+  def joinGame(): Action[AnyContent] = Action { implicit request: Request[AnyContent] => {
+    val id = returnRequestParamAsString(request, GAME_ID)
+    val playerID = persistenceService.joinGame(id)
+    Ok(playerID)
   }}
 
   private def returnRequestParamAsString(request: Request[AnyContent], key: String): String = {

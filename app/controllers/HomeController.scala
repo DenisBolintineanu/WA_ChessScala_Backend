@@ -13,23 +13,21 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
     Ok("WELCOME TO CHESS PLAY")
   }
 
-  def playChess2(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val parameter1 = request.body.asFormUrlEncoded.get("move").headOption.getOrElse("")
-    persistenceService.updateGame(parameter1, id, asJson = false) match {
+  def doMove(id: String, playerID: String, move: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    persistenceService.updateGame(move, id, playerID, asJson = false) match {
       case Some(board) => Ok(board)
       case _ => Ok(ERROR_RESPONSE)
     }
   }
 
   def newGame(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Redirect(routes.HomeController.joinGame(persistenceService.createGame()))
+    Ok(persistenceService.createGame())
   }
 
-  def joinGame(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+  def updateGame(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     persistenceService.readGame(id, asJson = false) match {
       case Some(board) => Ok(board)
       case _ => Ok(ERROR_RESPONSE)
     }
   }
-
 }

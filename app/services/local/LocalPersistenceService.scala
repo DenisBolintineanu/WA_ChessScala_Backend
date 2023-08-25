@@ -1,46 +1,56 @@
 package services.local
 
 import ChessScala.controller.{Controller, IController}
+import ChessScala.model.figureStrategies.White
+import ChessScala.model.gameState.stateImplementation.GameState
 import com.google.inject.Inject
 import services.IPersistenceService
-
 import akka.actor.ActorSystem
+import utils.GameSession
+
+import javax.inject.Singleton
 import scala.collection.mutable
 import scala.concurrent.ExecutionContext
 import scala.concurrent.duration.DurationInt
 
+@Singleton
 class LocalPersistenceService @Inject()(actorSystem: ActorSystem)(implicit ec: ExecutionContext) extends IPersistenceService {
 
-  private val cleanUpIntervalTime = 1.minute
+  private val cleanUpIntervalTime = 10.minute
   private val garbageCollector: mutable.Map[String, Boolean] = mutable.Map.empty
-  private var controllerMapping: Map[String, IController] = Map.empty
+  private var controllerMapping: Map[String, GameSession] = Map.empty
 
   def createGame(): String = {
     val gameID = java.util.UUID.randomUUID().toString
-    val controller = new Controller()
-    controllerMapping = controllerMapping + (gameID -> controller)
+    val Player1_ID = java.util.UUID.randomUUID().toString
+    val Player2_ID = java.util.UUID.randomUUID().toString
+    val controller: IController = new Controller()
+    val GameSession: GameSession = new GameSession(Player1_ID, Player2_ID, controller)
+    controllerMapping = controllerMapping + (gameID -> GameSession)
     garbageCollector.+=(gameID -> true)
     controller.computeInput("1")
-    gameID
+    gameID + "\n" + Player1_ID
   }
 
   def readGame(id: String, asJson: Boolean = true): Option[String] = {
     controllerMapping.get(id) match {
-      case Some(controller) =>
-        if (!asJson) Some(controller.output)
-        else Some(controller.returnBoardAsJson())
+      case Some(session) =>
+        if (!asJson) Some(session.controller.output)
+        else Some(session.controller.returnBoardAsJson())
       case _ => None
     }
   }
 
-  def updateGame(move: String, id: String, asJson: Boolean = true): Option[String] = {
+  def updateGame(move: String, id: String, player: String, asJson: Boolean = true): Option[String] = {
     controllerMapping.get(id) match {
-      case Some(controller) =>
-        controller.computeInput(move)
+      case Some(session) =>
+        val team = session.controller.state.asInstanceOf[GameState].team == White
+        if (player == session.PlayerOne && team || player == session.PlayerTwo && !team)
+          session.controller.computeInput(move)
         garbageCollector(id) = true
         if (!asJson)
-          Some(controllerMapping(id).output)
-        else Some(controllerMapping(id).returnBoardAsJson())
+          Some(controllerMapping(id).controller.output)
+        else Some(controllerMapping(id).controller.returnBoardAsJson())
       case _ => None
     }
   }
@@ -54,6 +64,14 @@ class LocalPersistenceService @Inject()(actorSystem: ActorSystem)(implicit ec: E
       case None => false
     }
   }
+
+  override def joinGame(id: String): String = {
+    controllerMapping.get(id) match {
+      case Some(session) => session.PlayerTwo
+      case _ => ""
+    }
+  }
+
 
   actorSystem.scheduler.scheduleAtFixedRate(initialDelay = cleanUpIntervalTime, interval = cleanUpIntervalTime) { () =>
     actorSystem.log.info("Executing clean up...")

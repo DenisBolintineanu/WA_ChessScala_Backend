@@ -10,9 +10,9 @@ import scala.concurrent.Await
 import scala.concurrent.duration.DurationInt
 
 class MongoDBService @Inject()() (config: Configuration) {
-  val mongoUri: String = config.get[String]("mongodb.uri")
-  val dbName: String = config.get[String]("mongodb.database")
-  val collectionName: String = config.get[String]("mongodb.collection")
+  private val mongoUri: String = config.get[String]("mongodb.uri")
+  private val dbName: String = config.get[String]("mongodb.database")
+  private val collectionName: String = config.get[String]("mongodb.collection")
 
   val mongoClient: MongoClient = MongoClient(mongoUri)
   val database: MongoDatabase = mongoClient.getDatabase(dbName)
@@ -26,7 +26,6 @@ class MongoDBService @Inject()() (config: Configuration) {
 
   def readGame(gameID: String): Option[String] = {
     val futureResult = collection.find(equal("_id", gameID)).first().toFuture()
-    // Blockierender Aufruf für Demonstrationszwecke
     val result = Await.result(futureResult, 10.seconds)
     println(result)
     if (result.isEmpty) None

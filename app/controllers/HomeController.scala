@@ -1,18 +1,28 @@
 package controllers
 
-import play.api.mvc._
-import utils.{ChesspieceImageManager, CleanUpTask}
+import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents, Request}
+import services.IPersistenceService
+import utils.DefaultServerResponses.ERROR_RESPONSE
 
-import javax.inject._
+import javax.inject.{Inject, Singleton}
 
 @Singleton
-class HomeController @Inject()(val controllerComponents: ControllerComponents, val cleanUpTask: CleanUpTask) extends BaseController {
+class HomeController @Inject()(val controllerComponents: ControllerComponents, val persistenceService: IPersistenceService) extends BaseController {
 
   def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
   }
 
   def playChess2(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    val parameter1 = request.body.asFormUrlEncoded.get("move").headOption.getOrElse("")
+    persistenceService.updateGame(parameter1, id, asJson = false) match {
+      case Some(board) => Ok(board)
+      case _ => Ok(ERROR_RESPONSE)
+    }
+  }
+
+  def newGame(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    Redirect(routes.HomeController.joinGame(persistenceService.createGame()))
     if (!cleanUpTask.controllerMapping.contains(id)) {
       Ok(views.html.gameNotFound(id))
     } else {
@@ -51,6 +61,10 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
 
   def about(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.about())
+    persistenceService.readGame(id, asJson = false) match {
+      case Some(board) => Ok(board)
+      case _ => Ok(ERROR_RESPONSE)
+    }
   }
 
 }

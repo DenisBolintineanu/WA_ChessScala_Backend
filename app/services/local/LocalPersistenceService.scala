@@ -11,7 +11,7 @@ import scala.concurrent.duration.DurationInt
 
 class LocalPersistenceService @Inject()(actorSystem: ActorSystem)(implicit ec: ExecutionContext) extends IPersistenceService {
 
-  private val cleanUpIntervalTime = 1.minute
+  private val cleanUpIntervalTime = 7.minute
   private val garbageCollector: mutable.Map[String, Boolean] = mutable.Map.empty
   private var controllerMapping: Map[String, IController] = Map.empty
 
@@ -24,23 +24,16 @@ class LocalPersistenceService @Inject()(actorSystem: ActorSystem)(implicit ec: E
     gameID
   }
 
-  def readGame(id: String, asJson: Boolean = true): Option[String] = {
-    controllerMapping.get(id) match {
-      case Some(controller) =>
-        if (!asJson) Some(controller.output)
-        else Some(controller.returnBoardAsJson())
-      case _ => None
-    }
+  def readGame(id: String): Option[IController] = {
+    controllerMapping.get(id)
   }
 
-  def updateGame(move: String, id: String, asJson: Boolean = true): Option[String] = {
+  def updateGame(move: String, id: String): Option[IController] = {
     controllerMapping.get(id) match {
       case Some(controller) =>
         controller.computeInput(move)
         garbageCollector(id) = true
-        if (!asJson)
-          Some(controllerMapping(id).output)
-        else Some(controllerMapping(id).returnBoardAsJson())
+        Some(controllerMapping(id))
       case _ => None
     }
   }
@@ -54,6 +47,9 @@ class LocalPersistenceService @Inject()(actorSystem: ActorSystem)(implicit ec: E
       case None => false
     }
   }
+
+  override def getGameIds: Map[String, Boolean] = Map.from(garbageCollector)
+
 
   actorSystem.scheduler.scheduleAtFixedRate(initialDelay = cleanUpIntervalTime, interval = cleanUpIntervalTime) { () =>
     actorSystem.log.info("Executing clean up...")

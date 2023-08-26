@@ -1,58 +1,48 @@
 package controllers
 
-import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents, Request}
+import ChessScala.controller.IController
+import play.api.i18n.{I18nSupport, Lang}
+import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents, Request, Result}
 import services.IPersistenceService
-import utils.DefaultServerResponses.ERROR_RESPONSE
+import utils.ChesspieceImageManager
 
 import javax.inject.{Inject, Singleton}
 
 @Singleton
-class HomeController @Inject()(val controllerComponents: ControllerComponents, val persistenceService: IPersistenceService) extends BaseController {
+class HomeController @Inject()(val controllerComponents: ControllerComponents, val persistenceService: IPersistenceService) extends BaseController with I18nSupport {
 
   def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
   }
 
   def playChess2(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val parameter1 = request.body.asFormUrlEncoded.get("move").headOption.getOrElse("")
-    persistenceService.updateGame(parameter1, id, asJson = false) match {
-      case Some(board) => Ok(board)
-      case _ => Ok(ERROR_RESPONSE)
+    gameExists(id).getOrElse()
+    val move: String = request.body.asFormUrlEncoded.get("move").headOption.getOrElse("")
+    persistenceService.updateGame(move, id) match {
+      case Some(controller) => chessFromController(id, controller)
+      case None => Ok(views.html.error())
     }
   }
 
   def newGame(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Redirect(routes.HomeController.joinGame(persistenceService.createGame()))
-    if (!cleanUpTask.controllerMapping.contains(id)) {
-      Ok(views.html.gameNotFound(id))
-    } else {
-      val parameter1 = request.body.asFormUrlEncoded.get("command").headOption.getOrElse("")
-      val controller = cleanUpTask.controllerMapping(id)
-      cleanUpTask.garbageCollector(id) = true
-      controller.computeInput(parameter1)
-      val controllerAsText: String = controller.output
-      val chesspieceImageManager: ChesspieceImageManager = new ChesspieceImageManager(controller.state.board)
-      Ok(views.html.chess(controllerAsText, id, controller.returnMoveList(), chesspieceImageManager))
-    }
-  }
-
-  def newGame(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Redirect(routes.HomeController.joinGame(cleanUpTask.gameSetup))
   }
 
   def joinGame(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    if (!cleanUpTask.controllerMapping.contains(id)) {
-      Ok(views.html.gameNotFound(id))
-    } else {
-      val controller = cleanUpTask.controllerMapping(id)
-      val controllerAsText: String = controller.output
-      val chesspieceImageManager: ChesspieceImageManager = new ChesspieceImageManager(controller.state.board)
-      Ok(views.html.chess(controllerAsText, id, controller.returnMoveList(), chesspieceImageManager))
+    gameExists(id).getOrElse()
+    persistenceService.readGame(id) match {
+      case Some(controller) => chessFromController(id, controller)
+      case None => Ok(views.html.error())
+
     }
   }
 
+  def reloadCurrentPageWithLang(lang: String): Action[AnyContent] = Action { implicit request =>
+    Redirect(request.headers.get(REFERER).getOrElse(routes.HomeController.index().url)).withLang(Lang(lang))
+  }
+
   def adminPage(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.admin(Map.from(cleanUpTask.garbageCollector)))
+    Ok(views.html.admin(Map.from(persistenceService.getGameIds)))
   }
 
   def rules(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
@@ -61,10 +51,17 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
 
   def about(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.about())
-    persistenceService.readGame(id, asJson = false) match {
-      case Some(board) => Ok(board)
-      case _ => Ok(ERROR_RESPONSE)
+  }
+
+  private def gameExists(id: String)(implicit request: Request[AnyContent]): Option[Result] = {
+    persistenceService.readGame(id) match {
+      case Some(_) => None
+      case None => Some(Ok(views.html.gameNotFound(id)))
     }
+  }
+
+  private def chessFromController(id: String, controller: IController)(implicit request: Request[AnyContent]): Result = {
+    Ok(views.html.chess(controller.output, id, controller.returnMoveList(), ChesspieceImageManager(controller.state.board)))
   }
 
 }

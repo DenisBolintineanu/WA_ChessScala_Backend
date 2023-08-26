@@ -1,4 +1,6 @@
+@()(implicit messages: Messages)
+
 @main("Welcome to Play") {
-    <h1>404 Not Found</h1>
-    <h3>The page you've requested does not exist</h3>
+    <h1>@messages("error.404.title")</h1>
+    <h3>@messages("error.404.text")</h3>
 }

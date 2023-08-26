@@ -1,9 +1,9 @@
 package utils
 import ChessScala.model.board.{Board, Coordinate}
 
-class ChesspieceImageManager(board: Board) {
+case class ChesspieceImageManager(board: Board) {
 
-  val images:Map[Int, String] = Map(
+  private val images:Map[Int, String] = Map(
     (1, "blackRook.png"),
     (2, "blackKnight.png"),
     (3, "blackBishop.png"),

@@ -24,7 +24,7 @@ class ClientController @Inject()(val controllerComponents: ControllerComponents,
       val id = returnRequestParamAsString(request, GAME_ID)
       val gameBoard = persistenceService.readGame(id)
       gameBoard match {
-        case Some(board) => Ok(board)
+        case Some(board) => Ok(board.returnBoardAsJson())
         case _ => Ok(ERROR_RESPONSE)
       }
     }
@@ -34,7 +34,7 @@ class ClientController @Inject()(val controllerComponents: ControllerComponents,
       val id = returnRequestParamAsString(request, GAME_ID)
       val moveAsString = returnRequestParamAsString(request, MOVE_ID)
       persistenceService.updateGame(moveAsString, id) match {
-        case Some(board) => Ok(board)
+        case Some(board) => Ok(board.returnBoardAsJson())
         case _ => Ok(ERROR_RESPONSE)
       }
     }

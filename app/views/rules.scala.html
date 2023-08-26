@@ -1,63 +1,138 @@
-@()
+@()(implicit messages: Messages)
 @main("Welcome to Play") {
-    <h1>Chess - A Comprehensive Guide</h1>
-    <p>Chess is a profound and strategic board game for two players, played on a 8x8 square chessboard. It's one of the most famous and widely played games in the world. Here is a detailed guide to playing chess.</p>
+<div>
+    <h1>@messages("rules.title")</h1>
+    <div>
+        <div>
+            <p>@messages("rules.intro.text")</p>
+        </div>
+    </div>
 
-    <h2>Goal of the Game</h2>
-    <p>The goal of the game is to checkmate the opposing king, i.e., to put the king in a position where he is threatened and cannot escape the threat.</p>
+    <h2>@messages("rules.goal.title")</h2>
+    <div>
+        <div>
+            <p>@messages("rules.goal.text")</p>
+        </div>
+    </div>
 
-    <h2>Equipment</h2>
-    <ul>
-        <li><strong>Chessboard</strong> with 64 squares, divided into 8x8 grid.</li>
-        <li>32 chess pieces, divided into two sets of 16 pieces (white and black) consisting of: 1 King, 1 Queen, 2 Rooks, 2 Bishops, 2 Knights, and 8 Pawns.</li>
-    </ul>
-
-    <h2>Game Preparation</h2>
-    <ol>
-        <li><strong>Setting up the Board</strong>: The board is set up so that each player has the right bottom corner square in white.</li>
-        <li><strong>Setting up the Pieces</strong>: The pieces are set up as follows:
+    <h2>@messages("rules.equipment.title")</h2>
+    <div>
+        <div>
             <ul>
-                <li>In the back row from left to right: Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook.</li>
-                <li>In the second row, the pawns are placed.</li>
+                <li><strong>@messages("chess.board.name")</strong>
+                    <p>@messages("rules.equipment.text")</p>
+                    <ul>
+                        <li class="icon-sm-container">
+                            <img alt="@messages("chess.figure.king.name")" width="80px" height="auto" src="@routes.Assets.versioned("images/chesspieces/blackKing.png")">
+                            @messages("chess.figure.king.name")
+                        </li>
+                        <li class="icon-sm-container">
+                            <img alt="@messages("chess.figure.queen.name")" width="80px" height="auto" src="@routes.Assets.versioned("images/chesspieces/whiteQueen.png")">
+                            @messages("chess.figure.queen.name")
+                        </li>
+                        <li class="icon-sm-container">
+                            <img alt="@messages("chess.figure.rook.name")" width="80px" height="auto" src="@routes.Assets.versioned("images/chesspieces/blackRook.png")">
+                            @messages("chess.figure.rook.name")
+                        </li>
+                        <li class="icon-sm-container">
+                            <img alt="@messages("chess.figure.bishop.name")" width="80px" height="auto" src="@routes.Assets.versioned("images/chesspieces/whiteBishop.png")">
+                            @messages("chess.figure.bishop.name")
+                        </li>
+                        <li class="icon-sm-container">
+                            <img alt="@messages("chess.figure.knight.name")" width="80px" height="auto" src="@routes.Assets.versioned("images/chesspieces/blackKnight.png")">
+                            @messages("chess.figure.knight.name")
+                        </li>
+                        <li class="icon-sm-container">
+                            <img alt="@messages("chess.figure.pawn.name")" width="80px" height="auto" src="@routes.Assets.versioned("images/chesspieces/whitePawn.png")">
+                            @messages("chess.figure.pawn.name")
+                        </li>
+                    </ul>
+                </li>
             </ul>
-        </li>
-    </ol>
+        </div>
+    </div>
 
-    <h2>Game Rules</h2>
-    <h3>Movement of Pieces:</h3>
-    <dl>
-        <dt><em>King</em></dt>
-        <dd>The King can move in any direction exactly one square.</dd>
-        <dt><em>Queen</em></dt>
-        <dd>The Queen can move horizontally, vertically, or diagonally any distance.</dd>
-        <dt><em>Rook</em></dt>
-        <dd>The Rook can move horizontally or vertically any distance.</dd>
-        <dt><em>Bishop</em></dt>
-        <dd>The Bishop can only move diagonally, any distance.</dd>
-        <dt><em>Knight</em></dt>
-        <dd>The Knight moves two squares in one direction and then one square at a right angle to it. He is the only piece that can jump over other pieces.</dd>
-        <dt><em>Pawn</em></dt>
-        <dd>Pawns move forward, but capture diagonally. On the first move, a pawn can move either one or two squares forward.</dd>
-    </dl>
+    <h2>@messages("rules.gameprep.title")</h2>
+    <div>
+        <div>
+            <ol>
+                <li><strong>@messages("rules.gameprep.board.setup.title")</strong>: <p>@messages("rules.gameprep.board.setup.text")</p></li>
+                <li><strong>@messages("rules.gameprep.pieces.setup.title")</strong>: <p>@messages("rules.gameprep.pieces.setup.text")</p></li>
+            </ol>
+        </div>
+    </div>
 
-    <h3>Special Moves:</h3>
-    <ul>
-        <li><strong>Castling</strong>: If the King and Rook have not moved, and there are no pieces in between, the King can move two squares towards a Rook, and the Rook is moved to the square directly next to the King.</li>
-        <li><strong>En passant</strong>: If a pawn moves two squares forward and lands next to an opponent's pawn, it may be captured en passant on the next move.</li>
-        <li><strong>Pawn Promotion</strong>: If a pawn reaches the opposite side of the board, it is transformed into another piece (except king), usually a Queen.</li>
-    </ul>
+    <h2>@messages("rules.game.rules.title"):</h2>
+    <h3>@messages("rules.game.rules.movement.title"):</h3>
+    <details>
+        <summary>
+            <img width="80px" height="auto" alt="@messages("chess.figure.king.name")" src="@routes.Assets.versioned("images/chesspieces/whiteKing.png")"><strong>@messages("chess.figure.king.name")</strong></summary>
+        @messages("chess.figure.king.description")
+    </details>
+    <details>
+        <summary>
+            <img width="80px" height="auto" alt="@messages("chess.figure.queen.name")" src="@routes.Assets.versioned("images/chesspieces/blackQueen.png")"><strong>@messages("chess.figure.queen.name")</strong></summary>
+        @messages("chess.figure.queen.description")
+    </details>
+    <details>
+        <summary>
+            <img width="80px" height="auto" alt="@messages("chess.figure.rook.name")" src="@routes.Assets.versioned("images/chesspieces/whiteRook.png")">
+            <strong>@messages("chess.figure.rook.name")</strong>
+        </summary>
+        @messages("chess.figure.rook.description")
+    </details>
+    <details>
+        <summary>
+            <img width="80px" height="auto" alt="@messages("chess.figure.bishop.name")" src="@routes.Assets.versioned("images/chesspieces/blackBishop.png")">
+            <strong>@messages("chess.figure.bishop.name")</strong>
+        </summary>
+        @messages("chess.figure.bishop.description")
+    </details>
+    <details>
+        <summary>
+            <img width="80px" height="auto" alt="@messages("chess.figure.knight.name")" src="@routes.Assets.versioned("images/chesspieces/whiteKnight.png")">
+            <strong>@messages("chess.figure.knight.name")</strong>
+        </summary>
+        @messages("chess.figure.knight.description")
+    </details>
+    <details>
+        <summary>
+            <img width="80px" height="auto" alt="@messages("chess.figure.pawn.name")" src="@routes.Assets.versioned("images/chesspieces/blackPawn.png")">
+            <strong>@messages("chess.figure.pawn.name")</strong>
+        </summary>
+        @messages("chess.figure.pawn.description")
+    </details>
 
-    <h3>Gameplay:</h3>
-    <ol>
-        <li>The players move alternately, starting with White.</li>
-        <li>A move consists of moving one of your own pieces according to the above rules to another square. If the target square is occupied by an opponent's piece, it is captured and removed from the game.</li>
-        <li>If a player attacks the opposing King, he is in "check". The King must then be moved so that he is no longer in check.</li>
-        <li>If the King is in check and there are no legal moves to save him, the game is over, and the player who achieved checkmate wins.</li>
-    </ol>
+    <h3>@messages("rules.game.rules.movement.special.title"):</h3>
+    <div>
+        <div>
+            <ul>
+                <li>
+                    <strong>@messages("rules.game.rules.movement.special.castling.title")</strong>: @messages("rules.game.rules.movement.special.castling.text")</li>
+                <li>
+                    <strong>@messages("rules.game.rules.movement.special.enpas.title")</strong>: @messages("rules.game.rules.movement.special.enpas.text")</li>
+                <li>
+                    <strong>@messages("rules.game.rules.movement.special.pawnprom.title")</strong>: @messages("rules.game.rules.movement.special.pawnprom.text")</li>
+            </ul>
+        </div>
+    </div>
 
-    <h3>Additional Rules:</h3>
-    <ul>
-        <li><strong>Draw</strong>: The game can end in a draw, e.g., through threefold repetition of the same position, stalemate (no legal move, but King not in check), 50-move rule (50 consecutive moves without pawn move or capture).</li>
-    </ul>
+    <h3>@messages("rules.gameplay.title"):</h3>
+    <div>
+        <div>
+            <p>
+                @messages("rules.gameplay.text")
+            </p>
+        </div>
+    </div>
 
+    <h3>@messages("rules.additional.rules.draw.title")</h3>
+    <div>
+        <div>
+            <ul>
+                <li><strong>@messages("rules.additional.rules.draw.title")</strong>: @messages("rules.additional.rules.draw.text")</li>
+            </ul>
+        </div>
+    </div>
+</div>
 }

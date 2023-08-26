@@ -1,5 +1,7 @@
 package services
 
+import ChessScala.controller.IController
+
 trait IPersistenceService {
 
   /**
@@ -7,8 +9,9 @@ trait IPersistenceService {
    * @return gameID
    */
   def createGame(): String
-  def readGame(id: String, asJson: Boolean = true): Option[String]
-  def updateGame(move: String, id: String, player: String, asJson: Boolean = true): Option[String]
+  def readGame(id: String): Option[IController]
+  def updateGame(move: String, id: String, player: String): Option[IController]
   def joinGame(id: String): String
   def deleteGame(id: String): Boolean
+  def getGameIds: Map[String, Boolean]
 }

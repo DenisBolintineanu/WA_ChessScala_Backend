@@ -1,0 +1,41 @@
+@()(implicit messages: Messages)
+
+@main("Welcome to Play") {
+  <table border="0">
+    <tr></tr>
+    <td height="200"></td>
+    <tr>
+      <td width="400"></td>
+      <td>
+        <img src=@routes.Assets.versioned("images/logo.png") width="400">
+      </td>
+    </tr>
+  </table>
+  <table border="0">
+    <tr>
+      <td height="50">
+      </td>
+    </tr>
+    <td>
+      <td width="500">
+      </td>
+      <td>
+        <h2>ChessScala</h2>
+        <a href="@routes.HomeController.newGame()">@messages("index.start.game")</a>
+        <br>
+        <a href="@routes.HomeController.rules()">@messages("header.rules")</a>
+        <br>
+        <a href="@routes.HomeController.about()">@messages("header.about")</a>
+        <br>
+        <br>
+        <a href="@routes.HomeController.reloadCurrentPageWithLang("en")">
+          <img src="@routes.Assets.versioned("images/flags/UK_flag.png")" width="80px" height="80px" alt="@messages("header.language.flag.english")">
+        </a>
+        <a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
+          <img src="@routes.Assets.versioned("images/flags/DE_flag.png")" width="80px" height="80px" alt="@messages("header.language.flag.german")">
+        </a>
+      </td>
+
+    </tr>
+  </table>
+}

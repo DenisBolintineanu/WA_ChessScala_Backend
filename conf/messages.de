@@ -1,0 +1,97 @@
+#UTILS
+chess.name=Schach
+chess.board.name=Schachbrett
+chess.color.black=schwarz
+chess.color.white=weiß
+
+chess.figure.king.name=König
+chess.figure.queen.name=Dame
+chess.figure.rook.name=Turm
+chess.figure.knight.name=Springer
+chess.figure.bishop.name=Läufer
+chess.figure.pawn.name=Bauer
+
+chess.figure.king.description=Der König kann genau ein Feld in jede Richtung ziehen.
+chess.figure.queen.description=Die Dame kann horizontal, vertikal oder diagonal über beliebige Entfernungen ziehen.
+chess.figure.rook.description=Der Turm kann horizontal oder vertikal über beliebige Entfernungen ziehen.
+chess.figure.knight.description=Der Springer zieht zwei Felder in eine Richtung und dann ein Feld rechtwinklig dazu. Kann über andere Figuren springen.
+chess.figure.bishop.description=Der Läufer kann nur diagonal über beliebige Entfernungen ziehen.
+chess.figure.pawn.description=Bauern ziehen vorwärts und schlagen diagonal. Beim ersten Zug kann ein Bauer entweder ein oder zwei Felder vorwärts ziehen.
+
+#HEADER COMPONENT
+header.about=Über
+header.lobby=Lobby
+header.rules=Regeln
+header.home=Startseite
+header.language.flag.english=Englisch
+header.language.flag.german=Deutsch
+
+#INDEX PAGE
+index.start.game=Neues Spiel
+index.session.id.cta=Du hast eine Session-ID?
+index.join.game.btn=Jetzt beitreten
+
+#RULES PAGE
+rules.title=Schach - Alles, was Sie wissen müssen
+rules.intro.text=Schach ist ein tiefgründiges und strategisches Brettspiel für zwei Spieler, das auf einem 8x8 Felder großen Schachbrett gespielt wird. Es ist eines der bekanntesten und am weitesten verbreiteten Spiele der Welt. Hier ist ein detaillierter Leitfaden zum Schachspielen.
+rules.goal.title=Ziel des Spiels
+rules.goal.text=Das Ziel des Spiels ist es, den gegnerischen König schachmatt zu setzen, d.h., den König in eine Position zu bringen, in der er bedroht ist und der Bedrohung nicht entkommen kann.
+
+rules.equipment.title=Ausrüstung
+rules.equipment.text=mit 64 Feldern, unterteilt in ein 8x8 Raster. 32 Schachfiguren, unterteilt in zwei Sets mit jeweils 16 Figuren (weiß und schwarz), bestehend aus: 1 König, 1 Dame, 2 Türmen, 2 Läufern, 2 Springern und 8 Bauern.
+
+rules.gameprep.title=Spielvorbereitung
+rules.gameprep.board.setup.title=Aufbau des Bretts
+rules.gameprep.board.setup.text=Das Brett wird so aufgebaut, dass jeder Spieler das rechte untere Eckfeld in Weiß hat.
+rules.gameprep.pieces.setup.title=Aufstellung der Figuren
+rules.gameprep.pieces.setup.text=In der hinteren Reihe von links nach rechts: Turm, Springer, Läufer, Dame, König, Läufer, Springer, Turm. In der zweiten Reihe werden die Bauern platziert.
+
+rules.game.rules.title=Spielregeln
+rules.game.rules.movement.title=Bewegung der Figuren
+rules.game.rules.movement.special.title=Besondere Züge
+rules.game.rules.movement.special.castling.title=Rochade
+rules.game.rules.movement.special.castling.text=Wenn der König und der Turm sich noch nicht bewegt haben und dazwischen keine Figuren stehen, kann der König zwei Felder in Richtung eines Turms ziehen und der Turm wird auf das Feld direkt neben den König bewegt.
+rules.game.rules.movement.special.enpas.title=En passant
+rules.game.rules.movement.special.enpas.text=Wenn ein Bauer zwei Felder nach vorne zieht und neben einen Bauern des Gegners gelangt, kann er im nächsten Zug en passant geschlagen werden.
+rules.game.rules.movement.special.pawnprom.title=Bauernumwandlung
+rules.game.rules.movement.special.pawnprom.text=Wenn ein Bauer die gegenüberliegende Seite des Bretts erreicht, wird er in eine andere Figur (außer König) umgewandelt, normalerweise eine Dame.
+
+rules.gameplay.title=Spielverlauf
+rules.gameplay.text=Die Spieler ziehen abwechselnd, beginnend mit Weiß. Ein Zug besteht darin, eine der eigenen Figuren gemäß den obigen Regeln auf ein anderes Feld zu ziehen. Wenn das Zielfeld von einer gegnerischen Figur besetzt ist, wird sie geschlagen und aus dem Spiel genommen. Wenn ein Spieler den gegnerischen König angreift, steht er im "Schach". Der König muss dann so gezogen werden, dass er nicht mehr im Schach steht. Wenn der König im Schach steht und es keine legalen Züge gibt, um ihn zu retten, ist das Spiel vorbei und der Spieler, der das Schachmatt erreicht hat, gewinnt.
+
+rules.additional.rules.title=Zusätzliche Regeln
+rules.additional.rules.draw.title=Remis
+rules.additional.rules.draw.text=Das Spiel kann in einem Remis enden, z.B. durch dreifache Wiederholung derselben Stellung, Patt (kein legaler Zug, aber König nicht im Schach), 50-Züge-Regel (50 aufeinanderfolgende Züge ohne Bauernzug oder Schlag).
+
+
+#ABOUT PAGE
+about.title=Über das ChessScala Projekt
+about.intro.text=Das ChessScala Projekt wird im Wintersemester 2023/2024 an der HTWG Konstanz für den Kurs "Webanwendungen" entwickelt.
+
+about.background.title=Hintergrund des Projekts
+about.background.text=Dieses Projekt baut auf dem Kurs "Softwaretechnik" auf, in dem ein Schachspiel mit der Programmiersprache Scala erstellt wurde. Im Kurs "Webanwendungen" dient das Schachspiel als Backend. Das Ziel des Kurses ist es, das Spiel mit Hilfe des Play-Frameworks zu erweitern, um eine Webanwendung mit einer Frontend-Schnittstelle zu erstellen.
+
+about.objectives.title=Kursziele
+about.objectives.play.text=Erfahrung mit dem Play-Framework sammeln.
+about.objectives.technologies.text=Erlernen von HTML, CSS, Bootstrap, JavaScript, Ajax, Vue.js, jQuery und Web-Sockets.
+about.objectives.goal.text=Entwicklung einer vollständigen Webanwendung, die Frontend und Backend integriert.
+
+about.project.developers.title=Projektentwickler
+about.project.developers.text=Dieses Projekt wird entwickelt von
+about.project.developers.denis=@Denis Bolintineanu
+about.project.developers.andre=@André Königer
+
+about.contact.information.title=Kontaktinformationen
+about.contact.information.text=Für weitere Anfragen und Details zum Projekt kontaktieren Sie bitte die Entwickler über die bereitgestellten E-Mail-Links oder wenden Sie sich an das Fachgebiet Informatik der HTWG Konstanz.
+
+#FOOTER
+footer.developed.by.text=Entwickelt von Denis Bolintineanu & André Königer
+footer.developed.for.text=Webanwendungen
+footer.quicklinks.title=Navigation
+
+#ERROR
+error.404.title=404 - Nicht gefunden
+error.404.text=Die gesuchte Seite existiert nicht
+
+error.404.game.text.pre=Ein Spiel mit der ID
+error.404.game.text.post=existiert nicht

@@ -6,16 +6,21 @@
 
 # Client routes
 
-GET     /clientRequest/createNewGameID          controllers.ClientController.createNewGame()
+GET     /clientRequest/createNewGameID       controllers.ClientController.createNewGame()
 
 + nocsrf
-POST    /clientRequest/move                     controllers.ClientController.doMove()
+POST    /clientRequest/move                  controllers.ClientController.doMove()
 
 + nocsrf
-POST    /clientRequest/gameboard                controllers.ClientController.getGameBoard()
+POST    /clientRequest/gameboard             controllers.ClientController.getGameBoard()
 
 + nocsrf
-POST    /clientRequest/delete                   controllers.ClientController.deleteGame()
+POST    /clientRequest/delete                controllers.ClientController.deleteGame()
+
+# Server routes
+GET     /                   controllers.HomeController.index()
+
+GET     /newGame            controllers.HomeController.newGame()
 
 + nocsrf
 POST    /clientRequest/join                     controllers.ClientController.joinGame()
@@ -24,12 +29,21 @@ POST    /clientRequest/join                     controllers.ClientController.joi
 
 GET     /                                       controllers.HomeController.index()
 
-
 GET     /game&id=:id/player=:player/move=:move  controllers.HomeController.doMove(id,player, move)
 
 GET     /game&id=:id                            controllers.HomeController.updateGame(id)
 
 GET     /game                                   controllers.HomeController.newGame()
+
+
+GET     /admin              controllers.HomeController.adminPage()
+
+GET     /rules              controllers.HomeController.rules()
+
+GET     /about              controllers.HomeController.about()
+
+GET     /changeLang/:lang   controllers.HomeController.reloadCurrentPageWithLang(lang: String)
+
 
 
 

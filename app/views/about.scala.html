@@ -1,0 +1,30 @@
+@()(implicit messages: Messages)
+
+@main("Welcome to ChessScala"){
+    <h1>@messages("about.title")</h1>
+    <p>@messages("about.intro.text")</p>
+
+    <h2>@messages("about.background.title")</h2>
+    <p>@messages("about.background.text")</p>
+
+    <h2>@messages("about.objectives.title")</h2>
+    <ul>
+        <li>@messages("about.objectives.play.text")</li>
+        <li>@messages("about.objectives.technologies.text")</li>
+        <li>@messages("about.objectives.goal.text")</li>
+    </ul>
+
+    <h2>@messages("about.project.developers.title")</h2>
+    <p>@messages("about.project.developers.text"):</p>
+    <ul>
+        <li><a href="mailto:denis.bolintineanu@@htwg-konstanz.de">@@Denis Bolintineanu</a></li>
+        <li><a href="mailto:andre.koeniger@@htwg-konstanz.de">@@André Königer</a></li>
+    </ul>
+
+    <h2>@messages("about.contact.information.title")</h2>
+    <p>@messages("about.contact.information.text")</p>
+
+    <footer>
+        <p>&copy; 2023 ChessScala Project - HTWG Konstanz</p>
+    </footer>
+}

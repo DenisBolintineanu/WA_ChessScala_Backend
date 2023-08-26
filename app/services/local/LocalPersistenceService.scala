@@ -32,25 +32,18 @@ class LocalPersistenceService @Inject()(actorSystem: ActorSystem)(implicit ec: E
     gameID + "\n" + Player1_ID
   }
 
-  def readGame(id: String, asJson: Boolean = true): Option[String] = {
-    controllerMapping.get(id) match {
-      case Some(session) =>
-        if (!asJson) Some(session.controller.output)
-        else Some(session.controller.returnBoardAsJson())
-      case _ => None
-    }
+  def readGame(id: String): Option[IController] = {
+    controllerMapping.get(id).map(_.controller)
   }
 
-  def updateGame(move: String, id: String, player: String, asJson: Boolean = true): Option[String] = {
+  def updateGame(move: String, id: String, player: String): Option[IController] = {
     controllerMapping.get(id) match {
       case Some(session) =>
         val team = session.controller.state.asInstanceOf[GameState].team == White
         if (player == session.PlayerOne && team || player == session.PlayerTwo && !team)
           session.controller.computeInput(move)
         garbageCollector(id) = true
-        if (!asJson)
-          Some(controllerMapping(id).controller.output)
-        else Some(controllerMapping(id).controller.returnBoardAsJson())
+        Some(controllerMapping(id).controller)
       case _ => None
     }
   }
@@ -64,6 +57,9 @@ class LocalPersistenceService @Inject()(actorSystem: ActorSystem)(implicit ec: E
       case None => false
     }
   }
+
+  override def getGameIds: Map[String, Boolean] = Map.from(garbageCollector)
+
 
   override def joinGame(id: String): String = {
     controllerMapping.get(id) match {

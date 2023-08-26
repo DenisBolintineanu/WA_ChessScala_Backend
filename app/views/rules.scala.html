@@ -1,0 +1,138 @@
+@()(implicit messages: Messages)
+@main("Welcome to Play") {
+<div>
+    <h1>@messages("rules.title")</h1>
+    <div>
+        <div>
+            <p>@messages("rules.intro.text")</p>
+        </div>
+    </div>
+
+    <h2>@messages("rules.goal.title")</h2>
+    <div>
+        <div>
+            <p>@messages("rules.goal.text")</p>
+        </div>
+    </div>
+
+    <h2>@messages("rules.equipment.title")</h2>
+    <div>
+        <div>
+            <ul>
+                <li><strong>@messages("chess.board.name")</strong>
+                    <p>@messages("rules.equipment.text")</p>
+                    <ul>
+                        <li class="icon-sm-container">
+                            <img alt="@messages("chess.figure.king.name")" width="80px" height="auto" src="@routes.Assets.versioned("images/chesspieces/blackKing.png")">
+                            @messages("chess.figure.king.name")
+                        </li>
+                        <li class="icon-sm-container">
+                            <img alt="@messages("chess.figure.queen.name")" width="80px" height="auto" src="@routes.Assets.versioned("images/chesspieces/whiteQueen.png")">
+                            @messages("chess.figure.queen.name")
+                        </li>
+                        <li class="icon-sm-container">
+                            <img alt="@messages("chess.figure.rook.name")" width="80px" height="auto" src="@routes.Assets.versioned("images/chesspieces/blackRook.png")">
+                            @messages("chess.figure.rook.name")
+                        </li>
+                        <li class="icon-sm-container">
+                            <img alt="@messages("chess.figure.bishop.name")" width="80px" height="auto" src="@routes.Assets.versioned("images/chesspieces/whiteBishop.png")">
+                            @messages("chess.figure.bishop.name")
+                        </li>
+                        <li class="icon-sm-container">
+                            <img alt="@messages("chess.figure.knight.name")" width="80px" height="auto" src="@routes.Assets.versioned("images/chesspieces/blackKnight.png")">
+                            @messages("chess.figure.knight.name")
+                        </li>
+                        <li class="icon-sm-container">
+                            <img alt="@messages("chess.figure.pawn.name")" width="80px" height="auto" src="@routes.Assets.versioned("images/chesspieces/whitePawn.png")">
+                            @messages("chess.figure.pawn.name")
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>@messages("rules.gameprep.title")</h2>
+    <div>
+        <div>
+            <ol>
+                <li><strong>@messages("rules.gameprep.board.setup.title")</strong>: <p>@messages("rules.gameprep.board.setup.text")</p></li>
+                <li><strong>@messages("rules.gameprep.pieces.setup.title")</strong>: <p>@messages("rules.gameprep.pieces.setup.text")</p></li>
+            </ol>
+        </div>
+    </div>
+
+    <h2>@messages("rules.game.rules.title"):</h2>
+    <h3>@messages("rules.game.rules.movement.title"):</h3>
+    <details>
+        <summary>
+            <img width="80px" height="auto" alt="@messages("chess.figure.king.name")" src="@routes.Assets.versioned("images/chesspieces/whiteKing.png")"><strong>@messages("chess.figure.king.name")</strong></summary>
+        @messages("chess.figure.king.description")
+    </details>
+    <details>
+        <summary>
+            <img width="80px" height="auto" alt="@messages("chess.figure.queen.name")" src="@routes.Assets.versioned("images/chesspieces/blackQueen.png")"><strong>@messages("chess.figure.queen.name")</strong></summary>
+        @messages("chess.figure.queen.description")
+    </details>
+    <details>
+        <summary>
+            <img width="80px" height="auto" alt="@messages("chess.figure.rook.name")" src="@routes.Assets.versioned("images/chesspieces/whiteRook.png")">
+            <strong>@messages("chess.figure.rook.name")</strong>
+        </summary>
+        @messages("chess.figure.rook.description")
+    </details>
+    <details>
+        <summary>
+            <img width="80px" height="auto" alt="@messages("chess.figure.bishop.name")" src="@routes.Assets.versioned("images/chesspieces/blackBishop.png")">
+            <strong>@messages("chess.figure.bishop.name")</strong>
+        </summary>
+        @messages("chess.figure.bishop.description")
+    </details>
+    <details>
+        <summary>
+            <img width="80px" height="auto" alt="@messages("chess.figure.knight.name")" src="@routes.Assets.versioned("images/chesspieces/whiteKnight.png")">
+            <strong>@messages("chess.figure.knight.name")</strong>
+        </summary>
+        @messages("chess.figure.knight.description")
+    </details>
+    <details>
+        <summary>
+            <img width="80px" height="auto" alt="@messages("chess.figure.pawn.name")" src="@routes.Assets.versioned("images/chesspieces/blackPawn.png")">
+            <strong>@messages("chess.figure.pawn.name")</strong>
+        </summary>
+        @messages("chess.figure.pawn.description")
+    </details>
+
+    <h3>@messages("rules.game.rules.movement.special.title"):</h3>
+    <div>
+        <div>
+            <ul>
+                <li>
+                    <strong>@messages("rules.game.rules.movement.special.castling.title")</strong>: @messages("rules.game.rules.movement.special.castling.text")</li>
+                <li>
+                    <strong>@messages("rules.game.rules.movement.special.enpas.title")</strong>: @messages("rules.game.rules.movement.special.enpas.text")</li>
+                <li>
+                    <strong>@messages("rules.game.rules.movement.special.pawnprom.title")</strong>: @messages("rules.game.rules.movement.special.pawnprom.text")</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>@messages("rules.gameplay.title"):</h3>
+    <div>
+        <div>
+            <p>
+                @messages("rules.gameplay.text")
+            </p>
+        </div>
+    </div>
+
+    <h3>@messages("rules.additional.rules.draw.title")</h3>
+    <div>
+        <div>
+            <ul>
+                <li><strong>@messages("rules.additional.rules.draw.title")</strong>: @messages("rules.additional.rules.draw.text")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+}

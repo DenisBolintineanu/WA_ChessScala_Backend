@@ -1,10 +1,8 @@
 @(gameID: String)(implicit messages: Messages)
 
 @header()
-@main("404 Game not found") {
-    <div class="text-focus-page">
-        <h1 class="header-primary mb-2">404 Not Found</h1>
-        <h3 class="header-tertiary">A Game with id @gameID does not exist</h3>
-    </div>
+@main("Welcome to Play") {
+    <h1>@messages("error.404.title")</h1>
+    <h3>@messages("error.404.game.text.pre") @gameID @messages("error.404.game.text.post")</h3>
 }
 @footer()

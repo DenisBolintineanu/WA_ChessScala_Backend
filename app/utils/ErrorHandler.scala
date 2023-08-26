@@ -11,7 +11,7 @@ import scala.concurrent._
 
 @Singleton
 class ErrorHandler @Inject()(val messagesApi: MessagesApi) extends HttpErrorHandler with I18nSupport {
-  
+
   implicit val messages: Messages = messagesApi.preferred(Seq.empty)
 
   override def onClientError(request: RequestHeader, statusCode: Int, message: String): Future[Result] = {

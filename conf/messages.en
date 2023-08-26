@@ -23,6 +23,8 @@ header.about=About
 header.lobby=Lobby
 header.rules=Rules
 header.home=Home
+header.language.flag.english=English
+header.language.flag.german=German
 
 #INDEX PAGE
 index.start.game=Start new game
@@ -86,3 +88,11 @@ about.contact.information.text=For further inquiries and details about the proje
 footer.developed.by.text=Developed by Denis Bolintineanu & André Königer
 footer.developed.for.text=Webapplications @HTWG Konstanz, WS 23/24
 footer.quicklinks.title=Quick Links
+
+
+#ERROR
+error.404.title=404 - Not Found
+error.404.text=The page you've requested does not exist
+
+error.404.game.text.pre=A game with ID
+error.404.game.text.post=doesn't exist

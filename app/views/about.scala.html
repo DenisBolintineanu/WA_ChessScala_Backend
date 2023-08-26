@@ -1,5 +1,3 @@
-@()(implicit messages: Messages)
-
 @header()
 @main("Welcome to ChessScala"){
 
@@ -10,14 +8,14 @@
                 <p class="basic-text-1-2 text-responsive">@messages("about.intro.text")</p>
             </div>
         </div>
-    
+
         <h2 class="header-secondary mb-1">@messages("about.background.title")</h2>
         <div class="bg-skewed mb-2">
             <div>
                 <p class="basic-text-1-2 text-responsive">@messages("about.background.text")</p>
             </div>
         </div>
-    
+
         <h2 class="header-secondary mb-1">@messages("about.objectives.title")</h2>
         <div class="bg-skewed mb-2">
             <div>
@@ -34,18 +32,18 @@
             <div class="basic-text-1-2 text-responsive">
                 <p>@messages("about.project.developers.text"):</p>
                 <ul class="m-top-1">
-                    <li><a class="link-primary-white" href="mailto:denis.bolintineanu@@htwg-konstanz.de">@messages("about.project.developers.denis")</a></li>
-                    <li><a class="link-primary-white" href="mailto:andre.koeniger@@htwg-konstanz.de">@messages("about.project.developers.andre")</a></li>
+                    <li><a class="link-primary-white" href="mailto:denis.bolintineanu@@htwg-konstanz.de">@@Denis Bolintineanu</a></li>
+                    <li><a class="link-primary-white" href="mailto:andre.koeniger@@htwg-konstanz.de">@@André Königer</a></li>
                 </ul>
             </div>
         </div>
-    
+
         <h2 class="header-secondary mb-1">@messages("about.contact.information.title")</h2>
         <div class="bg-skewed mb-2 mb-1">
             <div class="basic-text-1-2 text-responsive">
                 <p>@messages("about.contact.information.text")</p>
             </div>
-        </div>    
+        </div>
     </div>
 }
 @footer()

@@ -23,6 +23,8 @@ header.about=Über
 header.lobby=Lobby
 header.rules=Regeln
 header.home=Startseite
+header.language.flag.english=Englisch
+header.language.flag.german=Deutsch
 
 #INDEX PAGE
 index.start.game=Neues Spiel
@@ -88,3 +90,8 @@ footer.developed.for.text=Webanwendungen
 footer.quicklinks.title=Navigation
 
 #ERROR
+error.404.title=404 - Nicht gefunden
+error.404.text=Die gesuchte Seite existiert nicht
+
+error.404.game.text.pre=Ein Spiel mit der ID
+error.404.game.text.post=existiert nicht

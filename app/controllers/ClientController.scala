@@ -33,9 +33,8 @@ class ClientController @Inject()(val controllerComponents: ControllerComponents,
 
   def doMove(): Action[AnyContent] = Action { implicit request: Request[AnyContent] => {
       val id = returnRequestParamAsString(request, GAME_ID)
-      val playerID = returnRequestParamAsString(request, PLAYER_ID)
       val moveAsString = returnRequestParamAsString(request, MOVE_ID)
-      persistenceService.updateGame(moveAsString, id, playerID) match {
+      persistenceService.updateGame(moveAsString, id) match {
         case Some(board) => Ok(board.returnBoardAsJson())
         case _ => Ok(ERROR_RESPONSE)
       }

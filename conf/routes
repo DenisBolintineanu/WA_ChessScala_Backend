@@ -8,33 +8,25 @@
 
 GET     /clientRequest/createNewGameID       controllers.ClientController.createNewGame()
 
-+ nocsrf
 POST    /clientRequest/move                  controllers.ClientController.doMove()
 
-+ nocsrf
 POST    /clientRequest/gameboard             controllers.ClientController.getGameBoard()
 
-+ nocsrf
 POST    /clientRequest/delete                controllers.ClientController.deleteGame()
+
+POST    /clientRequest/join                  controllers.ClientController.joinGame()
 
 # Server routes
 GET     /                   controllers.HomeController.index()
 
-GET     /newGame            controllers.HomeController.newGame()
+GET     /game               controllers.HomeController.newGame()
 
 + nocsrf
-POST    /clientRequest/join                     controllers.ClientController.joinGame()
+POST    /game/id=:id        controllers.HomeController.doMove(id)
 
-# Server routes
+GET     /game/id=:id        controllers.HomeController.updateGame(id)
 
-GET     /                                       controllers.HomeController.index()
-
-GET     /game&id=:id/player=:player/move=:move  controllers.HomeController.doMove(id,player, move)
-
-GET     /game&id=:id                            controllers.HomeController.updateGame(id)
-
-GET     /game                                   controllers.HomeController.newGame()
-
+GET     /join/id=:id        controllers.HomeController.joinGame(id)
 
 GET     /admin              controllers.HomeController.adminPage()
 

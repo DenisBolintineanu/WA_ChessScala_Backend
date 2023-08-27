@@ -15,25 +15,30 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
     Ok(views.html.index())
   }
 
-  def doMove(id: String, playerID: String, move: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    gameExists(id).getOrElse()
+  def doMove(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     val move: String = request.body.asFormUrlEncoded.get("move").headOption.getOrElse("")
-    persistenceService.updateGame(move, id, playerID) match {
+    persistenceService.updateGame(move, id) match {
       case Some(controller) => chessFromController(id, controller)
       case None => Ok(views.html.error())
     }
   }
 
   def newGame(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Redirect(routes.HomeController.joinGame(persistenceService.createGame()))
+    val gameId: String = persistenceService.createGame()
+    val playerID: String = persistenceService.gameSessionCollection.get(gameId).get.playerOneID
+    Redirect(routes.HomeController.updateGame(playerID))
   }
 
   def updateGame(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    gameExists(id).getOrElse()
     persistenceService.readGame(id) match {
       case Some(controller) => chessFromController(id, controller)
       case None => Ok(views.html.error())
     }
+  }
+
+  def joinGame(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    val playerID: String = persistenceService.joinGame(id)
+    Redirect(routes.HomeController.updateGame(playerID))
   }
 
   def reloadCurrentPageWithLang(lang: String): Action[AnyContent] = Action { implicit request =>
@@ -60,7 +65,8 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
   }
 
   private def chessFromController(id: String, controller: IController)(implicit request: Request[AnyContent]): Result = {
-    Ok(views.html.chess(controller.output, id, controller.returnMoveList(), ChesspieceImageManager(controller.state.board)))
+    val gameID = persistenceService.gameSessionCollection.get(id).get.gameID
+    Ok(views.html.chess(controller.output, id, gameID, controller.returnMoveList(), ChesspieceImageManager(controller.state.board)))
   }
 
 }

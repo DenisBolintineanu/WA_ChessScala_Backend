@@ -1,4 +1,10 @@
 package utils
 import ChessScala.controller.IController
+import ChessScala.controller.Controller
 
-case class GameSession(PlayerOne: String, PlayerTwo: String, controller: IController)
+case class GameSession(){
+  val controller: IController = new Controller()
+  val gameID: String = java.util.UUID.randomUUID().toString
+  val playerOneID: String = java.util.UUID.randomUUID().toString
+  val playerTwoID: String = java.util.UUID.randomUUID().toString
+}

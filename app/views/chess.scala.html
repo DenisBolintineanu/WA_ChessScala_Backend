@@ -31,8 +31,9 @@
                     <div class="text-colorized">@input</div>
                     <br>
                     <form method="post" action="/game?id=@gameID">
-                        <label for="textfeld" class="header-secondary">Input:</label>
-                        <input type="text" class="text-input-primary" id="textfeld" name="command" autofocus>
+                        <label for="move-input" class="header-secondary">Input:</label>
+                        <input type="hidden" name="type" value="move">
+                        <input type="text" class="text-input-primary" id="move-input" name="move" autofocus>
                         <input type="submit" class="btn-cta-primary" value="Submit">
                     </form>
                 </div>

@@ -3,7 +3,7 @@
 @main("Welcome to Scala Chess") {
   <div class="content-area">
     <div class="main">
-      <img class="logo--large" src=@routes.Assets.versioned("images/logo.png")>
+      <img alt="WA_Chess logo" class="logo--large" src=@routes.Assets.versioned("images/logo.png")>
       <h2 class="index-heading">ChessScala</h2>
       <div class="start-game-wrapper">
         <a href="@routes.HomeController.newGame()">@messages("index.start.game")</a>
@@ -23,19 +23,19 @@
       <div class="widget-view">
           <a href="#" class="index-card">
             <div>
-              <img src=@routes.Assets.versioned("images/chesspieces/whiteKnight.png")>
+              <img alt="Lobby Logo White Knight" src=@routes.Assets.versioned("images/chesspieces/whiteKnight.png")>
             </div>
             <h3>@messages("header.lobby")</h3>
           </a>
           <a href="/rules" class="index-card">
             <div>
-              <img src=@routes.Assets.versioned("images/chesspieces/whiteRook.png")>
+              <img alt="Lobby Logo White Rook" src=@routes.Assets.versioned("images/chesspieces/whiteRook.png")>
             </div>
             <h3>@messages("header.rules")</h3>
           </a>
           <a href="/about" class="index-card">
             <div>
-              <img src=@routes.Assets.versioned("images/chesspieces/blackBishop.png")>
+              <img alt="Lobby Logo Black Bishop" src=@routes.Assets.versioned("images/chesspieces/blackBishop.png")>
             </div>
             <h3>@messages("header.about")</h3>
           </a>

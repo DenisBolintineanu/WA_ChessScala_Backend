@@ -1,6 +1,9 @@
+@()(implicit messages: Messages)
 @header()
 @main("Welcome to Play") {
-    <h1>@messages("error.404.title")</h1>
-    <h3>@messages("error.404.text")</h3>
+    <div class="error-content-area">
+        <h1 class="header-secondary m-bottom-2">@messages("error.404.title")</h1>
+        <h3 class="header-tertiary">@messages("error.404.text")</h3>
+    </div>
 }
 @footer()

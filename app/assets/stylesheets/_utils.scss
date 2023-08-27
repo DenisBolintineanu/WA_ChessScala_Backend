@@ -109,19 +109,21 @@
 }
 
 .text-responsive {
-    @include respond(phone) {
-        font-size: 0.7rem;
-    }
 
-    @include respond(desktop) {
+    @include respond(tablet) {
         font-size: 1rem;
     }
 
+    @include respond(desktop) {
+        font-size: 1.5rem;
+    }
+
     > * {
-        @include respond(phone) {
-            font-size: 0.7rem;
+
+        @include respond(tablet) {
+            font-size: 1rem;
         }
-    
+
         @include respond(desktop) {
             font-size: 1.5rem;
         }
@@ -140,6 +142,11 @@
 
 .basic-page {
     padding: 3rem;
+}
+
+.error-content-area {
+    height: 100vh;
+    @include flex-center(column);
 }
 
 .bg-skewed {

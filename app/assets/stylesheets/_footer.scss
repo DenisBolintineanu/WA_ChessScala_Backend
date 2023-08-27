@@ -4,16 +4,12 @@
 
 .footer-container {
     font-size: 1rem;
-    height: 25vh;
+    height: 15vh;
     background: white;
     color: $primary-color-dark;
     border-top: 1px solid black;
-    padding: 6rem;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding: 1.5rem 6rem;
     display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
     justify-content: space-between;
 
     a {
@@ -22,31 +18,21 @@
     }
 }
 
+.footer-info {
+    width: 60%;
+    align-self: center;
+}
+
 .footer-links-container {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-
-
-    @include respond(phone) {
-        align-items: flex-start;
-        flex-direction: row;
-    }
-
-    @include respond(tablet) {
-        flex-direction: column;
-        align-items: flex-end;
-    }
 
     ul {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 0;
 
         li {
             width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: center;
 
             a {
                 color: $primary-color-dark;

@@ -60,8 +60,8 @@ class LocalPersistenceService @Inject()(actorSystem: ActorSystem)(implicit ec: E
 
 
   override def joinGame(id: String): String = {
-    gameSessionCollection.get(id) match {
-      case Some(session) => session.playerTwoID
+    gameSessionCollection.join(id) match {
+      case Some(value) => value
       case _ => ""
     }
   }

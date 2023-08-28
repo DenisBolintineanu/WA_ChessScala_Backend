@@ -4,28 +4,32 @@
 @(input: String, playerID: String, gameID: String, moves: List[String], board: ChesspieceImageManager)(implicit messages: Messages)
 @header()
 @main("Play Chess") {
-    <div class="chessboard-container">
-        <table border="0" id="chessboard">
-            <tbody>
-            @for(i <- (-7 to 0)){
-                <tr>
-                @for(j <- 0 to 7){
-                    <td class="chessfield" id=@{if((i+j) % 2 != 0) "white-field" else "black-field"}>
-                    @if(board.getImage(j,-i) != ""){
-                        <img alt="Chess Figure" class="figure" src=@routes.Assets.versioned(board.getImage(j,-i))>
+    <div class="chessboard-page">
+        <div class="game-container">
+            <div class="chessboard-container">
+                <div class="chessboard-test">
+                @for(i <- (-8 to 0)) {
+                    @for(j <- -1 to 7) {
+                        @{
+
+                            (i, j) match {
+                                case (0, j) => <div class="number-field">{if(j >= 0) ('A' + j).toChar}</div>
+                                case (i, -1) => <div class="number-field">{if (i < 0) -i}</div>
+                                case _ =>
+                                    <div class={if ( (i + j) % 2 == 0 ) "chess-field white-field" else "chess-field black-field"}>
+                                    {if (board.getImage(j, -i-1) != "")
+                                            <img class="figure" src={routes.Assets.versioned(board.getImage(j,-i-1)).toString}/>
+                                    }
+                                    </div>
+                            }
                         }
-                    </td>
+                    }
                 }
-                </tr>
-            }
-            </tbody>
-        </table>
+                </div>
+            </div>
+        </div>
 
         <div class="game-information-container">
-            <div id="game-id" class="mb-2">
-                <span class="text-responsive text-colorized">GameID: @gameID</span>
-            </div>
-
             <div class="move-control-container mt-2">
                 <div class="move-input-controls">
                     <div class="text-colorized">@input</div>
@@ -41,6 +45,9 @@
                     <h3 class="header-tertiary mb-2">Moves:</h3>
                     <p class="text-responsive text-colorized">@moves.mkString(", ")</p>
                 </div>
+            </div>
+            <div id="game-id" class="mb-2">
+                <span class="text-responsive text-colorized">GameID: @gameID</span>
             </div>
         </div>
     </div>

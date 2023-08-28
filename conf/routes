@@ -3,16 +3,46 @@
 # https://www.playframework.com/documentation/latest/ScalaRouting
 # ~~~~
 
-# An example controller showing a sample home page
-GET     /                           controllers.HomeController.index()
 
-GET     /game                controllers.HomeController.joinGame(id)
+# Client routes
+
+GET     /clientRequest/createNewGameID       controllers.ClientController.createNewGame()
 
 + nocsrf
-POST     /game            controllers.HomeController.playChess2(id)
+POST    /clientRequest/move                  controllers.ClientController.doMove()
 
-GET     /admin            controllers.HomeController.adminPage()
++ nocsrf
+POST    /clientRequest/gameboard             controllers.ClientController.getGameBoard()
+
++ nocsrf
+POST    /clientRequest/delete                controllers.ClientController.deleteGame()
+
++ nocsrf
+POST    /clientRequest/join                  controllers.ClientController.joinGame()
+
+# Server routes
+GET     /                   controllers.HomeController.index()
+
+GET     /game               controllers.HomeController.newGame()
+
++ nocsrf
+POST    /game/id=:id        controllers.HomeController.doMove(id)
+
+GET     /game/id=:id        controllers.HomeController.updateGame(id)
+
+GET     /join/id=:id        controllers.HomeController.joinGame(id)
+
+GET     /admin              controllers.HomeController.adminPage()
+
+GET     /rules              controllers.HomeController.rules()
+
+GET     /about              controllers.HomeController.about()
+
+GET     /changeLang/:lang   controllers.HomeController.reloadCurrentPageWithLang(lang: String)
+
+
+
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET     /assets/*file       controllers.Assets.versioned(path="/public", file: Asset)
 

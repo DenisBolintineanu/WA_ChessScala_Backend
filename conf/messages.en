@@ -31,7 +31,6 @@ index.start.game=Start new game
 index.session.id.cta=Have a Session-ID?
 index.join.game.btn=Join now
 
-
 #RULES PAGE
 rules.title=Chess - A Comprehensive Guide
 rules.intro.text=Chess is a profound and strategic board game for two players, played on a 8x8 square chessboard. It's one of the most famous and widely played games in the world. Here is a detailed guide to playing chess.
@@ -79,6 +78,8 @@ about.objectives.goal.text=Develop a complete web application integrating both f
 
 about.project.developers.title=Project Developers
 about.project.developers.text=This project is being developed by
+about.project.developers.denis=@Denis Bolintineanu
+about.project.developers.andre=@André Königer
 
 about.contact.information.title=Contact Information
 about.contact.information.text=For further inquiries and details about the project, please contact the developers via the provided email links, or reach out to the Computer Science Department at HTWG Konstanz.
@@ -87,6 +88,7 @@ about.contact.information.text=For further inquiries and details about the proje
 footer.developed.by.text=Developed by Denis Bolintineanu & André Königer
 footer.developed.for.text=Webapplications @HTWG Konstanz, WS 23/24
 footer.quicklinks.title=Quick Links
+
 
 #ERROR
 error.404.title=404 - Not Found

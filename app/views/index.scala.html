@@ -1,18 +1,54 @@
-@(gameID: String)
-
-@main("Welcome to Play") {
-  <table border="0">
-    <tr>
-      <td height="250">
-      </td>
-    </tr>
-    <tr>
-      <td width="500">
-      </td>
-      <td>
-        <h2>Hello</h2>
-        <a href="/game?id=@gameID">Start new Game</a>
-      </td>
-    </tr>
-  </table>
+@()(implicit messages: Messages)
+@header()
+@main("Welcome to Scala Chess") {
+  <div class="content-area">
+    <div class="main">
+      <img alt="WA_Chess logo" class="logo--large" src=@routes.Assets.versioned("images/logo.png")>
+      <h2 class="index-heading">ChessScala</h2>
+      <div class="start-game-wrapper">
+        <a href="@routes.HomeController.newGame()">@messages("index.start.game")</a>
+      </div>
+      <div class="join-game">
+        <h3>@messages("index.session.id.cta")</h3>
+        <div class="join-game-form">
+          <form action="/game" method="GET">
+            <input type="text" class="text-input-primary" id="id" autocomplete="off" placeholder="Session ID">
+            <label class="placeholder-label" for="id">Session-ID</label>
+            <input type="submit" class="btn-cta-primary" value="@messages("index.join.game.btn")">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="widgets">
+      <div class="widget-view">
+          <a href="#" class="index-card">
+            <div>
+              <img alt="Lobby Logo White Knight" src=@routes.Assets.versioned("images/chesspieces/whiteKnight.png")>
+            </div>
+            <h3>@messages("header.lobby")</h3>
+          </a>
+          <a href="/rules" class="index-card">
+            <div>
+              <img alt="Lobby Logo White Rook" src=@routes.Assets.versioned("images/chesspieces/whiteRook.png")>
+            </div>
+            <h3>@messages("header.rules")</h3>
+          </a>
+          <a href="/about" class="index-card">
+            <div>
+              <img alt="Lobby Logo Black Bishop" src=@routes.Assets.versioned("images/chesspieces/blackBishop.png")>
+            </div>
+            <h3>@messages("header.about")</h3>
+          </a>
+          <!--
+            <div class="index-card">
+            <div>
+              <img src=@routes.Assets.versioned("images/chesspieces/blackKing.png")>
+            </div>
+            <h3>Admin</h3>
+          </div>
+          -->
+      </div>
+    </div>
+  </div>
 }
+@footer()

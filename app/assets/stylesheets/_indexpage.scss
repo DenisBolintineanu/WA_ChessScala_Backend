@@ -26,6 +26,8 @@
             width: 50%;
         }
     }
+
+
 }
 
 .main {
@@ -58,19 +60,27 @@
         margin-top: 3rem;
 
         a {
-            font-size: 2.7rem;
-            position: absolute;
             color: $secondary-color;
             text-decoration: none;
             text-transform: uppercase;
-            transition: all .3s .1s;
+            @include transition(all .3s .1s);
             animation: growShrink 2s linear infinite;
+            position: absolute;
+
+            font-size: 2rem;
+            @include respond(tablet) {
+                font-size: 2.7rem;
+            }
 
             &:hover {
                 animation-play-state: paused;
-                font-size: 3.7rem;
                 color: $secondary-color;
                 text-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+
+                font-size: 3rem;
+                @include respond(tablet) {
+                    font-size: 3.7rem;
+                }
             }
         }
     }

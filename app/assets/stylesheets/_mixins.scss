@@ -20,17 +20,19 @@
     @media (min-width: 900px) {
       @content;
     }
-  } @else if $breakpoint == phone {
+  }
+  @else if $breakpoint == phone {
     @media (min-width: 600px) {
       @content;
     }
-  } @else {
+  }
+  @else {
     @content;
   }
 }
 
-@mixin transition($props) {
-  transition: $props;
-  -webkit-transition: $props;
-  -moz-transition: $props;
-}
+  @mixin transition($props) {
+    transition: $props;
+    -webkit-transition: $props;
+    -moz-transition: $props;
+  }

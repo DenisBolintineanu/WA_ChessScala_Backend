@@ -75,17 +75,25 @@
 
 .header-primary {
     color: $primary-color-dark;
-    font-size: 3rem;
-}
+    font-size: 2.3rem;
+    @include respond(tablet) {
+        font-size: 3rem;
+    }}
 
 .header-secondary {
     color: $primary-color-dark;
-    font-size: 2.3rem;
+    font-size: 1.7rem;
+    @include respond(tablet) {
+        font-size: 2.3rem;
+    }
 }
 
 .header-tertiary {
     color: $primary-color-dark;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
+    @include respond(tablet) {
+        font-size: 1.7rem;
+    }
 }
 
 .icon-sm {
@@ -109,22 +117,13 @@
 }
 
 .text-responsive {
-
+    font-size: 1.2rem;
     @include respond(tablet) {
-        font-size: 1rem;
-    }
-
-    @include respond(desktop) {
         font-size: 1.5rem;
     }
-
     > * {
-
+        font-size: 1.2rem;
         @include respond(tablet) {
-            font-size: 1rem;
-        }
-
-        @include respond(desktop) {
             font-size: 1.5rem;
         }
     }

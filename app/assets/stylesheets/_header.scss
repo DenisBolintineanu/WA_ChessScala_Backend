@@ -1,3 +1,6 @@
+@import "variables";
+@import "mixins";
+
 header {
     height: 11vh;
     border-bottom: 1px solid black;
@@ -13,17 +16,26 @@ header {
     background-color: $secondary-color;
 
     .logo {
-        width: 50%;
+        width: 30%;
+        @include respond(tablet) {
+            width: 50%;
+        }
         overflow-y: hidden;
 
         img {
+            @include respond(tablet) {
+                width: 200px;
+            }
             padding: 10px;
-            width: 200px;
+            width: 130px;
         }
     }
 
     .nav-links {
-        width: 50%;
+        width: 70%;
+        @include respond(tablet) {
+            width: 50%;
+        }
         height: 100%;
         display: flex;
         align-items: center;
@@ -38,14 +50,20 @@ header {
             overflow: hidden;
 
             li {
-                padding: 30px;
+                @include respond(tablet) {
+                    padding: 30px;
+                }
+                padding: 5px;
 
                 a {
-                    padding: 10px;
+                    @include respond(tablet) {
+                        padding: 10px;
+                    }
+                    padding: 3px;
                     color: $primary-color;
                     text-decoration: none;
                     text-transform: uppercase;
-                    transition: all .2s .2s ease-in-out;
+                    @include transition(all .2s .2s ease-in-out);
 
                     &:hover {
                         background-color: #f41874;
@@ -60,12 +78,20 @@ header {
             display: flex;
             align-self: flex-start;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: flex-start;
             padding: 3px;
 
+            @include respond(tablet) {
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
             .image-icon {
-                width: 20px;
+                width: 10px;
+                @include respond(tablet) {
+                    width: 20px;
+                }
                 height: auto;
             }
         }

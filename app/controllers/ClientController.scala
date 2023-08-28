@@ -45,6 +45,12 @@ class ClientController @Inject()(val controllerComponents: ControllerComponents,
     if (persistenceService.deleteGame(id)) Ok(SUCCESS_RESPONSE) else Ok(ERROR_RESPONSE)
   }}
 
+  def joinGame(): Action[AnyContent] = Action { implicit request: Request[AnyContent] => {
+    val id = returnRequestParamAsString(request, GAME_ID)
+    val playerID = persistenceService.joinGame(id)
+    Ok(playerID)
+  }}
+
   private def returnRequestParamAsString(request: Request[AnyContent], key: String): String = {
     request.body.asFormUrlEncoded.get(key).headOption.getOrElse(INVALID_RESPONSE)
   }

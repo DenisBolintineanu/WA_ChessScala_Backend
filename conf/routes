@@ -8,8 +8,6 @@
 
 GET     /clientRequest/createNewGameID       controllers.ClientController.createNewGame()
 
-GET     /newGame             controllers.HomeController.newGame()
-
 + nocsrf
 POST    /clientRequest/move                  controllers.ClientController.doMove()
 
@@ -19,17 +17,20 @@ POST    /clientRequest/gameboard             controllers.ClientController.getGam
 + nocsrf
 POST    /clientRequest/delete                controllers.ClientController.deleteGame()
 
++ nocsrf
+POST    /clientRequest/join                  controllers.ClientController.joinGame()
+
 # Server routes
 GET     /                   controllers.HomeController.index()
 
-GET     /index              controllers.HomeController.index()
-
-GET     /game               controllers.HomeController.joinGame(id)
-
-GET     /newGame            controllers.HomeController.newGame()
+GET     /game               controllers.HomeController.newGame()
 
 + nocsrf
-POST    /game               controllers.HomeController.playChess2(id)
+POST    /game/id=:id        controllers.HomeController.doMove(id)
+
+GET     /game/id=:id        controllers.HomeController.updateGame(id)
+
+GET     /join/id=:id        controllers.HomeController.joinGame(id)
 
 GET     /admin              controllers.HomeController.adminPage()
 

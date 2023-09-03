@@ -178,12 +178,15 @@
   }
 }
 
-@media(max-aspect-ratio:4/3) {
+@media(max-aspect-ratio:5/4) {
   .chessboard-page{
     flex-wrap: wrap;
   }
   .game-information-container{
     height: 20rem;
     max-width: 76vw;
+  }
+  .game-container{
+    min-width: 80vw;
   }
 }

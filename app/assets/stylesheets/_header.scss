@@ -2,8 +2,38 @@
 @import "mixins";
 
 header {
-    height: 11vh;
     border-bottom: 1px solid black;
+    overflow: hidden;
+}
+
+@include respond(tablet) {
+    .sidebar {
+        background-color: rgba(255, 255, 255, 0.7) !important;
+        backdrop-filter: blur(10px);
+    }
+}
+
+.image-icon {
+    width: 10px;
+    @include respond(tablet) {
+        width: 20px;
+    }
+    height: auto;
+}
+
+#login {
+
+}
+
+#signup {
+
+}
+
+.logo {
+    img {
+        padding: 10px;
+        width: 200px;
+    }
 }
 
 .heading {
@@ -15,21 +45,6 @@ header {
     justify-content: space-between;
     background-color: $secondary-color;
 
-    .logo {
-        width: 30%;
-        @include respond(tablet) {
-            width: 50%;
-        }
-        overflow-y: hidden;
-
-        img {
-            @include respond(tablet) {
-                width: 200px;
-            }
-            padding: 10px;
-            width: 130px;
-        }
-    }
 
     .nav-links {
         width: 70%;
@@ -85,14 +100,6 @@ header {
             @include respond(tablet) {
                 justify-content: space-between;
                 align-items: flex-start;
-            }
-
-            .image-icon {
-                width: 10px;
-                @include respond(tablet) {
-                    width: 20px;
-                }
-                height: auto;
             }
         }
     }

@@ -16,13 +16,8 @@
       @content;
     }
   }
-  @else if $breakpoint == tablet {
-    @media (min-width: 900px) {
-      @content;
-    }
-  }
   @else if $breakpoint == phone {
-    @media (min-width: 600px) {
+    @media (min-aspect-ratio:4/3) {
       @content;
     }
   }

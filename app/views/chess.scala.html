@@ -36,10 +36,10 @@
             <div class="move-input-controls">
                 <div class="text-colorized">@input</div>
                 <br>
-                <form class="mb-2" method="post" action="/game/id=@playerID">
+                <form class="mb-2 form-move-input-controls" method="post" action="/game/id=@playerID">
                     <label for="move-input">Input:</label>
                     <input type="hidden" name="type" value="move">
-                    <input type="text" class="text-input-primary" id="move-input" name="move" autofocus>
+                    <input type="text" class="move-input-primary" id="move-input" name="move" autofocus>
                     <input type="submit" class="btn-cta-primary" value="Submit">
                 </form>
             </div>

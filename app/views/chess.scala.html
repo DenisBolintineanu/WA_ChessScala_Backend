@@ -7,7 +7,7 @@
     <div class="chessboard-page">
         <div class="game-container">
             <div class="chessboard-container">
-                <div class="chessboard-test">
+                <div class="chessboard">
                 @for(i <- (-8 to 0)) {
                     @for(j <- -1 to 7) {
                         @{
@@ -30,24 +30,22 @@
         </div>
 
         <div class="game-information-container">
-            <div class="move-control-container mt-2">
-                <div class="move-input-controls">
-                    <div class="text-colorized">@input</div>
-                    <br>
-                    <form class="mb-2" method="post" action="/game/id=@playerID">
-                        <label for="move-input" class="header-tertiary">Input:</label>
-                        <input type="hidden" name="type" value="move">
-                        <input type="text" class="text-input-primary" id="move-input" name="move" autofocus>
-                        <input type="submit" class="btn-cta-primary" value="Submit">
-                    </form>
-                </div>
-                <div class="moves-field mt-2">
-                    <h3 class="header-tertiary mb-2">Moves:</h3>
-                    <p class="text-responsive text-colorized">@moves.mkString(", ")</p>
-                </div>
+            <div id="game-id">
+                <span>GameID: @gameID</span>
             </div>
-            <div id="game-id" class="mb-2">
-                <span class="text-responsive text-colorized">GameID: @gameID</span>
+            <div class="move-input-controls">
+                <div class="text-colorized">@input</div>
+                <br>
+                <form class="mb-2 form-move-input-controls" method="post" action="/game/id=@playerID">
+                    <label for="move-input">Input:</label>
+                    <input type="hidden" name="type" value="move">
+                    <input type="text" class="move-input-primary" id="move-input" name="move" autofocus>
+                    <input type="submit" class="btn-cta-primary" value="Submit">
+                </form>
+            </div>
+            <div class="moves-field mt-2">
+                <h3 class="mb-2">Moves:</h3>
+                <p class="text-responsive text-colorized">@moves.mkString(", ")</p>
             </div>
         </div>
     </div>

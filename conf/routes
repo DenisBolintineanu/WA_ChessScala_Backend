@@ -8,12 +8,16 @@
 
 GET     /clientRequest/createNewGameID       controllers.ClientController.createNewGame()
 
++ nocsrf
 POST    /clientRequest/move                  controllers.ClientController.doMove()
 
++ nocsrf
 POST    /clientRequest/gameboard             controllers.ClientController.getGameBoard()
 
++ nocsrf
 POST    /clientRequest/delete                controllers.ClientController.deleteGame()
 
++ nocsrf
 POST    /clientRequest/join                  controllers.ClientController.joinGame()
 
 # Server routes

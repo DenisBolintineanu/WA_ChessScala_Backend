@@ -11,12 +11,14 @@ import javax.inject.{Inject, Singleton}
 @Singleton
 class HomeController @Inject()(val controllerComponents: ControllerComponents, val persistenceService: IPersistenceService) extends BaseController with I18nSupport {
 
+  private val MOVE_ID: String = "move"
+
   def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
   }
 
   def doMove(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val move: String = request.body.asFormUrlEncoded.get("move").headOption.getOrElse("")
+    val move: String = request.body.asFormUrlEncoded.get(MOVE_ID).headOption.getOrElse("")
     persistenceService.updateGame(move, id) match {
       case Some(controller) => chessFromController(id, controller)
       case None => Ok(views.html.error())
@@ -55,13 +57,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
 
   def about(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.about())
-  }
-
-  private def gameExists(id: String)(implicit request: Request[AnyContent]): Option[Result] = {
-    persistenceService.readGame(id) match {
-      case Some(_) => None
-      case None => Some(Ok(views.html.gameNotFound(id)))
-    }
   }
 
   private def chessFromController(id: String, controller: IController)(implicit request: Request[AnyContent]): Result = {

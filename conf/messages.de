@@ -25,6 +25,7 @@ header.rules=Regeln
 header.home=Startseite
 header.login=Einloggen
 header.signup=Registrieren
+header.language.select=Spracheinstellungen
 header.language.flag.english=Englisch
 header.language.flag.german=Deutsch
 

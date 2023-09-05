@@ -25,6 +25,7 @@ header.rules=Rules
 header.home=Home
 header.login=Login
 header.signup=Sign-in
+header.language.select=Language Settings
 header.language.flag.english=English
 header.language.flag.german=German
 

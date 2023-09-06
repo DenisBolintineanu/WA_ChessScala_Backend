@@ -31,6 +31,11 @@ index.start.game=Start new game
 index.session.id.cta=Have a Session-ID?
 index.join.game.btn=Join now
 
+#BOARD COMPONENT
+chess.moves=Moves
+chess.input=Input
+chess.submit=Submit
+
 
 #RULES PAGE
 rules.title=Chess - A Comprehensive Guide

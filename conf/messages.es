@@ -23,8 +23,6 @@ header.about=Acerca de
 header.lobby=Lobby
 header.rules=Reglas
 header.home=Inicio
-header.login=Iniciar sesión
-header.signup=Registrarse
 header.language.flag.english=Inglés
 header.language.flag.german=Alemán
 
@@ -32,6 +30,11 @@ header.language.flag.german=Alemán
 index.start.game=Iniciar nueva partida
 index.session.id.cta=¿Tienes un ID de sesión?
 index.join.game.btn=Unirse ahora
+
+#BOARD COMPONENT
+chess.moves=Movimientos
+chess.input=Entrada
+chess.submit=Enviar
 
 #RULES PAGE
 rules.title=Ajedrez - Una guía completa
@@ -83,4 +86,16 @@ about.project.developers.denis=@Denis Bolintineanu
 about.project.developers.andre=@André Königer
 
 about.contact.information.title=Información de contacto
-about.contact.information.text=Para más consult
+about.contact.information.text=Para más consultas e información sobre el proyecto, por favor contacte a los desarrolladores a través de los enlaces de correo electrónico proporcionados, o comuníquese con el Departamento de Informática en HTWG Konstanz.
+
+#FOOTER
+footer.developed.by.text=Desarrollado por Denis Bolintineanu & André Königer
+footer.developed.for.text=Aplicaciones Web en HTWG Konstanz, WS 23/24
+footer.quicklinks.title=Enlaces rápidos
+
+#ERROR
+error.404.title=404 - No encontrado
+error.404.text=La página que has solicitado no existe
+
+error.404.game.text.pre=Un juego con ID
+error.404.game.text.post=no existe

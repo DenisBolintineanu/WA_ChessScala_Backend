@@ -38,7 +38,7 @@
 
 .chessboard-page {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 
@@ -196,12 +196,10 @@
 @media(max-aspect-ratio:5/4) {
   .chessboard-page{
     flex-wrap: wrap;
-    height: 100%;
   }
   .game-information-container{
     height: 20rem;
     max-width: 76vw;
-    margin-bottom: 4rem;
   }
   .game-container{
     min-width: 80vw;

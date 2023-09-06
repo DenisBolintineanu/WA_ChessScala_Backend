@@ -21,7 +21,7 @@
                                         case (0, j) => <div class="number-field">{if(j >= 0) ('A' + j).toChar}</div>
                                         case (i, -1) => <div class="number-field">{if (i < 0) -i}</div>
                                         case _ =>
-                                            <div class={if ( (i + j) % 2 == 0 ) "chess-field white-field" else "chess-field black-field"}>
+                                            <div id={('A'+j).toChar.toString + (-i).toString} class={if ( (i + j) % 2 == 0 ) "chess-field white-field" else "chess-field black-field"}>
                                             {if (board.getImage(j, -i-1) != "")
                                                     <img class="figure" src={routes.Assets.versioned(board.getImage(j,-i-1)).toString}/>
                                             }

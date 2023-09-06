@@ -28,6 +28,7 @@ header.signup=Sign-in
 header.language.select=Language Settings
 header.language.flag.english=English
 header.language.flag.german=German
+header.language.flag.spanish=Spanish
 
 #INDEX PAGE
 index.start.game=Start new game

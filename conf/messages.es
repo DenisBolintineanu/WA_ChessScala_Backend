@@ -23,8 +23,13 @@ header.about=Acerca de
 header.lobby=Lobby
 header.rules=Reglas
 header.home=Inicio
+header.login=Iniciar sesión
+header.signup=Registrarse
+header.language.select=Configuración de idioma
 header.language.flag.english=Inglés
 header.language.flag.german=Alemán
+header.language.flag.spanish=Español
+
 
 #INDEX PAGE
 index.start.game=Iniciar nueva partida

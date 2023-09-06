@@ -41,19 +41,29 @@
                                 <li>
                                     @language_es()
                                 </li>
-                                <li><a class="dropdown-item" href="@routes.HomeController.reloadCurrentPageWithLang("es")"></a></li>
                             </ul>
                         </li>
                     </ul>
                     <form class="d-flex justify-content-lg-end w-25">
-                        <button class="btn btn-cta-primary me-3" type="submit">@messages("header.login")</button>
-                        <button class="btn btn-cta-primary" type="submit">@messages("header.signup")</button>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCenter" aria-controls="offcanvasCenter">@messages("header.login")</button>
                     </form>
                 </div>
             </div>
         </div>
     </nav>
+    <div class="offcanvas offcanvas-start overflow-hidden" tabindex="-1" id="offcanvasCenter" aria-labelledby="offcanvasCenterLabel">
+        <div class="offcanvas-header">
+        </div>
+    <div class="offcanvas-body">
+        @loginpage()
+    </div>
+  </div>
 </header>
+
+
+
+
+
     @*<header>
         <div class="heading">
 

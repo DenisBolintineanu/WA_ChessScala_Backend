@@ -1,54 +1,86 @@
 @()(implicit messages: Messages)
-@header()
-@main("Welcome to Scala Chess") {
-  <div class="content-area">
-    <div class="main">
-      <img alt="WA_Chess logo" class="logo--large" src=@routes.Assets.versioned("images/logo.png")>
-      <h2 class="index-heading">ChessScala</h2>
-      <div class="start-game-wrapper">
+
+@main("Welcome to Play") {
+  <table border="0">
+    <tr></tr>
+    <td height="200"></td>
+    <tr>
+      <td width="400"></td>
+      <td>
+        <img src=@routes.Assets.versioned("images/logo.png") width="400">
+      </td>
+    </tr>
+  </table>
+  <table border="0">
+    <tr>
+      <td height="50">
+      </td>
+    </tr>
+    <td>
+      <td width="500">
+      </td>
+      <td>
+        <h2>ChessScala</h2>
         <a href="@routes.HomeController.newGame()">@messages("index.start.game")</a>
-      </div>
-      <div class="join-game">
-        <h3>@messages("index.session.id.cta")</h3>
-        <div class="join-game-form">
-          <form action="/game" method="GET">
-            <input type="text" class="text-input-primary" id="id" autocomplete="off" placeholder="Session ID">
-            <label class="placeholder-label" for="id">Session-ID</label>
-            <input type="submit" class="btn-cta-primary" value="@messages("index.join.game.btn")">
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="widgets">
-      <div class="widget-view">
-          <a href="#" class="index-card">
-            <div>
-              <img alt="Lobby Logo White Knight" src=@routes.Assets.versioned("images/chesspieces/whiteKnight.png")>
-            </div>
-            <h3>@messages("header.lobby")</h3>
-          </a>
-          <a href="/rules" class="index-card">
-            <div>
-              <img alt="Lobby Logo White Rook" src=@routes.Assets.versioned("images/chesspieces/whiteRook.png")>
-            </div>
-            <h3>@messages("header.rules")</h3>
-          </a>
-          <a href="/about" class="index-card">
-            <div>
-              <img alt="Lobby Logo Black Bishop" src=@routes.Assets.versioned("images/chesspieces/blackBishop.png")>
-            </div>
-            <h3>@messages("header.about")</h3>
-          </a>
-          <!--
-            <div class="index-card">
-            <div>
-              <img src=@routes.Assets.versioned("images/chesspieces/blackKing.png")>
-            </div>
-            <h3>Admin</h3>
-          </div>
-          -->
-      </div>
-    </div>
-  </div>
+        <br>
+        <a href="@routes.HomeController.rules()">@messages("header.rules")</a>
+        <br>
+        <a href="@routes.HomeController.about()">@messages("header.about")</a>
+        <br>
+        <br>
+        <a href="@routes.HomeController.reloadCurrentPageWithLang("en")">
+         <svg width="80px" height="80px" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <clipPath id="clipPath941">
+                    <circle cx="40" cy="40" r="40" />
+                </clipPath>
+            </defs>
+            <g clip-path="url(#clipPath941)">
+                <rect style="fill:hsl(240, 100%, 25%);" id="rect649" width="80" height="80" x="0" y="0" />
+                <rect style="fill:hsl(0, 0%, 100%);" id="rect650" width="130" height="10" x="-50" y="30" transform="rotate(-40 40 13.3333)"/>
+                <rect style="fill:hsl(0, 0%, 100%);" id="rect651" width="130" height="10" x="0" y="30" transform="rotate(40 40 13.3333)"/>
+                <rect style="fill:hsl(0, 100%, 50%);" id="rect652" width="130" height="4" x="-50" y="33" transform="rotate(-40 40 13.3333)"/>
+                <rect style="fill:hsl(0, 100%, 50%);" id="rect653" width="130" height="4" x="0" y="33" transform="rotate(40 40 13.3333)"/>
+                <rect style="fill:hsl(0, 0%, 100%);" id="rect654" width="80" height="14" x="0" y="33"/>
+                <rect style="fill:hsl(0, 0%, 100%);" id="rect655" width="14" height="80" x="33" y="0"/>
+                <rect style="fill:hsl(0, 100%, 50%);" id="rect656" width="80" height="8" x="0" y="36"/>
+                <rect style="fill:hsl(0, 100%, 50%);" id="rect657" width="8" height="80" x="36" y="0"/>
+
+            </g>
+        </svg> 
+        </a>
+        <a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
+          <svg width="80px" height="80px" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <clipPath id="clipPath941">
+                    <circle cx="40" cy="40" r="40" />
+                </clipPath>
+            </defs>
+            <g clip-path="url(#clipPath941)">
+                <rect style="fill:#000000;" id="rect649" width="80" height="26.6667" x="0" y="0" />
+                <rect style="fill:#ff0000;" id="rect651" width="80" height="26.6667" x="0" y="26.6667" />
+                <rect style="fill:#ffff00;" id="rect764" width="80" height="26.6667" x="0" y="53.3334" />
+            </g>
+        </svg>
+        </a>
+        
+        </a>
+        <a href="@routes.HomeController.reloadCurrentPageWithLang("es")">
+          <svg width="80px" height="80px" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <clipPath id="clipPathSpain">
+                    <circle cx="40" cy="40" r="40" />
+                </clipPath>
+            </defs>
+            <g clip-path="url(#clipPathSpain)">
+                <rect style="fill:#c60b1e;" width="80" height="26.6667" x="0" y="0" />
+                <rect style="fill:#ffcc00;" width="80" height="26.6667" x="0" y="26.6667" />
+                <rect style="fill:#c60b1e;" width="80" height="26.6667" x="0" y="53.3334" />
+            </g>
+        </svg>
+        </a>
+      </td>
+
+    </tr>
+  </table>
 }
-@footer()

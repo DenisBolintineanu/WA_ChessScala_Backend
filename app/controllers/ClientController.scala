@@ -15,6 +15,7 @@ class ClientController @Inject()(val controllerComponents: ControllerComponents,
 
   private val MOVE_ID: String = "move"
   private val GAME_ID: String = "id"
+  private val PLAYER_ID: String = "playerId"
 
   def createNewGame(): Action[AnyContent] = Action {
     Ok(persistenceService.createGame())

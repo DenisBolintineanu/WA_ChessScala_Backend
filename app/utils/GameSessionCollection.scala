@@ -15,20 +15,21 @@ class GameSessionCollection {
 
   def delete(gameID: String): Unit = {
     sessionMap.get(gameID) match {
-      case Some(session) =>
+      case Some(session) => {
         sessionMap -= session._1.gameID
         playerMap -= session._1.playerOneID
         playerMap -= session._1.playerTwoID
-      case None =>
+      }
     }
   }
 
   def join(gameID: String): Option[String] = {
     sessionMap.get(gameID) match {
-      case Some(session) =>
+      case Some(session) => {
         if (!session._2) { return None }
         sessionMap(gameID) = (session._1, false)
         Some(session._1.playerTwoID)
+      }
       case None => None
     }
   }

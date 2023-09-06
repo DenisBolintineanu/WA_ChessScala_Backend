@@ -1,50 +1,30 @@
 @()(implicit messages: Messages)
-@header()
+
 @main("Welcome to ChessScala"){
+    <h1>@messages("about.title")</h1>
+    <p>@messages("about.intro.text")</p>
 
-    <div class="basic-page">
-        <h1 class="header-primary mb-2">@messages("about.title")</h1>
-        <div class="bg-skewed mb-2">
-            <div>
-                <p class="basic-text-1-2">@messages("about.intro.text")</p>
-            </div>
-        </div>
+    <h2>@messages("about.background.title")</h2>
+    <p>@messages("about.background.text")</p>
 
-        <h2 class="header-secondary mb-1">@messages("about.background.title")</h2>
-        <div class="bg-skewed mb-2">
-            <div>
-                <p class="basic-text-1-2">@messages("about.background.text")</p>
-            </div>
-        </div>
+    <h2>@messages("about.objectives.title")</h2>
+    <ul>
+        <li>@messages("about.objectives.play.text")</li>
+        <li>@messages("about.objectives.technologies.text")</li>
+        <li>@messages("about.objectives.goal.text")</li>
+    </ul>
 
-        <h2 class="header-secondary mb-1">@messages("about.objectives.title")</h2>
-        <div class="bg-skewed mb-2">
-            <div>
-                <ul class="basic-text-1-2">
-                    <li>@messages("about.objectives.play.text")</li>
-                    <li>@messages("about.objectives.technologies.text")</li>
-                    <li>@messages("about.objectives.goal.text")</li>
-                </ul>
-            </div>
-        </div>
+    <h2>@messages("about.project.developers.title")</h2>
+    <p>@messages("about.project.developers.text"):</p>
+    <ul>
+        <li><a href="mailto:denis.bolintineanu@@htwg-konstanz.de">@@Denis Bolintineanu</a></li>
+        <li><a href="mailto:andre.koeniger@@htwg-konstanz.de">@@André Königer</a></li>
+    </ul>
 
-        <h2 class="header-secondary mb-1">@messages("about.project.developers.title")</h2>
-        <div class="bg-skewed mb-2 mb-1">
-            <div class="basic-text-1-2">
-                <p>@messages("about.project.developers.text"):</p>
-                <ul class="m-top-1">
-                    <li><a class="link-primary-white" href="mailto:denis.bolintineanu@@htwg-konstanz.de">@@Denis Bolintineanu</a></li>
-                    <li><a class="link-primary-white" href="mailto:andre.koeniger@@htwg-konstanz.de">@@André Königer</a></li>
-                </ul>
-            </div>
-        </div>
+    <h2>@messages("about.contact.information.title")</h2>
+    <p>@messages("about.contact.information.text")</p>
 
-        <h2 class="header-secondary mb-1">@messages("about.contact.information.title")</h2>
-        <div class="bg-skewed mb-2 mb-1">
-            <div class="basic-text-1-2">
-                <p>@messages("about.contact.information.text")</p>
-            </div>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2023 ChessScala Project - HTWG Konstanz</p>
+    </footer>
 }
-@footer()

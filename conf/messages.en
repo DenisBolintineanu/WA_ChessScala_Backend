@@ -31,6 +31,11 @@ index.start.game=Start new game
 index.session.id.cta=Have a Session-ID?
 index.join.game.btn=Join now
 
+#BOARD COMPONENT
+chess.moves=Moves
+chess.input=Input
+chess.submit=Submit
+
 #RULES PAGE
 rules.title=Chess - A Comprehensive Guide
 rules.intro.text=Chess is a profound and strategic board game for two players, played on a 8x8 square chessboard. It's one of the most famous and widely played games in the world. Here is a detailed guide to playing chess.

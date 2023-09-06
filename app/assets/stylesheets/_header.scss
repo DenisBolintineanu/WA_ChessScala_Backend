@@ -29,6 +29,19 @@
     backdrop-filter: blur(5px);
 }
 
+.nav-link {
+    color: $primary-color;
+
+    &:hover {
+        background-color: $primary-color;
+        color: white;
+    }
+}
+
+.nav-link.dropdown-toggle.show {
+    background-color: $primary-color;
+    color: white;
+}
 
 .logo {
     img {
@@ -37,6 +50,21 @@
     }
 }
 
+.language-link {
+
+    > * {
+        color: $primary-color;
+        text-decoration: none;
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    &:hover {
+        background-color: rgba($primary-color, 0.3);
+    }
+}
 
 
 #offcanvasCenter {

@@ -31,6 +31,11 @@ index.start.game=Neues Spiel
 index.session.id.cta=Du hast eine Session-ID?
 index.join.game.btn=Jetzt beitreten
 
+#BOARD COMPONENT
+chess.moves=Züge
+chess.input=Eingabe
+chess.submit=Senden
+
 #RULES PAGE
 rules.title=Schach - Alles, was Sie wissen müssen
 rules.intro.text=Schach ist ein tiefgründiges und strategisches Brettspiel für zwei Spieler, das auf einem 8x8 Felder großen Schachbrett gespielt wird. Es ist eines der bekanntesten und am weitesten verbreiteten Spiele der Welt. Hier ist ein detaillierter Leitfaden zum Schachspielen.

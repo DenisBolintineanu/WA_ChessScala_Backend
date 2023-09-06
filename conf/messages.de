@@ -28,7 +28,7 @@ header.signup=Registrieren
 header.language.select=Spracheinstellungen
 header.language.flag.english=Englisch
 header.language.flag.german=Deutsch
-header.language.flag.spansh=Spanisch
+header.language.flag.spanish=Spanisch
 
 #INDEX PAGE
 index.start.game=Neues Spiel

@@ -7,5 +7,5 @@ $font-path: '../fonts/Roboto-Regular.ttf';
 
 
 /** Overriden Bootstrap values **/
-:root {
-}
+$navbar-light-color: $primary-color;
+$navbar-light-hover-color: #fff;

@@ -1,6 +1,6 @@
-@()
-   <a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
-     <svg width="100%" height="100%" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+@()(implicit messages: Messages)
+<a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
+     <svg width="15%" height="15%" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
        <defs>
            <clipPath id="clipPath941">
                <circle cx="40" cy="40" r="40" />
@@ -12,4 +12,6 @@
            <rect style="fill:#ffff00;" id="rect764" width="80" height="26.6667" x="0" y="53.3334" />
        </g>
    </svg>
+       &nbsp;
+       <span>@messages("header.language.flag.german")</span>
    </a>

@@ -6,7 +6,7 @@
       <img alt="WA_Chess logo" class="logo--large" src=@routes.Assets.versioned("images/logo.png")>
       <h2 class="index-heading">ChessScala</h2>
       <div class="start-game-wrapper">
-        <a href="@routes.HomeController.newGame()">@messages("index.start.game")</a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasStart">@messages("index.start.game")</a>
       </div>
       <div class="join-game">
         <h3 class="fs-5">@messages("index.session.id.cta")</h3>
@@ -51,4 +51,11 @@
     </div>
   </div>
 }
+<div class="offcanvas offcanvas-start overflow-hidden" tabindex="-1" id="offcanvasStart" aria-labelledby="offcanvasCenterLabel">
+  <div class="offcanvas-header">
+  </div>
+<div class="offcanvas-body">
+  @startNewGame()
+</div>
+</div>
 @footer()

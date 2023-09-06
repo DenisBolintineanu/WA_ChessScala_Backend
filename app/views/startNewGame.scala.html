@@ -1,0 +1,39 @@
+@()
+<div class="select-game-box align-items-center container">
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas-start" aria-label="Close"></button> 
+    <div class="row d-flex align-items-stretch">
+        <!-- Card for CPU -->
+        <div class="col-sm-12 col-md-4">
+            <div class="card mb-2 transparent-card">
+                <img src="@routes.Assets.versioned("images/chesspieces/BlackQueen.png")" class="card-img-top" alt="CPU Image">
+                <div class="card-body">
+                    <h5 class="card-title">With the CPU</h5><br>
+                    <a href="#" class="btn btn-primary">Play</a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Card for Online with a friend -->
+        <div class="col-sm-12 col-md-4">
+            <div class="card mb-2 transparent-card">
+                <img src="@routes.Assets.versioned("images/chesspieces/BlackQueen.png")" class="card-img-top" alt="Online Image">
+                <div class="card-body">
+                    <h5 class="card-title">Online with a friend</h5>
+                    <a href="#" class="btn btn-secondary">Play</a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Card for Local with a friend -->
+        <div class="col-sm-12 col-md-4">
+            <div class="card transparent-card">
+                <img src="@routes.Assets.versioned("images/chesspieces/BlackQueen.png")" class="card-img-top" alt="Local Image">
+                <div class="card-body">
+                    <h5 class="card-title">Local with a friend</h5>
+                    <a href="#" class="btn btn-success">Play</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

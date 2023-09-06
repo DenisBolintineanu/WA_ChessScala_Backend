@@ -1,0 +1,25 @@
+.select-game-box {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    margin-right: 5rem;
+}
+
+#offcanvasStart .offcanvas-body::-webkit-scrollbar {
+    display: none;
+}
+
+#offcanvasStart .offcanvas-body {
+    height: 100%;
+    width: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.transparent-card {
+    width: 10rem;
+    background-color: rgba(255, 255, 255, 0.505); /* Weiß mit 70% Deckkraft */
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}

@@ -15,12 +15,16 @@
             </ul>
     
             <div class="language-select">
+              <div class="language">
                 <a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
-                    <img alt="Flag of Germany" class="image-icon" src="@routes.Assets.versioned("images/flags/DE_flag.png")">
+                  @language_de()
                 </a>
-                <a href="@routes.HomeController.reloadCurrentPageWithLang("en")">
-                    <img alt="Flag of United Kingdom" class="image-icon" src="@routes.Assets.versioned("images/flags/UK_flag.png")">
+              </div>
+              <div class="language">
+                <a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
+                  @language_en()
                 </a>
+              </div>
             </div>
           </div>
         </div>

@@ -74,7 +74,7 @@ header {
         }
 
         .language-select {
-            width: 50px;
+            width: 100px;
             display: flex;
             align-self: flex-start;
             flex-direction: row;
@@ -85,6 +85,10 @@ header {
             @include respond(tablet) {
                 justify-content: space-between;
                 align-items: flex-start;
+            }
+
+            .language{
+                width: 30%;
             }
 
             .image-icon {

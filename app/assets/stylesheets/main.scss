@@ -1,8 +1,9 @@
-@import 'variables';
 @import 'base';
 @import 'mixins';
+@import 'bootstrap/bootstrap';
+@import 'variables';
 @import 'animations';
-@import 'buttons';
+@import 'buttons-custom';
 @import 'utils';
 @import 'footer';
 @import 'header';

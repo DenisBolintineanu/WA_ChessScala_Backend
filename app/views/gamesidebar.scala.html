@@ -1,0 +1,60 @@
+@()
+<div class="sidebar-container container">
+    <div class="row mb-3"></div>
+    <div class="row mb-3">
+        <div class="col-12">
+            <img class="img-fluid" alt="WA_Chess Logo small" src=@routes.Assets.versioned("images/logo.png")>
+        </div>
+    </div>
+    <div class="row mb-5"></div>
+    <div class="row mb-3">
+        <div class="d-grid gap-2 col-9 mx-auto">
+            <a href="/" type="button" class="btn btn-outline-primary">Main menu</a>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="d-grid gap-2 col-9 mx-auto">
+            <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Start new game
+            </button>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body bg-transparent border-0">
+                    <div class="container">
+                        <div class="row mb-3">
+                            <a href="/game" type="button" class="btn btn-outline-primary">With a friend</a> 
+                        </div>
+                        <div class="row">
+                            <a type="button" class="btn btn-outline-primary">With the computer</a> 
+                        </div>  
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="d-grid gap-2 col-9 mx-auto">
+            <a type="button" class="btn btn-outline-primary">Lobby</a>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="d-grid gap-2 col-9 mx-auto">
+            <a href="/rules" type="button" class="btn btn-outline-primary">Rules</a>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="d-grid gap-2 col-9 mx-auto">
+            <a href="/about" type="button" class="btn btn-outline-primary">About</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 ms-3">
+            <br>
+            Developed by <br>
+            Denis Bolintineanu & André Königer<br>
+            <br>
+            Webapplications @@HTWG Konstanz,<br>
+            WS 23/24<br>
+            <br>
+        </div>
+    </div>
+</div>

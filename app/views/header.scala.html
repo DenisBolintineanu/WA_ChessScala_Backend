@@ -1,37 +1,72 @@
 @()(implicit messages: Messages)
-    <header>
-        <div class="heading">
-          <div class="logo">
-            <a href="@routes.HomeController.index()">
+<header>
+    <nav class="navbar navbar-light navbar-expand-lg bg-transparent border-b-1-black">
+        <div class="container-fluid">
+            <a class="logo navbar-brand border-1-b" href="@routes.HomeController.index()">
                 <img alt="WA_Chess Logo small" src=@routes.Assets.versioned("images/logo.png")>
             </a>
-          </div>
+            <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="sidebar offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <a class="logo navbar-brand" href="@routes.HomeController.index()">
+                        <img alt="WA_Chess Logo small" src=@routes.Assets.versioned("images/logo.png")>
+                    </a>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="@routes.HomeController.index()">@messages("header.home")</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@routes.HomeController.index()">@messages("header.lobby")</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@routes.HomeController.rules()">@messages("header.rules")</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@routes.HomeController.rules()">@messages("header.about")</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">@messages("header.language.select")</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="@routes.HomeController.reloadCurrentPageWithLang("de")"><img alt="Flag of Germany" class="image-icon" src="@routes.Assets.versioned("images/flags/DE_flag.png")">&nbsp;@messages("header.language.flag.german")</a></li>
+                                <li><a class="dropdown-item" href="@routes.HomeController.reloadCurrentPageWithLang("en")"><img alt="Flag of United Kingdom" class="image-icon" src="@routes.Assets.versioned("images/flags/UK_flag.png")">&nbsp;@messages("header.language.flag.english")</a></li>
+                                <li><a class="dropdown-item" href="@routes.HomeController.reloadCurrentPageWithLang("es")"></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex justify-content-lg-end w-25">
+                        <button class="btn btn-cta-primary me-3" type="submit">@messages("header.login")</button>
+                        <button class="btn btn-cta-primary" type="submit">@messages("header.signup")</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+    @*<header>
+        <div class="heading">
+
           <div class="nav-links">
             <ul class="links">
-              <li><a href="@routes.HomeController.index()">@messages("header.home")</a></li>
-              <li><a href="@routes.HomeController.index()">@messages("header.lobby")</a></li>
+              <li><a href="@routes.HomeController.index()"></a></li>
               <li><a href="@routes.HomeController.rules()">@messages("header.rules")</a></li>
               <li><a href="@routes.HomeController.about()">@messages("header.about")</a></li>
             </ul>
-    
-            <div class="language-select">
-              <div class="language">
-                <a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
-                  @language_de()
-                </a>
-              </div>
-              <div class="language">
-                <a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
-                  @language_en()
-                </a>
-              </div>
-              <div class="language">
-                <a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
-                  @language_es()
-                </a>
-              </div>
-            </div>
           </div>
         </div>
-    </header>
+    <li class="nav-item">
+    <div class="language-select">
+    <a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
+    <img alt="Flag of Germany" class="image-icon" src="@routes.Assets.versioned("images/flags/DE_flag.png")">
+    </a>
+    <a href="@routes.HomeController.reloadCurrentPageWithLang("en")">
+    <img alt="Flag of United Kingdom" class="image-icon" src="@routes.Assets.versioned("images/flags/UK_flag.png")">
+    </a>
+    </div>
+    </li>
+    </header>*@
 

@@ -32,8 +32,15 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">@messages("header.language.select")</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="@routes.HomeController.reloadCurrentPageWithLang("de")"><img alt="Flag of Germany" class="image-icon" src="@routes.Assets.versioned("images/flags/DE_flag.png")">&nbsp;@messages("header.language.flag.german")</a></li>
-                                <li><a class="dropdown-item" href="@routes.HomeController.reloadCurrentPageWithLang("en")"><img alt="Flag of United Kingdom" class="image-icon" src="@routes.Assets.versioned("images/flags/UK_flag.png")">&nbsp;@messages("header.language.flag.english")</a></li>
+                                <li>
+                                    @language_de()
+                                </li>
+                                <li>
+                                    @language_en()
+                                </li>
+                                <li>
+                                    @language_es()
+                                </li>
                                 <li><a class="dropdown-item" href="@routes.HomeController.reloadCurrentPageWithLang("es")"></a></li>
                             </ul>
                         </li>

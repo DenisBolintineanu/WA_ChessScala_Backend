@@ -1,0 +1,80 @@
+@import ch.qos.logback.core.joran.spi.EventPlayer
+@()
+@main("Play Chess") {
+    <div class="popup" id="selectTeam">
+        <div class="selectTeam">
+            <img alt="WA_Chess Logo small" src=@routes.Assets.versioned("images/logo.png")>
+            <div style="margin-top: 2rem; margin-bottom: 1rem;">
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="window.startAsWhite()">
+                    Start game as white
+                </button>
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="window.startAsBlack()">
+                    Start game as black
+                </button>
+            </div>
+            <a href="/" type="button" class="btn btn-outline-primary">Main menu</a>
+        </div>
+    </div>
+    <div class="play-game-page container">
+        <div class="row">
+            <button type="button" class="navbar-toggler shadow-none border-0 btn-sidebar col-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"></button>
+            <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                @gamesidebar()
+            </div>
+            <div class="chessboard-page col-11">
+                <div class="game-container">
+                    <div class="chessboard-container">
+                        <div class="chessboard" id="chessboard">
+                            @for(i <- (-8 to 0)) {
+                                @for(j <- -1 to 7) {
+                                    @{
+            
+                                        (i, j) match {
+                                            case (0, j) => <div class="number-field">{if(j >= 0) ('A' + j).toChar}</div>
+                                            case (i, -1) => <div class="number-field">{if (i < 0) -i}</div>
+                                            case _ =>
+                                                <div id={('a'+j).toChar.toString + (-i).toString} class={if ( (i + j) % 2 == 0 ) "chess-field white-field" else "chess-field black-field"}>
+                                                </div>
+                                        }
+                                    }
+                                }
+                            }
+                        </div>
+                        <div class="chessboard" id="chessboardInverse">
+                            @for(i <- (-8 to 0)) {
+                                @for(j <- -1 to 7) {
+                                    @{
+            
+                                        (i, j) match {
+                                            case (0, j) => <div class="number-field">{if(j >= 0) ('H' - j).toChar}</div>
+                                            case (i, -1) => <div class="number-field">{if (i < 0) 9+i}</div>
+                                            case _ =>
+                                                <div id={('h'-j).toChar.toString + (9+i).toString} class={if ( (i + j) % 2 == 0 ) "chess-field white-field" else "chess-field black-field"}>
+                                                </div>
+                                        }
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="game-information-container">
+                    <div id="game-id">
+                    </div>
+                    <div class="move-input-controls">
+                        <br>
+                    </div>
+                    <div class="moves-field mt-2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <audio id="notificationSound" src="@routes.Assets.versioned("sounds/GenericNotify.mp3")" preload="auto"></audio>
+    <audio id="moveSound" src="@routes.Assets.versioned("sounds/Move.mp3")" preload="auto"></audio>
+    <audio id="captureSound" src="@routes.Assets.versioned("sounds/Capture.mp3")" preload="auto"></audio>
+    <script type="module" src="@routes.Assets.versioned("javascripts/ChessBoard.js")"></script>
+    <script type="module" src="@routes.Assets.versioned("javascripts/stockfish.js")"></script>
+}

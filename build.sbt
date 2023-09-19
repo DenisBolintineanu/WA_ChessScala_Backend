@@ -10,10 +10,13 @@ scalaVersion := "2.13.11"
 libraryDependencies ++= Seq(
   guice,
   "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test,
-  "org.mongodb.scala" %% "mongo-scala-driver" % "4.10.0"
+  "org.mongodb.scala" %% "mongo-scala-driver" % "4.10.0",
 )
 
 scalacOptions += "-Ytasty-reader"
+
+
+
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.example.controllers._"
 

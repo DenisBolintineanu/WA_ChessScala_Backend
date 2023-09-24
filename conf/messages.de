@@ -18,13 +18,27 @@ chess.figure.knight.description=Der Springer zieht zwei Felder in eine Richtung 
 chess.figure.bishop.description=Der Läufer kann nur diagonal über beliebige Entfernungen ziehen.
 chess.figure.pawn.description=Bauern ziehen vorwärts und schlagen diagonal. Beim ersten Zug kann ein Bauer entweder ein oder zwei Felder vorwärts ziehen.
 
+play.game=Spielen
+
 #HEADER COMPONENT
 header.about=Über
 header.lobby=Lobby
 header.rules=Regeln
 header.home=Startseite
+header.login=Einloggen
+header.signup=Registrieren
+header.language.select=Spracheinstellungen
 header.language.flag.english=Englisch
 header.language.flag.german=Deutsch
+header.language.flag.spanish=Spanisch
+
+#GAME MODES
+game.mode.ai=Gegen den Computer
+game.mode.ai.desc=Tritt im Modus "Gegen den Computer" direkt gegen eine künstliche Intelligenz an!
+game.mode.local=Lokaler Multiplayer
+game.mode.local.desc=Spiele im "Lokaler Multiplayer" Modus mit Freunden am gleichen Gerät!
+game.mode.online=Online Multiplayer
+game.mode.online.desc=Tritt im "Online Multiplayer" Modus gegen Spieler aus der ganzen Welt an!
 
 #INDEX PAGE
 index.start.game=Neues Spiel

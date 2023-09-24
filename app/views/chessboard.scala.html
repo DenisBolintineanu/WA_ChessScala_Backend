@@ -27,7 +27,7 @@
                             <div id={('a'+j).toChar.toString + (-i).toString} class={if ( (i + j) % 2 == 0 ) "chess-field white-field" else "chess-field black-field"}>
                                 {
                                 if (board.getImage(j, -i-1) != "")
-                                    <img class="figure" src={routes.Assets.versioned(board.getImage(j,-i-1)).toString}/>
+                                    <img class="figure" src={routes.Assets.versioned(board.getImage(j,-i-1)).toString} draggable="true"/>
                                 }
                                 
                             </div>

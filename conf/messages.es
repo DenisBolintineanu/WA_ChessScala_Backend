@@ -18,6 +18,8 @@ chess.figure.knight.description=El Caballo se mueve dos casillas en una direcci�
 chess.figure.bishop.description=El Alfil solo puede moverse diagonalmente, cualquier distancia.
 chess.figure.pawn.description=Los peones se mueven hacia adelante, pero capturan en diagonal. En el primer movimiento, un peón puede moverse una o dos casillas hacia adelante.
 
+play.game=Jugar
+
 #HEADER COMPONENT
 header.about=Acerca de
 header.lobby=Lobby
@@ -29,6 +31,14 @@ header.language.select=Configuración de idioma
 header.language.flag.english=Inglés
 header.language.flag.german=Alemán
 header.language.flag.spanish=Español
+
+#GAME MODES
+game.mode.ai=Contra la computadora
+game.mode.ai.desc=¡Compite directamente contra una inteligencia artificial en el modo "Contra la computadora"!
+game.mode.local=Multijugador local
+game.mode.local.desc=¡Juega con amigos en el mismo dispositivo en el modo "Multijugador local"!
+game.mode.online=Multijugador en línea
+game.mode.online.desc=¡Compite contra jugadores de todo el mundo en el modo "Multijugador en línea"!
 
 
 #INDEX PAGE

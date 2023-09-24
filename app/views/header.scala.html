@@ -27,11 +27,11 @@
                             <a class="nav-link p-2" href="@routes.HomeController.rules()">@messages("header.rules")</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link p-2" href="@routes.HomeController.rules()">@messages("header.about")</a>
+                            <a class="nav-link p-2" href="@routes.HomeController.about()">@messages("header.about")</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle p-2" href="#" role="button" data-bs-toggle="dropdown">@messages("header.language.select")</a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu p-0">
                                 <li class="p-2 mb-2 language-link">
                                     @language_de()
                                 </li>
@@ -44,7 +44,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex justify-content-lg-end w-25">
+                    <form class="d-flex justify-content-lg-end w-25 login-button">
                         <button class="btn btn-cta-primary shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCenter" aria-controls="offcanvasCenter">@messages("header.login")</button>
                     </form>
                 </div>
@@ -59,31 +59,3 @@
     </div>
   </div>
 </header>
-
-
-
-
-
-    @*<header>
-        <div class="heading">
-
-          <div class="nav-links">
-            <ul class="links">
-              <li><a href="@routes.HomeController.index()"></a></li>
-              <li><a href="@routes.HomeController.rules()">@messages("header.rules")</a></li>
-              <li><a href="@routes.HomeController.about()">@messages("header.about")</a></li>
-            </ul>
-          </div>
-        </div>
-    <li class="nav-item">
-    <div class="language-select">
-    <a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
-    <img alt="Flag of Germany" class="image-icon" src="@routes.Assets.versioned("images/flags/DE_flag.png")">
-    </a>
-    <a href="@routes.HomeController.reloadCurrentPageWithLang("en")">
-    <img alt="Flag of United Kingdom" class="image-icon" src="@routes.Assets.versioned("images/flags/UK_flag.png")">
-    </a>
-    </div>
-    </li>
-    </header>*@
-

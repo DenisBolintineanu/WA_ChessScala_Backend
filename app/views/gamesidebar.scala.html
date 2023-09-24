@@ -1,60 +1,41 @@
-@()
+@()(implicit messages: Messages)
 <div class="sidebar-container container">
-    <div class="row mb-3"></div>
-    <div class="row mb-3">
+    <div class="mt-3 mb-3">
         <div class="col-12">
             <img class="img-fluid" alt="WA_Chess Logo small" src=@routes.Assets.versioned("images/logo.png")>
         </div>
     </div>
-    <div class="row mb-5"></div>
-    <div class="row mb-3">
-        <div class="d-grid gap-2 col-9 mx-auto">
-            <a href="/" type="button" class="btn btn-outline-primary">Main menu</a>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="d-grid gap-2 col-9 mx-auto">
-            <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                Start new game
-            </button>
-              <div class="collapse" id="collapseExample">
-                <div class="card card-body bg-transparent border-0">
-                    <div class="container">
-                        <div class="row mb-3">
-                            <a href="/game" type="button" class="btn btn-outline-primary">With a friend</a> 
-                        </div>
-                        <div class="row">
-                            <a type="button" class="btn btn-outline-primary">With the computer</a> 
-                        </div>  
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="d-grid gap-2 col-9 mx-auto">
-            <a type="button" class="btn btn-outline-primary">Lobby</a>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="d-grid gap-2 col-9 mx-auto">
-            <a href="/rules" type="button" class="btn btn-outline-primary">Rules</a>
-        </div>
-    </div>
-    <div class="row mb-5">
-        <div class="d-grid gap-2 col-9 mx-auto">
-            <a href="/about" type="button" class="btn btn-outline-primary">About</a>
-        </div>
-    </div>
+    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start mt-5" id="menu">
+        <li class="nav-item">
+            <a href="@routes.HomeController.index()" class="nav-link text-truncate">@messages("header.home")</a>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle  text-truncate" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">@messages("index.start.game")</a>
+            <ul class="dropdown-menu text-small shadow p-0" aria-labelledby="dropdown">
+                <li><a class="dropdown-item item-ai" href="#">@messages("game.mode.ai")</a></li>
+                <li><a class="dropdown-item item-local" href="#">@messages("game.mode.local")</a></li>
+                <li><a class="dropdown-item item-online" href="#">@messages("game.mode.online")</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="@routes.HomeController.rules()" class="nav-link text-truncate">@messages("header.rules")</a>
+        </li>
+        <li>
+            <a href="@routes.HomeController.about()" class="nav-link text-truncate">@messages("header.about")</a>
+        </li>
+    </ul>
+</div>
+<div class="container-fluid mt-5">
     <div class="row">
-        <div class="col-12 ms-3">
-            <br>
-            Developed by <br>
-            Denis Bolintineanu & André Königer<br>
-            <br>
-            Webapplications @@HTWG Konstanz,<br>
-            WS 23/24<br>
-            <br>
+        <div class="col min-vh-100 py-3">
+                <!-- toggler -->
+            <button class="btn float-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
+                <i class="bi bi-arrow-right-square-fill fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
+            </button>
+            <div class="col-12 ms-3 sidebar-content-area">
+                <p>@messages("footer.developed.by.text")</p>
+                <p>@messages("footer.developed.for.text") <a href="https://www.htwg-konstanz.de/">@@HTWG Konstanz</a>, WS 23/24</p>
+            </div>
         </div>
     </div>
 </div>

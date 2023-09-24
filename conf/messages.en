@@ -18,6 +18,8 @@ chess.figure.knight.description=The Knight moves two squares in one direction an
 chess.figure.bishop.description=The Bishop can only move diagonally, any distance.
 chess.figure.pawn.description=Pawns move forward, but capture diagonally. On the first move, a pawn can move either one or two squares forward.
 
+play.game=Play
+
 #HEADER COMPONENT
 header.about=About
 header.lobby=Lobby
@@ -28,6 +30,14 @@ header.signup=Sign-in
 header.language.select=Language Settings
 header.language.flag.english=English
 header.language.flag.german=German
+
+#GAME MODES
+game.mode.ai=Against the Computer
+game.mode.ai.desc=Compete directly against artificial intelligence in "Against the Computer" mode!
+game.mode.local=Local Multiplayer Match
+game.mode.local.desc=Play with friends on the same device in "Local Multiplayer" mode!
+game.mode.online=Online Multiplayer Match
+game.mode.online.desc=Compete against players from all over the world in "Online Multiplayer" mode!
 
 #INDEX PAGE
 index.start.game=Start new game

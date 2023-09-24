@@ -1,7 +1,6 @@
 @()(implicit messages: Messages)
-@header()
 @main("Welcome to ChessScala"){
-
+    @header()
     <div class="basic-page">
         <h1 class="header-primary mb-2">@messages("about.title")</h1>
         <div class="bg-skewed mb-2">
@@ -46,5 +45,5 @@
             </div>
         </div>
     </div>
+    @footer()
 }
-@footer()

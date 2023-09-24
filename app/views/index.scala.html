@@ -1,6 +1,6 @@
 @()(implicit messages: Messages)
-@header()
 @main("Welcome to Scala Chess") {
+  @header()
   <div class="content-area">
     <div class="main">
       <img alt="WA_Chess logo" class="logo--large" src=@routes.Assets.versioned("images/logo.png")>
@@ -39,23 +39,16 @@
             </div>
             <h3>@messages("header.about")</h3>
           </a>
-          <!--
-            <div class="index-card">
-            <div>
-              <img src=@routes.Assets.versioned("images/chesspieces/blackKing.png")>
-            </div>
-            <h3>Admin</h3>
-          </div>
-          -->
       </div>
     </div>
   </div>
-}
-<div class="offcanvas offcanvas-start overflow-hidden" tabindex="-1" id="offcanvasStart" aria-labelledby="offcanvasCenterLabel">
-  <div class="offcanvas-header">
+
+  <div class="offcanvas offcanvas-start overflow-hidden" tabindex="-1" id="offcanvasStart" aria-labelledby="offcanvasCenterLabel">
+    <div class="offcanvas-header">
+    </div>
+    <div class="offcanvas-body">
+    @startNewGame()
+    </div>
   </div>
-<div class="offcanvas-body">
-  @startNewGame()
-</div>
-</div>
-@footer()
+  @footer()
+}

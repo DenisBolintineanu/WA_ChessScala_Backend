@@ -1,7 +1,7 @@
 @import "variables";
 @import "mixins";
 
-.play-game-page{
+.play-game-page {
   padding-left: 0;
   padding-right: 0;
   margin-left: 0;
@@ -10,13 +10,6 @@
   background: radial-gradient(150% 150% at 100% 100%, #FFFFFF00 0%, #dd99fe 100%),
   radial-gradient(150% 150% at 0% 100%, #00FFFF00 0%, #FF1010FF 100%),
   radial-gradient(75% 75% at 50% 50%, #00FFFFFF 0%, #073AFFFF 100%);
-}
-
-.btn-sidebar{
-  background-color: rgba(255, 255, 255, 0.05);
-  &:hover{
-    background-color: rgba(255, 255, 255, 0.3);
-  }
 }
 
 .white-field {
@@ -38,7 +31,7 @@
 
 .chessboard-page {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 

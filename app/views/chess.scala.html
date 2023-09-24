@@ -4,9 +4,9 @@
 @(input: String, playerID: String, gameID: String, moves: List[String], board: ChesspieceImageManager)(implicit messages: Messages)
 @main("Play Chess") {
     <div class="play-game-page container">
-        <div class="row">
+        <div class="row m-0">
             <button type="button" class="navbar-toggler shadow-none border-0 btn-sidebar col-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"></button>
-            <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="sidebar-game offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 @gamesidebar()
             </div>
             <div class="chessboard-page col-11">
@@ -33,8 +33,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="game-information-container">
                     <div id="game-id">
                         <span>GameID: @gameID</span>

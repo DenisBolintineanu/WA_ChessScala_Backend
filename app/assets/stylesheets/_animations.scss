@@ -1,18 +1,18 @@
 @keyframes growShrink {
   0% {
-    transform: scale(1); // Startgröße
+    transform: scale(1);
   }
   50% {
-    transform: scale(1.1); // Maximale Größe (hier 10% größer)
+    transform: scale(1.1);
   }
   100% {
-    transform: scale(1); // Rückkehr zur ursprünglichen Größe
+    transform: scale(1);
   }
 }
 
 @keyframes fillFromLeft {
   0% {
-    background-size: 0% 100%;
+    background-size: 0 100%;
   }
   100% {
     background-size: 100% 100%;
@@ -21,7 +21,7 @@
 
 @-webkit-keyframes AnimateBG {
   0%, 100% {
-    background-position: 0% 50%;
+    background-position: 0 50%;
   }
   50% {
     background-position: 100% 50%;
@@ -30,7 +30,7 @@
 
 @keyframes AnimateBG {
   0%, 100% {
-    background-position: 0% 50%;
+    background-position: 0 50%;
   }
   50% {
     background-position: 100% 50%;

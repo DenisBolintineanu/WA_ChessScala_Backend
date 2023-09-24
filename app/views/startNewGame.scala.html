@@ -1,39 +1,87 @@
-@()
-<div class="select-game-box align-items-center container">
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas-start" aria-label="Close"></button> 
-    <div class="row d-flex align-items-stretch">
-        <!-- Card for CPU -->
-        <div class="col-sm-12 col-md-4">
-            <div class="card mb-2 transparent-card">
-                <img src="@routes.Assets.versioned("images/chesspieces/BlackQueen.png")" class="card-img-top" alt="CPU Image">
-                <div class="card-body">
-                    <h5 class="card-title">With the CPU</h5><br>
-                    <a href="#" class="btn btn-primary">Play</a>
+@()(implicit messages: Messages)
+<div class="select-game-box container p-2">
+    <button type="button" class="btn-close text-reset border-0 shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <div class="row d-flex align-items-stretch  mt-4 mb-4">
+        <div class="slot col-sm-12 col-md-4 d-flex flex-column justify-content-stretch align-items-center">
+            <div class="card bg-transparent border-0 shadow-none">
+                <div class="card__side card__side--front mb-2">
+                    <div class="card__img card__img--1 d-flex justify-content-center">
+                        <img class="mt-4 p-1" src="@routes.Assets.versioned("images/ai.svg")" alt="play against the ai">
+                    </div>
+                    <h4 class="card__heading p-3">
+                        <span class="card__heading-span card__heading-span--1">@messages("game.mode.ai")</span>
+                    </h4>
+                    <div class="card-body p-3">
+                    </div>
+                </div>
+                <div class="card__side card__side--back card__side--back-1 d-flex flex-column align-items-center justify-content-center p-4">
+                    <span class="p-3 mb-4 text-white text-center">@messages("game.mode.ai.desc")</span>
+                    <a href="/stockfish" class="btn btn-primary">@messages("play.game")</a>
                 </div>
             </div>
         </div>
     
         <!-- Card for Online with a friend -->
-        <div class="col-sm-12 col-md-4">
-            <div class="card mb-2 transparent-card">
-                <img src="@routes.Assets.versioned("images/chesspieces/BlackQueen.png")" class="card-img-top" alt="Online Image">
-                <div class="card-body">
-                    <h5 class="card-title">Online with a friend</h5>
-                    <a href="#" class="btn btn-secondary">Play</a>
+        <div class="slot col-sm-12 col-md-4 d-flex flex-column justify-content-stretch align-items-center">
+            <div class="card bg-transparent border-0 shadow-none">
+                <div class="card__side card__side--front mb-2">
+                    <div class="card__img card__img--2 d-flex justify-content-center">
+                        <img class="mt-3 p-2" src="@routes.Assets.versioned("images/local-game.svg")" alt="online multiplayer icon">
+                    </div>
+                    <h4 class="card__heading p-3">
+                        <span class="card__heading-span card__heading-span--2">@messages("game.mode.online")</span>
+                    </h4>
+                    <div class="card__details p-3">
+                    </div>
+                </div>
+                <div class="card__side card__side--back card__side--back-2 d-flex flex-column align-items-center justify-content-center p-4">
+                    <span class="p-3 mb-4 text-white text-center">@messages("game.mode.online.desc")</span>
+                    <a href="/multiplayer" class="btn btn-secondary">@messages("play.game")</a>
                 </div>
             </div>
         </div>
     
         <!-- Card for Local with a friend -->
-        <div class="col-sm-12 col-md-4">
-            <div class="card transparent-card">
-                <img src="@routes.Assets.versioned("images/chesspieces/BlackQueen.png")" class="card-img-top" alt="Local Image">
-                <div class="card-body">
-                    <h5 class="card-title">Local with a friend</h5>
-                    <a href="#" class="btn btn-success">Play</a>
+        <div class="slot col-sm-12 col-md-4 d-flex flex-column justify-content-stretch align-items-center">
+            <div class="card bg-transparent border-0 shadow-none">
+                <div class="card__side card__side--front">
+                    <div class="card__img card__img--3 d-flex justify-content-center">
+                        <img class="mt-4 p-1" src="@routes.Assets.versioned("images/online-game.svg")" alt="local multiplayer icon">
+                    </div>
+                    <h4 class="card__heading p-3">
+                        <span class="card__heading-span card__heading-span--3">@messages("game.mode.local")</span>
+                    </h4>
+                    <div class="card__details p-3">
+                    </div>
+                </div>
+                <div class="card__side card__side--back card__side--back-3 d-flex flex-column align-items-center justify-content-center p-4">
+                    <span class="p-3 mb-4 text-white text-center">@messages("game.mode.local.desc")</span>
+                    <a href="/singleplayer" class="btn btn-success">@messages("play.game")</a>
                 </div>
             </div>
         </div>
     </div>
-    
 </div>
+<script>
+        const offcanvasElement = document.querySelector('#offcanvasStart');
+        const slotsContainer = document.querySelector('.row.d-flex.align-items-stretch');
+        let savedSlotsHTML = [];
+
+        offcanvasElement.addEventListener('hide.bs.offcanvas', function() {
+            const slots = slotsContainer.querySelectorAll('.slot');
+
+            slots.forEach(card => {
+                savedSlotsHTML.push(card.outerHTML);
+                card.remove();
+            });
+        });
+
+        offcanvasElement.addEventListener('shown.bs.offcanvas', function() {
+            if (savedSlotsHTML.length) {
+                savedSlotsHTML.forEach(cardHTML => {
+                    slotsContainer.insertAdjacentHTML('beforeend', cardHTML);
+                });
+                savedSlotsHTML = [];
+            }
+        });
+</script>

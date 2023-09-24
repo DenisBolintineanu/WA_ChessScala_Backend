@@ -4,3 +4,13 @@ $secondary-color: #fff;
 $tertiary-color: #2c2222;
 $control-color: rgba(34,23,29, 0.8);
 $font-path: '../fonts/Roboto-Regular.ttf';
+
+
+/** Overriden Bootstrap values **/
+$navbar-light-color: $primary-color;
+$navbar-light-hover-color: #fff;
+
+/** Game modes **/
+$lg-card-1: linear-gradient(to right bottom, rgba(#0b5ed7,.3), rgba(#0b5ed7,.8));
+$lg-card-2: linear-gradient(to right bottom, rgba(#5c636a,.3), rgba(#5c636a,.8));
+$lg-card-3: linear-gradient(to right bottom, rgba(#157347,.3), rgba(#157347,.8));

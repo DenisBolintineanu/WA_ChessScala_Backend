@@ -1,37 +1,61 @@
 @()(implicit messages: Messages)
-    <header>
-        <div class="heading">
-          <div class="logo">
-            <a href="@routes.HomeController.index()">
+<header>
+    <nav class="navbar navbar-light navbar-expand-lg bg-transparent border-b-1-black">
+        <div class="container-fluid">
+            <a class="logo navbar-brand border-1-b" href="@routes.HomeController.index()">
                 <img alt="WA_Chess Logo small" src=@routes.Assets.versioned("images/logo.png")>
             </a>
-          </div>
-          <div class="nav-links">
-            <ul class="links">
-              <li><a href="@routes.HomeController.index()">@messages("header.home")</a></li>
-              <li><a href="@routes.HomeController.index()">@messages("header.lobby")</a></li>
-              <li><a href="@routes.HomeController.rules()">@messages("header.rules")</a></li>
-              <li><a href="@routes.HomeController.about()">@messages("header.about")</a></li>
-            </ul>
-    
-            <div class="language-select">
-              <div class="language">
-                <a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
-                  @language_de()
-                </a>
-              </div>
-              <div class="language">
-                <a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
-                  @language_en()
-                </a>
-              </div>
-              <div class="language">
-                <a href="@routes.HomeController.reloadCurrentPageWithLang("de")">
-                  @language_es()
-                </a>
-              </div>
+            <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="sidebar offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <a class="logo navbar-brand" href="@routes.HomeController.index()">
+                        <img alt="WA_Chess Logo small" src=@routes.Assets.versioned("images/logo.png")>
+                    </a>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link p-2" aria-current="page" href="@routes.HomeController.index()">@messages("header.home")</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="@routes.HomeController.index()">@messages("header.lobby")</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="@routes.HomeController.rules()">@messages("header.rules")</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="@routes.HomeController.about()">@messages("header.about")</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle p-2" href="#" role="button" data-bs-toggle="dropdown">@messages("header.language.select")</a>
+                            <ul class="dropdown-menu p-0">
+                                <li class="p-2 mb-2 language-link">
+                                    @language_de()
+                                </li>
+                                <li class="p-2 mb-2 language-link">
+                                    @language_en()
+                                </li>
+                                <li class="p-2 mb-2 language-link">
+                                    @language_es()
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex justify-content-lg-end w-25 login-button">
+                        <button class="btn btn-cta-primary shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCenter" aria-controls="offcanvasCenter">@messages("header.login")</button>
+                    </form>
+                </div>
             </div>
-          </div>
         </div>
-    </header>
-
+    </nav>
+    <div class="offcanvas offcanvas-start overflow-hidden" tabindex="-1" id="offcanvasCenter" aria-labelledby="offcanvasCenterLabel">
+        <div class="offcanvas-header">
+        </div>
+    <div class="offcanvas-body">
+        @loginpage()
+    </div>
+  </div>
+</header>

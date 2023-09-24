@@ -69,7 +69,7 @@
 
             font-size: 2rem;
             @include respond(phone) {
-                font-size: 2.7rem;
+                font-size: 2.4rem;
             }
 
             &:hover {
@@ -175,4 +175,15 @@
             }
         }
     }
+}
+
+#offcanvasStart{
+    height: 100vh;
+    width: 800vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0);
+    border-right: 0;
+    backdrop-filter: blur(5px);
 }

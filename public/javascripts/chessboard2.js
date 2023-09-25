@@ -1,11 +1,16 @@
 export class Chessboard2 {
 
     chessboard = null
+    inverted = null
+    firstClick = null
+    isSelectable = null
+    moveFunction = null
     assign(div) {
         this.chessboard = div
     }
 
     createChessboard(inverse) {
+        this.inverted = inverse
         this.chessboard.innerHTML = ""
         for (let i = -8; i <= 0; i++) {
             for (let j = -1; j <= 7; j++) {
@@ -67,4 +72,59 @@ export class Chessboard2 {
 
         return `assets/images/chesspieces/${ColorMap[color]}${PieceMap[piece]}.png`;
     }
+
+    move(move){
+        const startField = this.chessboard.querySelector(`#${move.substring(0,2)}`)
+        const targetField = this.chessboard.querySelector(`#${move.substring(2,4)}`)
+        const startFieldString = startField.innerHTML
+        startField.innerHTML = ""
+        targetField.innerHTML = startFieldString
+        this.deselectFields()
+    }
+    selectField(field) {
+        field.querySelector('.figure').classList.add('selected');
+        this.firstClick = field
+    }
+
+    deselectFields() {
+        this.chessboard.querySelectorAll(".selected").forEach(selected => {
+            selected.classList.remove('selected');
+        })
+        this.firstClick = null
+    }
+
+    handleFieldClick(field) {
+        if (this.isSelectable(field) || this.firstClick) {
+            if (this.firstClick) {
+                this.moveFunction(this.firstClick.id + field.id);
+            } else {
+                this.selectField(field);
+            }
+        }
+    }
+
+    addChessFieldListener(field) {
+        field.addEventListener('click', () => {
+            this.handleFieldClick(field);
+        });
+    }
+
+    initializeEventListener(isSelectable, moveFunction) {
+        this.isSelectable = isSelectable
+        this.moveFunction = moveFunction
+        this.chessboard.querySelectorAll(".chess-field")
+            .forEach(field => this.addChessFieldListener(field));
+    }
+
+    handleException(move){
+        const selectedField = this.chessboard.querySelector("#" + move.substring(2,4))
+        if (selectedField === this.firstClick){
+            this.deselectFields()
+            return
+        }
+        this.deselectFields()
+        if (this.isSelectable(selectedField))
+            this.selectField(selectedField)
+    }
+
 }

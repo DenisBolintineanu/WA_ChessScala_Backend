@@ -40,6 +40,9 @@ target
 /.project
 /.settings
 /RUNNING_PID
-
-/lib/ChessScala-assembly-0.1.0-SNAPSHOT.jar
-Procfile
+lib/ChessScala/target
+lib/ChessScala/.gitignore
+lib/ChessScala/bloob
+lib/ChessScala/.github
+lib/ChessScala/.vscode
+lib/ChessScala/.idea

@@ -1,48 +1,33 @@
 # Mac
 *.DS_Store
 
-
 # Intellij
 .idea/
-target/
+.idea_modules/
+.classpath
+.project
+.settings
 
-# sbt
+# sbt and Scala
+target/
 project/boot/
 project/plugins/project/
 project/target/
 project/project/
 project/.sbtserver
-
-# Scala-IDE specific
 .scala_dependencies
 .worksheet
 .bsp
-
-#VS Code
-/.vscode/
-/.metals/
-=======
-.metals/
-
-.vscode/
 .bloop
 project/metals.sbt
 .scalafmt.conf
 
-src/main/scala/ChessScala/Test.sc
-codecov
-
-logs
-target
-/.idea
-/.idea_modules
-/.classpath
-/.project
-/.settings
+# Play Framework
 /RUNNING_PID
-lib/ChessScala/target
-lib/ChessScala/.gitignore
-lib/ChessScala/bloob
-lib/ChessScala/.github
-lib/ChessScala/.vscode
-lib/ChessScala/.idea
+
+# VS Code and Metals
+.metals/
+.vscode/
+
+# Miscellaneous
+src/main/scala/ChessScala/Test.sc

@@ -3,13 +3,13 @@ import scala.sys.process._
 name := """WA_ChessScala"""
 organization := "com.example"
 
+javaHome := Some(file("/Users/denisbolintineanu/Library/Java/JavaVirtualMachines/corretto-11.0.19/Contents/Home"))
+
 version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.13.11"
-
-
 
 val preBuildTask = taskKey[Unit]("Task to be executed before build")
 

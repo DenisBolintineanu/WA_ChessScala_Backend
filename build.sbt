@@ -26,7 +26,6 @@ lazy val WaChessScala = (project in file("."))
   .settings(
     name := "WA_ChessScala",
     scalaVersion := "2.13.11",
-    javaHome := Some(file("/Users/denisbolintineanu/Library/Java/JavaVirtualMachines/corretto-11.0.19/Contents/Home")),
     libraryDependencies += guice,
     libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test,
     libraryDependencies += "org.mongodb.scala" %% "mongo-scala-driver" % "4.10.0",
@@ -36,7 +35,6 @@ lazy val WaChessScala = (project in file("."))
   )
 
 
-javaHome := Some(file("/Users/denisbolintineanu/Library/Java/JavaVirtualMachines/corretto-11.0.19/Contents/Home"))
 
 version := "1.0-SNAPSHOT"
 

@@ -1,1 +1,0 @@
-web: target/universal/stage/bin/WA_ChessScala -Dhttp.port=8080

@@ -33,3 +33,5 @@ project/metals.sbt
 
 # Miscellaneous
 src/main/scala/ChessScala/Test.sc
+
+lib/ChessScala/target/ChessScala-assembly.jar

@@ -28,10 +28,7 @@ class MenuState @Inject() extends ProgrammState {
       case true => {
         input match
           case "1" => (new GameState(White, builder.createChessBoard()), output)
-          case "2" => (new ConnectionState, output)
           case "3" => (new BoardCreatorState(White, builder.createChessBoard()), output)
-          case "4w" => (AIState(White, builder.createChessBoard(), White), output)
-          case "4b" => (AIState(White, builder.createChessBoard(), Black), output)
           case "start server" => (new ServerState(new GameState(White, builder.createChessBoard())), output)
       }
 }

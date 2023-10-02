@@ -1,4 +1,4 @@
-package services.db
+/*package services.db
 
 import com.google.inject.Inject
 import org.mongodb.scala.model.Filters.equal
@@ -32,3 +32,4 @@ class MongoDBService @Inject()() (config: Configuration) {
     else Some(result("notation").asString().getValue)
   }
 }
+*/

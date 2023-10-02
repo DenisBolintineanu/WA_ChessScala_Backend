@@ -4,7 +4,7 @@ import ChessScala.model.fileIO.fileIOJson.FileIO
 import ChessScala.model.gameState.*
 import ChessScala.model.gameState.ProgrammState
 import ChessScala.model.gameState.stateImplementation.{BoardCreatorState, GameState}
-import ChessScala.util.{ConnectionHandler, Observable, Observer, UndoManager}
+import ChessScala.util.{Observable, Observer, UndoManager}
 import ChessScala.model.interpreter.Interpreter
 import ChessScala.model.interpreter.interpreterImplementations.MenuInterpreter
 import com.google.inject.name.Names
@@ -15,8 +15,6 @@ import net.codingwell.scalaguice.InjectorExtensions.*
 class Controller @Inject() extends IController, Observer {
   
   var output: String = ""
-
-  ConnectionHandler.add(this)
 
   val injector: Injector = Guice.createInjector(new ChessModule)
   var state: ProgrammState = injector.getInstance(classOf[ProgrammState])
@@ -53,7 +51,6 @@ class Controller @Inject() extends IController, Observer {
   override def returnBoardAsJson(): String = (new FileIO).gameToJson(state).toString
 
   override def update(): Unit = {
-    state = ConnectionHandler.state
     notifyObservers()
   }
 }

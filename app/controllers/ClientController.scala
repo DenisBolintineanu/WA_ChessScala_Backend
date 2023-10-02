@@ -1,10 +1,9 @@
 package controllers
 
-import ChessScala.controller.Controller
+import ChessScala.controller.{Controller, IController}
 import play.api.Configuration
 import play.api.mvc._
 import services.IPersistenceService
-import services.db.MongoDBService
 import services.local.LocalPersistenceService
 import utils.DefaultServerResponses.{ERROR_RESPONSE, INVALID_RESPONSE, SUCCESS_RESPONSE}
 

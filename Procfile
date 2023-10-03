@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/WA_ChessScala -Dhttp.port=${PORT}
+web: target/universal/stage/bin/wa_chessscala -Dhttp.port=${PORT}

@@ -1,6 +1,7 @@
 # Mac
 *.DS_Store
 
+
 # Intellij
 .idea/
 .idea_modules/
@@ -31,3 +32,8 @@ project/metals.sbt
 
 # Miscellaneous
 src/main/scala/ChessScala/Test.sc
+
+/lib/ChessScala-assembly-0.1.0-SNAPSHOT.jar
+
+#coverade
+/public/javascripts/coverage

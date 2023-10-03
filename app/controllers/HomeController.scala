@@ -64,4 +64,9 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
     Ok(views.html.chess(controller.output, id, gameID, controller.returnMoveList(), ChesspieceImageManager(controller.state.board)))
   }
 
+  def singleplayer():Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.singleplayer())
+  }
 }
+
+

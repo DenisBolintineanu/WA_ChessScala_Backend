@@ -1,0 +1,37 @@
+.git
+.gitignore
+# Mac
+*.DS_Store
+
+# Intellij
+.idea/
+.idea_modules/
+.classpath
+.project
+.settings
+
+# sbt and Scala
+target/
+project/boot/
+project/plugins/project/
+project/target/
+project/project/
+project/.sbtserver
+.scala_dependencies
+.worksheet
+.bsp
+.bloop
+project/metals.sbt
+.scalafmt.conf
+
+# Play Framework
+/RUNNING_PID
+
+# VS Code and Metals
+.metals/
+.vscode/
+
+# Miscellaneous
+src/main/scala/ChessScala/Test.sc
+
+app/modules/ChessScala/target/ChessScala-assembly.jar

@@ -1,5 +1,5 @@
 # Use OpenJDK 11 as the base image
-FROM openjdk:19
+FROM openjdk:21-jdk-buster
 
 RUN apt-get update && \
     apt-get install -y libsass-dev

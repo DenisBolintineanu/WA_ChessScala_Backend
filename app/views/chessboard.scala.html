@@ -1,0 +1,39 @@
+@import utils.ChesspieceImageManager
+@(board: ChesspieceImageManager, ReverseBoard: Boolean)
+<div class="chessboard">
+    @for(i <- (-8 to 0)) {
+        @for(j <- -1 to 7) {
+            @{
+                if (ReverseBoard){
+                    (i, j) match {
+                        case (0, j) => <div class="number-field">{if(j >= 0) ('H' - j).toChar}</div>
+                        case (i, -1) => <div class="number-field">{if (i < 0) 9+i}</div>
+                        case _ =>
+                            <div id={('a'+j).toChar.toString + (-i).toString} class={if ( (i + j) % 2 == 0 ) "chess-field white-field" else "chess-field black-field"}>
+                                {
+                                if (board.getImage(7-j, 8+i) != "")
+                                    <img class="figure" src={routes.Assets.versioned(board.getImage(7-j,8+i)).toString}/>
+                                }
+                                
+                            </div>
+                    }
+                }
+
+                else {
+                    (i, j) match {
+                        case (0, j) => <div class="number-field">{if(j >= 0) ('A' + j).toChar}</div>
+                        case (i, -1) => <div class="number-field">{if (i < 0) -i}</div>
+                        case _ =>
+                            <div id={('a'+j).toChar.toString + (-i).toString} class={if ( (i + j) % 2 == 0 ) "chess-field white-field" else "chess-field black-field"}>
+                                {
+                                if (board.getImage(j, -i-1) != "")
+                                    <img class="figure" src={routes.Assets.versioned(board.getImage(j,-i-1)).toString} draggable="true"/>
+                                }
+                                
+                            </div>
+                    }
+                }
+            }
+        }
+    }
+    </div>

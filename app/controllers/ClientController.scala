@@ -1,13 +1,11 @@
 package controllers
 
-import ChessScala.controller.{Controller, IController}
-import play.api.Configuration
-import play.api.mvc._
+import ChessScala.controller.IController
+import play.api.mvc.*
 import services.IPersistenceService
-import services.local.LocalPersistenceService
 import utils.DefaultServerResponses.{ERROR_RESPONSE, INVALID_RESPONSE, SUCCESS_RESPONSE}
 
-import javax.inject._
+import javax.inject.*
 
 @Singleton
 class ClientController @Inject()(val controllerComponents: ControllerComponents, val persistenceService: IPersistenceService) extends BaseController {

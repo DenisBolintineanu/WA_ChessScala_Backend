@@ -1,5 +1,5 @@
 @import ch.qos.logback.core.joran.spi.EventPlayer
-@()
+@()(implicit messages: Messages)
 @main("Play Chess") {
     <div class="popup" id="selectTeam">
         <div class="selectTeam">
@@ -33,7 +33,7 @@
                     <div id="game-id">
                     </div>
                     <div class="move-input-controls">
-                        <br>
+                        <div class="btn" id="undoButton">Undo</div>
                     </div>
                     <div class="moves-field mt-2">
                     </div>
@@ -41,6 +41,18 @@
             </div>
         </div>
     </div>
+
+        <!-- Promotion Modal -->
+    <div id="promotionModal" class="modal">
+        <div class="modal-content">
+            <span class="closeModal">&times;</span>
+            <button id="promoteQueen" data-piece="q">Dame</button>
+            <button id="promoteRook" data-piece="r">Turm</button>
+            <button id="promoteBishop" data-piece="b">Läufer</button>
+            <button id="promoteKnight" data-piece="n">Springer</button>
+        </div>
+    </div>
+
     <audio id="notificationSound" src="@routes.Assets.versioned("sounds/GenericNotify.mp3")" preload="auto"></audio>
     <audio id="moveSound" src="@routes.Assets.versioned("sounds/Move.mp3")" preload="auto"></audio>
     <audio id="captureSound" src="@routes.Assets.versioned("sounds/Capture.mp3")" preload="auto"></audio>

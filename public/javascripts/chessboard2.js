@@ -5,6 +5,10 @@ export class Chessboard2 {
     firstClick = null
     isSelectable = null
     moveFunction = null
+    updateFunction = null
+    highlightFunction = null
+    isAttackedFunction = null
+    getKingFunction = null
     assign(div) {
         this.chessboard = div
     }
@@ -41,9 +45,15 @@ export class Chessboard2 {
         }
     }
 
-    updateBoardWithPieces(expression) {
+    update(){
+        this.updateBoardWithPieces()
+        this.highlightAttack()
+        this.deselectFields()
+    }
+
+    updateBoardWithPieces() {
        this.chessboard.querySelectorAll(".chess-field").forEach( field => {
-           this.updateFieldWithPiece(field, expression(field.id))
+           this.updateFieldWithPiece(field, this.updateFunction(field.id))
        })
     }
     updateFieldWithPiece(field, piece) {
@@ -84,6 +94,7 @@ export class Chessboard2 {
     selectField(field) {
         field.querySelector('.figure').classList.add('selected');
         this.firstClick = field
+        this.highlightAvailableMoves()
     }
 
     deselectFields() {
@@ -91,6 +102,7 @@ export class Chessboard2 {
             selected.classList.remove('selected');
         })
         this.firstClick = null
+        this.removeHighlight()
     }
 
     handleFieldClick(field) {
@@ -109,11 +121,14 @@ export class Chessboard2 {
         });
     }
 
-    initializeEventListener(isSelectable, moveFunction) {
-        this.isSelectable = isSelectable
-        this.moveFunction = moveFunction
+    initializeEventListener() {
         this.chessboard.querySelectorAll(".chess-field")
             .forEach(field => this.addChessFieldListener(field));
+    }
+
+    removeEventListener(){
+        this.chessboard.querySelectorAll(".chess-field")
+            .forEach(field => field.replaceWith(field.cloneNode(true)))
     }
 
     handleException(move){
@@ -125,6 +140,38 @@ export class Chessboard2 {
         this.deselectFields()
         if (this.isSelectable(selectedField))
             this.selectField(selectedField)
+    }
+
+    highlightAvailableMoves(){
+        let fields = this.highlightFunction(this.firstClick.id)
+        fields.forEach(field => {
+            let fields = this.chessboard.querySelector('#' + field.to)
+            let available = document.createElement('div')
+            available.classList.add("available")
+            fields.appendChild(available)
+        })
+    }
+
+    removeHighlight(){
+        this.chessboard.querySelectorAll('.chess-field .available').forEach( field => {
+            field.remove()
+        })
+    }
+
+    highlightAttack(){
+        if(this.isAttackedFunction()){
+            let field = this.getKingFunction()
+            console.log(field)
+            let attackedField = document.createElement('div')
+            attackedField.classList.add('attacked')
+            this.chessboard.querySelector('#' + field).appendChild(attackedField)
+        }
+        else{
+            let attackedField = this.chessboard.querySelector('.chess-field .attacked')
+            if(attackedField){
+                attackedField.remove()
+            }
+        }
     }
 
 }

@@ -1,22 +1,22 @@
 package controllers
 
-import ChessScala.controller.{Controller, IController}
-import play.api.Configuration
-import play.api.mvc._
+import ChessScala.controller.IController
+import play.api.mvc.*
 import services.IPersistenceService
-import services.local.LocalPersistenceService
 import utils.DefaultServerResponses.{ERROR_RESPONSE, INVALID_RESPONSE, SUCCESS_RESPONSE}
 
-import javax.inject._
+import javax.inject.*
 
 @Singleton
 class ClientController @Inject()(val controllerComponents: ControllerComponents, val persistenceService: IPersistenceService) extends BaseController {
 
   private val MOVE_ID: String = "move"
   private val GAME_ID: String = "id"
+  private val PLAYER_ID: String = "PlayerID"
 
   def createNewGame(): Action[AnyContent] = Action {
-    Ok(persistenceService.createGame())
+    val id = persistenceService.createGame()
+    Ok(id + "\n" + persistenceService.gameSessionCollection.get(id).get.playerOneID)
   }
 
   def getGameBoard: Action[AnyContent] = Action { implicit request: Request[AnyContent] => {
@@ -30,7 +30,7 @@ class ClientController @Inject()(val controllerComponents: ControllerComponents,
   }
 
   def doMove(): Action[AnyContent] = Action { implicit request: Request[AnyContent] => {
-      val id = returnRequestParamAsString(request, GAME_ID)
+      val id = returnRequestParamAsString(request, PLAYER_ID)
       val moveAsString = returnRequestParamAsString(request, MOVE_ID)
       persistenceService.updateGame(moveAsString, id) match {
         case Some(board) => Ok(board.returnBoardAsJson())

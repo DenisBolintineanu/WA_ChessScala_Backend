@@ -9,6 +9,7 @@ export class Chessboard {
     highlightFunction = null
     isAttackedFunction = null
     getKingFunction = null
+    newGameFunction = null
 
     assign(div) {
         this.chessboard = div

@@ -61,11 +61,16 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
 
   private def chessFromController(id: String, controller: IController)(implicit request: Request[AnyContent]): Result = {
     val gameID = persistenceService.gameSessionCollection.get(id).get.gameID
-    Ok(views.html.chess(controller.output, id, gameID, controller.returnMoveList(), ChesspieceImageManager(controller.state.board)))
+    //Ok(views.html.chess(controller.output, id, gameID, controller.returnMoveList(), ChesspieceImageManager(controller.state.board)))
+    Ok(views.html.index())
   }
 
   def singleplayer():Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.singleplayer())
+  }
+
+  def localMultiplayer(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.local_multiplayer())
   }
 }
 

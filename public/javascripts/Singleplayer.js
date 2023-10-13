@@ -14,7 +14,8 @@ let team
 
 function doAIMove(){
     stockfish.postMessage('position fen ' + chess.fen());
-    stockfish.postMessage("go depth 1")
+    stockfish.postMessage("setoption name Skill Level value 1");
+    stockfish.postMessage("go movetime 5");
 }
 
 stockfish.onmessage = function(event) {
@@ -22,10 +23,10 @@ stockfish.onmessage = function(event) {
     if (message.includes('bestmove')) {
         const move = message.split(' ')[1];
         if (move.length === 4){
-            chessBoard.moveFunction(move.substring(0, 4))
+            chessBoard.asciiMove(move.substring(0, 4))
         }
         else {
-            chessBoard.moveFunction(move.substring(0, 4), move.substring(4,5))
+            chessBoard.asciiMove(move.substring(0, 4), move.substring(4,5))
         }
     }
 };

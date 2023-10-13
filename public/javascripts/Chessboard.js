@@ -10,6 +10,7 @@ export class Chessboard {
     isAttackedFunction = null
     getKingFunction = null
     newGameFunction = null
+    asciiMove = null
 
     assign(div) {
         this.chessboard = div

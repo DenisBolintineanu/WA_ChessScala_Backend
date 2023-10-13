@@ -45,6 +45,7 @@ export class ChessBoardBuilder {
             }
             return this.#chess.get(field.id).color === this.#chess.turn()
         }
+        this.#chessboard.asciiMove = this.#serialMoveFunction
         this.#chessboard.moveFunction = this.#asyncMoveFunction
         this.#chessboard.update()
         if (eventListener) {
@@ -63,7 +64,6 @@ export class ChessBoardBuilder {
     }
 
     #asyncMoveFunction = (move) => {
-        console.log(this.#promotionHandler)
         let promotion = this.#promotionHandler.doPromotion(move)
         if (promotion) {
             promotion.then(figure => {
@@ -90,7 +90,12 @@ export class ChessBoardBuilder {
                 })
             }
             this.#chessboard.update()
-            this.#playSound(isHit, false)
+            if (this.#checkIfGameIsOver()){
+                this.#playSound(false, true)
+            }
+            else {
+                this.#playSound(isHit, false)
+            }
             this.#updateFunction()
         } catch (exception) {
             this.#chessboard.handleException(move)

@@ -31,6 +31,7 @@ export class AsyncPromotionHandler {
     #isPromotion(move) {
         if (move.substring(1, 2) !== this.#getStartRow()) return false
         if (move.substring(3, 4) !== this.#getTargetRow()) return false
+        if (this.#chess.get(move.substring(0,2)).type !== 'p') return false
         return this.#chess
             .moves({verbose: true, square: move.substring(0, 2)})
             .map(field => field.to)

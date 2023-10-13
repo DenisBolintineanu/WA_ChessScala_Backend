@@ -1,9 +1,9 @@
 import {Chess} from "./chess.js";
-import {Chessboard2} from "./chessboard2.js";
+import {Chessboard} from "./Chessboard.js";
 import {AsyncPromotionHandler} from "./AsyncPromotionHandler.js";
 
 let chess = new Chess()
-let chessboard = new Chessboard2()
+let chessboard = new Chessboard()
 let promotionHandler = new AsyncPromotionHandler(chess)
 
 
@@ -24,10 +24,26 @@ document.getElementById("undoButton").addEventListener('click', () => {
     chessboard.update()
 });
 
+let sounds = {
+    move: document.getElementById("moveSound"),
+    capture: document.getElementById("captureSound"),
+    notification: document.getElementById("notificationSound")
+};
+
 function checkIfGameIsOver() {
     if (chess.isThreefoldRepetition()){
-        chessboard.removeEventListener()
+        gameOver("")
+        return true
     }
+    if (chess.isInsufficientMaterial()){
+        gameOver("")
+        return true
+    }
+    if (chess.isGameOver()){
+        gameOver("")
+        return true
+    }
+    return false
 }
 
 const getPositionsOfPiece = (piece) => {
@@ -57,24 +73,61 @@ function asyncMoveFunction(move){
         serialMoveFunction(move, null)
     }
 }
+function gameOver(text){
+    chessboard.removeEventListener()
+    sounds.notification.play()
+    document.getElementById("resignButton").style.display = "none"
+    document.getElementById("undoButton").style.display = "none"
+    document.getElementById("newGameButton").style.display = "block"
+}
 
 function serialMoveFunction(move, promotion) {
     try {
         let result
+        let isHit = chess.get(move.substring(2,4)) !== false
         if (promotion){
-            result = chess.move({from: move.substring(0, 2),
-                                       to: move.substring(2, 4),
-                                       promotion: promotion})
+            result = chess.move({
+                from: move.substring(0, 2),
+                to: move.substring(2, 4),
+                promotion: promotion})
         }
         else {
-            result = chess.move({from: move.substring(0, 2),
+            result = chess.move({
+                from: move.substring(0, 2),
                 to: move.substring(2, 4)})
         }
-        if (result) {
-            chessboard.update()
-        }
-        checkIfGameIsOver()
+        chessboard.update()
+        let gameOver = checkIfGameIsOver()
+        playSound(isHit, gameOver)
     } catch (exception) {
         chessboard.handleException(move)
     }
+    function playSound(isHit, gameOver){
+        if (gameOver){
+            sounds.notification.play()
+        }
+        else if (isHit) {
+            sounds.capture.play()
+        }
+        else {
+            sounds.move.play()
+        }
+    }
+}
+
+document.getElementById('resignButton').addEventListener('click', () => {
+    gameOver("resigned")
+});
+
+document.getElementById("newGameButton").addEventListener('click', () => {
+    newGame()
+})
+
+function newGame(){
+    chess.reset()
+    chessboard.update()
+    chessboard.initializeEventListener()
+    document.getElementById("resignButton").style.display = "block"
+    document.getElementById("undoButton").style.display = "block"
+    document.getElementById("newGameButton").style.display = "none"
 }

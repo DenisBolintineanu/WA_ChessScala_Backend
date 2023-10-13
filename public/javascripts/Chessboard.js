@@ -1,4 +1,4 @@
-export class Chessboard2 {
+export class Chessboard {
 
     chessboard = null
     inverted = null
@@ -9,9 +9,11 @@ export class Chessboard2 {
     highlightFunction = null
     isAttackedFunction = null
     getKingFunction = null
+
     assign(div) {
         this.chessboard = div
     }
+
 
     createChessboard(inverse) {
         this.inverted = inverse
@@ -45,17 +47,18 @@ export class Chessboard2 {
         }
     }
 
-    update(){
+    update() {
         this.updateBoardWithPieces()
         this.highlightAttack()
         this.deselectFields()
     }
 
     updateBoardWithPieces() {
-       this.chessboard.querySelectorAll(".chess-field").forEach( field => {
-           this.updateFieldWithPiece(field, this.updateFunction(field.id))
-       })
+        this.chessboard.querySelectorAll(".chess-field").forEach(field => {
+            this.updateFieldWithPiece(field, this.updateFunction(field.id))
+        })
     }
+
     updateFieldWithPiece(field, piece) {
         if (piece) {
             const src = this.getImage(piece.type, piece.color);
@@ -83,14 +86,17 @@ export class Chessboard2 {
         return `assets/images/chesspieces/${ColorMap[color]}${PieceMap[piece]}.png`;
     }
 
-    move(move){
-        const startField = this.chessboard.querySelector(`#${move.substring(0,2)}`)
-        const targetField = this.chessboard.querySelector(`#${move.substring(2,4)}`)
+    move(move) {
+        const startField = this.chessboard.querySelector(`#${move.substring(0, 2)}`)
+        const targetField = this.chessboard.querySelector(`#${move.substring(2, 4)}`)
         const startFieldString = startField.innerHTML
         startField.innerHTML = ""
         targetField.innerHTML = startFieldString
+        this.playSound(this.sounds.move)
         this.deselectFields()
+        console.log("test")
     }
+
     selectField(field) {
         field.querySelector('.figure').classList.add('selected');
         this.firstClick = field
@@ -126,14 +132,14 @@ export class Chessboard2 {
             .forEach(field => this.addChessFieldListener(field));
     }
 
-    removeEventListener(){
+    removeEventListener() {
         this.chessboard.querySelectorAll(".chess-field")
             .forEach(field => field.replaceWith(field.cloneNode(true)))
     }
 
-    handleException(move){
-        const selectedField = this.chessboard.querySelector("#" + move.substring(2,4))
-        if (selectedField === this.firstClick){
+    handleException(move) {
+        const selectedField = this.chessboard.querySelector("#" + move.substring(2, 4))
+        if (selectedField === this.firstClick) {
             this.deselectFields()
             return
         }
@@ -142,7 +148,7 @@ export class Chessboard2 {
             this.selectField(selectedField)
     }
 
-    highlightAvailableMoves(){
+    highlightAvailableMoves() {
         let fields = this.highlightFunction(this.firstClick.id)
         fields.forEach(field => {
             let fields = this.chessboard.querySelector('#' + field.to)
@@ -152,26 +158,24 @@ export class Chessboard2 {
         })
     }
 
-    removeHighlight(){
-        this.chessboard.querySelectorAll('.chess-field .available').forEach( field => {
+    removeHighlight() {
+        this.chessboard.querySelectorAll('.chess-field .available').forEach(field => {
             field.remove()
         })
     }
 
-    highlightAttack(){
-        if(this.isAttackedFunction()){
+    highlightAttack() {
+        if (this.isAttackedFunction()) {
             let field = this.getKingFunction()
             console.log(field)
             let attackedField = document.createElement('div')
             attackedField.classList.add('attacked')
             this.chessboard.querySelector('#' + field).appendChild(attackedField)
-        }
-        else{
+        } else {
             let attackedField = this.chessboard.querySelector('.chess-field .attacked')
-            if(attackedField){
+            if (attackedField) {
                 attackedField.remove()
             }
         }
     }
-
 }

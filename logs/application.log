@@ -1,53 +1,37 @@
-2023-10-07 20:06:53 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2023-10-13 14:10:45 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     play.filters.csrf.CSRFFilter
 
-2023-10-07 20:06:53 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
-2023-10-07 20:12:23 [34mINFO [0;39m [36mp.a.http.HttpErrorHandlerExceptions[0;39m [35m[0;39m Registering exception handler: guice-provision-exception-handler
-2023-10-07 20:12:23 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2023-10-13 14:10:45 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-10-13 14:14:14 [31mWARN [0;39m [36mp.api.mvc.DefaultJWTCookieDataCodec[0;39m [35m[0;39m decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2023-10-13 14:14:14 [34mINFO [0;39m [36mp.api.mvc.DefaultJWTCookieDataCodec[0;39m [35m[0;39m The JWT signature in the cookie does not match the locally computed signature with the server. This usually indicates the browser has a leftover cookie from another Play application, so clearing cookies may resolve this error message.
+2023-10-13 14:19:14 [34mINFO [0;39m [36mp.a.http.HttpErrorHandlerExceptions[0;39m [35m[0;39m Registering exception handler: guice-provision-exception-handler
+2023-10-13 14:19:14 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     play.filters.csrf.CSRFFilter
 
-2023-10-07 20:12:23 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
-2023-10-07 20:19:02 [34mINFO [0;39m [36mp.a.http.HttpErrorHandlerExceptions[0;39m [35m[0;39m Registering exception handler: guice-provision-exception-handler
-2023-10-07 20:19:02 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2023-10-13 14:19:14 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-10-13 14:20:00 [34mINFO [0;39m [36mp.a.http.HttpErrorHandlerExceptions[0;39m [35m[0;39m Registering exception handler: guice-provision-exception-handler
+2023-10-13 14:20:00 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     play.filters.csrf.CSRFFilter
 
-2023-10-07 20:19:02 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
-2023-10-08 19:19:02 [34mINFO [0;39m [36mp.a.http.HttpErrorHandlerExceptions[0;39m [35m[0;39m Registering exception handler: guice-provision-exception-handler
-2023-10-08 19:19:02 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2023-10-13 14:20:00 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-10-13 14:27:54 [34mINFO [0;39m [36mp.a.http.HttpErrorHandlerExceptions[0;39m [35m[0;39m Registering exception handler: guice-provision-exception-handler
+2023-10-13 14:27:54 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     play.filters.csrf.CSRFFilter
 
-2023-10-08 19:19:02 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
-2023-10-08 19:19:46 [34mINFO [0;39m [36mp.a.http.HttpErrorHandlerExceptions[0;39m [35m[0;39m Registering exception handler: guice-provision-exception-handler
-2023-10-08 19:19:46 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
-
-    play.filters.csrf.CSRFFilter
-    play.filters.headers.SecurityHeadersFilter
-    play.filters.hosts.AllowedHostsFilter
-    play.filters.csrf.CSRFFilter
-
-2023-10-08 19:19:46 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
-2023-10-08 19:35:03 [34mINFO [0;39m [36mp.a.http.HttpErrorHandlerExceptions[0;39m [35m[0;39m Registering exception handler: guice-provision-exception-handler
-2023-10-08 19:35:03 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
-
-    play.filters.csrf.CSRFFilter
-    play.filters.headers.SecurityHeadersFilter
-    play.filters.hosts.AllowedHostsFilter
-    play.filters.csrf.CSRFFilter
-
-2023-10-08 19:35:03 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2023-10-13 14:27:54 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)

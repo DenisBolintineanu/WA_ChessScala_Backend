@@ -14,11 +14,16 @@ export class ChessBoardBuilder {
         this.#updateFunction = update
     }
 
-    createChessBoard (chessBoardDOM) {
+    createChessBoard (chessBoardDOM, eventListener) {
         this.#chessboard = new Chessboard()
         this.#promotionHandler = new AsyncPromotionHandler(this.#chess)
         this.#chessboard.assign(chessBoardDOM)
-        this.#chessboard.createChessboard(false)
+        if (this.#team === 'b'){
+            this.#chessboard.createChessboard(true)
+        }
+        else {
+            this.#chessboard.createChessboard(false)
+        }
         this.#chessboard.highlightFunction = (field) => {
             return this.#chess.moves({verbose: true, square: field})
         }
@@ -42,12 +47,17 @@ export class ChessBoardBuilder {
         }
         this.#chessboard.moveFunction = this.#asyncMoveFunction
         this.#chessboard.update()
-        this.#chessboard.initializeEventListener()
-        document.getElementById("undoButton").addEventListener('click', () => {
-            this.#chess.undo()
-            this.#chess.undo()
-            this.#chessboard.update()
-        });
+        if (eventListener) {
+            this.#chessboard.initializeEventListener()
+            document.getElementById("undoButton").addEventListener('click', () => {
+                if (this.#team === 'w' && this.#chess.turn() === 'b') return
+                if (this.#team === 'b' && this.#chess.turn() === 'w') return
+                this.#chess.undo()
+                this.#chess.undo()
+                this.#chessboard.update()
+                this.#updateFunction()
+            });
+        }
         this.#chessboard.newGameFunction = this.#newGame
         return this.#chessboard
     }

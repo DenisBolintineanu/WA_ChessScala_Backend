@@ -2,26 +2,25 @@
 @import "mixins";
 
 .popup {
+    top: 0;
     position: fixed;
     width: 100vw;
     height: 100vh;
     backdrop-filter: blur(5px);
     z-index: 999;
-    display: none;
     justify-content: center;
     align-items: center;
-
 }
 
 .selectTeam {
     background-color: rgba(255, 255, 255, 0.608);
-    min-height: 50vh;
+    height: 50vh;
     border-radius: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     box-shadow: 1rem 2rem 3rem rgba(0, 0, 0, 0.682);
-    padding-top: 2rem;
+    margin: 25vh 25vw 25vw;
     padding-bottom: 2rem;
 }

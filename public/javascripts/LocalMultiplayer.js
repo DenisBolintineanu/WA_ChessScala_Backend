@@ -3,7 +3,7 @@ import {ChessBoardBuilder} from "./ChessBoardBuilder.js"
 
 let chess = new Chess()
 let chessBoardBuilder = new ChessBoardBuilder(chess)
-let chessBoard = chessBoardBuilder.createChessBoard(document.querySelector("#chessboard2"))
+let chessBoard = chessBoardBuilder.createChessBoard(document.querySelector("#chessboard2"), true)
 
 document.getElementById("newGameButton").addEventListener('click', () => {
     chessBoard.newGameFunction()

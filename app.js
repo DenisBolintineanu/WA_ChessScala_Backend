@@ -1,13 +1,13 @@
 import './styles/styles.scss'
+import { createApp } from 'vue';
 
-Vue.createApp({
-    data() {
 
-    },
-    methods: {
-
-    },
-    computed: {
-
-    }
+const app = createApp({
+    data() { 
+        return {
+            
+        }
+     },
+    methods: { },
+    computed: { }
 }).mount('#app')

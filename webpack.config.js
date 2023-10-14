@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack'); // Diesen Import hinzufügen
 
 module.exports = {
     mode: 'development',
@@ -19,5 +20,16 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            __VUE_OPTIONS_API__: true,
+            __VUE_PROD_DEVTOOLS__: false
+        })
+    ],
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm-bundler.js'
+        }
+    },
 }

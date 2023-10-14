@@ -25,5 +25,8 @@
     "jest"
   ],
   "author": "Denis Bolintineanu & André Königer",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^3.3.3"
+  }
 }

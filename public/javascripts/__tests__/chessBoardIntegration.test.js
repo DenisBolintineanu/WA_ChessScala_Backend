@@ -11,6 +11,14 @@ let undoButton = document.createElement('div')
 undoButton.id = 'undoButton'
 document.body.appendChild(undoButton)
 
+let resignButton = document.createElement('div')
+resignButton.id = 'resignButton'
+document.body.appendChild(resignButton)
+
+let newGameButton = document.createElement('div')
+newGameButton.id = 'newGameButton'
+document.body.appendChild(newGameButton)
+
 let chess = new Chess()
 let chessboardBuilder = new ChessBoardBuilder(chess)
 let chessboard = chessboardBuilder.createChessBoard(div, true)
@@ -120,5 +128,24 @@ describe("The game should", () => {
         doMove('d8','h4')
         doMove('g2','g3')
         doMove('h4', 'g3')
+    })
+
+    test("test the buttons", () => {
+        chess = new Chess()
+        chessboardBuilder = new ChessBoardBuilder(chess, 'b')
+        chessboard = chessboardBuilder.createChessBoard(div, true)
+
+        chessboard.moveFunction('e2e4')
+        expect(chessboard.chessboard.innerHTML.includes(getFigure('e4', 'w', 'whitePawn'))).toBe(true)
+        doMove('e7', 'e5')
+        expect(chessboard.chessboard.innerHTML.includes(getFigure('e5', 'b', 'blackPawn'))).toBe(true)
+        document.getElementById('undoButton').click()
+        expect(chessboard.chessboard.innerHTML.includes(getFigure('e4', 'w', 'whitePawn'))).toBe(false)
+        expect(chessboard.chessboard.innerHTML.includes(getFigure('e5', 'b', 'blackPawn'))).toBe(false)
+        document.getElementById('resignButton').click()
+        document.getElementById('newGameButton').click()
+        expect(chessboard.chessboard.innerHTML.includes(getFigure('e4', 'w', 'whitePawn'))).toBe(false)
+        expect(chessboard.chessboard.innerHTML.includes(getFigure('e4', 'w', 'whitePawn'))).toBe(false)
+        chessboard.newGameFunction()
     })
 })

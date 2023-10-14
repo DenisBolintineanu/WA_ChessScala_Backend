@@ -56,7 +56,7 @@ export class ChessBoardBuilder {
                 this.#chess.undo()
                 this.#chess.undo()
                 this.#chessboard.update()
-                this.#updateFunction()
+                if (this.#updateFunction) this.#updateFunction()
             });
         }
         this.#chessboard.newGameFunction = this.#newGame

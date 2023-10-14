@@ -158,7 +158,6 @@ export class Chessboard {
     highlightAttack() {
         if (this.isAttackedFunction()) {
             let field = this.getKingFunction()
-            console.log(field)
             let attackedField = document.createElement('div')
             attackedField.classList.add('attacked')
             this.chessboard.querySelector('#' + field).appendChild(attackedField)

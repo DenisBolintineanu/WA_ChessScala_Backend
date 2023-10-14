@@ -3,8 +3,8 @@ import scala.collection.mutable
 
 class GameSessionCollection {
 
-  var sessionMap: mutable.Map[String, (GameSession, Boolean)] = mutable.Map.empty
-  var playerMap: mutable.Map[String, GameSession] = mutable.Map.empty
+  private var sessionMap: mutable.Map[String, (GameSession, Boolean)] = mutable.Map.empty
+  private var playerMap: mutable.Map[String, GameSession] = mutable.Map.empty
 
   def create(): String = {
     val session: GameSession = GameSession()

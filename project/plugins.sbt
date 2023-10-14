@@ -1,5 +1,4 @@
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.8.19")
-addSbtPlugin("org.foundweekends.giter8" % "sbt-giter8-scaffold" % "0.13.1")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.9.0-RC3")
 addSbtPlugin("io.github.irundaia" % "sbt-sassify" % "1.5.2")
-addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.5")
-addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.5.2")
+resolvers += "Scala-Tools Maven2 Snapshots Repository" at "https://scala-tools.org/repo-snapshots"
+addSbtPlugin("com.github.sbt" % "sbt-native-packager" % "1.9.4")

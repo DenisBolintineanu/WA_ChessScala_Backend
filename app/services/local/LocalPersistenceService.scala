@@ -16,14 +16,14 @@ import scala.concurrent.duration.DurationInt
 @Singleton
 class LocalPersistenceService @Inject()(actorSystem: ActorSystem)(implicit ec: ExecutionContext) extends IPersistenceService {
 
-  private val cleanUpIntervalTime = 10.minute
+  private val cleanUpIntervalTime = 15.minute
   private val garbageCollector: mutable.Map[String, Boolean] = mutable.Map[String, Boolean]()
   val gameSessionCollection: GameSessionCollection = new GameSessionCollection
 
   def createGame(): String = {
     val id: String = gameSessionCollection.create()
     garbageCollector(id) = true
-    gameSessionCollection.get(id).get.controller.computeInput("1")
+    gameSessionCollection.get(id).get.controller.computeInput("start server")
     id
   }
 

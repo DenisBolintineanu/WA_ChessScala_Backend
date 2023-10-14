@@ -1,15 +1,8 @@
 # Use OpenJDK 11 as the base image
-FROM openjdk:11
+FROM openjdk:21-jdk-buster
 
 RUN apt-get update && \
-    apt-get install -y openjdk-11-jdk && \
     apt-get install -y libsass-dev
-
-# Install Scala 2.13.1
-RUN wget https://downloads.lightbend.com/scala/2.13.1/scala-2.13.1.tgz && \
-    tar -xvzf scala-2.13.1.tgz && \
-    mv scala-2.13.1 /usr/local/scala-2.13.1 && \
-    echo "export PATH=$PATH:/usr/local/scala-2.13.1/bin" >> ~/.bashrc
 
 # Install Scala 3 (e.g., 3.0.0)
 RUN wget https://github.com/lampepfl/dotty/releases/download/3.0.0/scala3-3.0.0.tar.gz && \

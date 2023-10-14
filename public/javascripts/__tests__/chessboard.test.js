@@ -1,10 +1,10 @@
-import {Chessboard2} from "../chessboard2.js";
+import {Chessboard} from "../Chessboard.js";
 
 describe("The chessboard builder should", () => {
     test("build a chessboard correctly", () => {
         const div = document.createElement("div")
         div.id = "chessboard"
-        let chessboard = new Chessboard2()
+        let chessboard = new Chessboard()
         expect(chessboard.chessboard).toBe(null)
         chessboard.assign(div)
         expect(chessboard.chessboard.innerHTML).toBe("")
@@ -17,7 +17,7 @@ describe("The chessboard builder should", () => {
     test("build a inverse-chessboard correctly", () => {
         const div = document.createElement("div")
         div.id = "chessboard"
-        let chessboard = new Chessboard2()
+        let chessboard = new Chessboard()
         chessboard.assign(div)
         chessboard.createChessboard(true)
         let innerHTML = chessboard.chessboard.innerHTML.toString()
@@ -28,7 +28,7 @@ describe("The chessboard builder should", () => {
     test("build a chessboard with no figure", () => {
         const div = document.createElement("div")
         div.id = "chessboard"
-        let chessboard = new Chessboard2()
+        let chessboard = new Chessboard()
         chessboard.assign(div)
         chessboard.createChessboard(true)
         chessboard.updateBoardWithPieces(() => {
@@ -40,7 +40,7 @@ describe("The chessboard builder should", () => {
     test("build a chessboard with a rook on every field", () => {
         const div = document.createElement("div")
         div.id = "chessboard"
-        let chessboard = new Chessboard2()
+        let chessboard = new Chessboard()
         chessboard.assign(div)
         chessboard.createChessboard(true)
         chessboard.updateBoardWithPieces(() => {
@@ -55,7 +55,7 @@ describe("The chessboard should", () => {
     test("move a figure from a position to another", () => {
         const div = document.createElement("div")
         div.id = "chessboard"
-        let chessboard = new Chessboard2()
+        let chessboard = new Chessboard()
         chessboard.assign(div)
         chessboard.createChessboard(false)
         chessboard.updateBoardWithPieces(field => {
@@ -75,7 +75,7 @@ describe("The event listener should", () => {
     test("let all fields be selectable", () => {
         const div = document.createElement("div")
         div.id = "chessboard"
-        let chessboard = new Chessboard2()
+        let chessboard = new Chessboard()
         chessboard.assign(div)
         chessboard.createChessboard(false)
         chessboard.updateBoardWithPieces(field => {
@@ -92,7 +92,7 @@ describe("The event listener should", () => {
     test("let only define fields be selectable", () => {
         const div = document.createElement("div")
         div.id = "chessboard"
-        let chessboard = new Chessboard2()
+        let chessboard = new Chessboard()
         chessboard.assign(div)
         chessboard.createChessboard(false)
         chessboard.updateBoardWithPieces(field => {
@@ -114,7 +114,7 @@ describe("The click handler should", () => {
     test("do a move", () => {
         const div = document.createElement("div")
         div.id = "chessboard"
-        let chessboard = new Chessboard2()
+        let chessboard = new Chessboard()
         chessboard.assign(div)
         chessboard.createChessboard(false)
         chessboard.updateBoardWithPieces(field => {

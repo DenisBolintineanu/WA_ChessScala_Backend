@@ -9,7 +9,7 @@ function update() {
 const stockfish = new Worker("assets/javascripts/stockfish.js")
 let chess = new Chess()
 let chessBoardBuilder = new ChessBoardBuilder(chess, 'w', update)
-let chessBoard = chessBoardBuilder.createChessBoard(document.querySelector("#chessboard2"))
+let chessBoard = chessBoardBuilder.createChessBoard(document.querySelector("#Chessboard"))
 let team
 
 function doAIMove(){
@@ -57,14 +57,14 @@ selectTeam.appendChild(buttonBlack)
 
 buttonWhite.addEventListener('click', () => {
     chessBoardBuilder = new ChessBoardBuilder(chess, 'w', update)
-    chessBoard = chessBoardBuilder.createChessBoard(document.querySelector("#chessboard2"), true)
+    chessBoard = chessBoardBuilder.createChessBoard(document.querySelector("#Chessboard"), true)
     team = 'w'
     popup.style.display = 'none'
 })
 
 buttonBlack.addEventListener('click', () => {
     chessBoardBuilder = new ChessBoardBuilder(chess, 'b', update)
-    chessBoard = chessBoardBuilder.createChessBoard(document.querySelector("#chessboard2"), true)
+    chessBoard = chessBoardBuilder.createChessBoard(document.querySelector("#Chessboard"), true)
     team = 'b'
     popup.style.display = 'none'
     setTimeout(doAIMove, 500)

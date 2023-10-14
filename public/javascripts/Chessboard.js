@@ -88,17 +88,6 @@ export class Chessboard {
         return `assets/images/chesspieces/${ColorMap[color]}${PieceMap[piece]}.png`;
     }
 
-    move(move) {
-        const startField = this.chessboard.querySelector(`#${move.substring(0, 2)}`)
-        const targetField = this.chessboard.querySelector(`#${move.substring(2, 4)}`)
-        const startFieldString = startField.innerHTML
-        startField.innerHTML = ""
-        targetField.innerHTML = startFieldString
-        this.playSound(this.sounds.move)
-        this.deselectFields()
-        console.log("test")
-    }
-
     selectField(field) {
         field.querySelector('.figure').classList.add('selected');
         this.firstClick = field

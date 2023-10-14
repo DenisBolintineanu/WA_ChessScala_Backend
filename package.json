@@ -1,0 +1,29 @@
+{
+  "name": "frontend-wachess",
+  "version": "1.0.0",
+  "description": "Frontend module for WAChess project developed by Denis Bolintineanu  and André Königer for Webapplication WS23/24 @HTWG Konstanz",
+  "main": "app.js",
+  "scripts": {
+    "test": "tbd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "tba"
+  },
+  "keywords": [
+    "chess",
+    "scala",
+    "javascript",
+    "stockfish",
+    "comet",
+    "websockets",
+    "bootstrap",
+    "tailwind",
+    "scss",
+    "sass",
+    "tests",
+    "jest"
+  ],
+  "author": "Denis Bolintineanu & André Königer",
+  "license": "ISC"
+}

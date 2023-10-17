@@ -96,7 +96,7 @@ export class ChessBoardBuilder {
             else {
                 this.#playSound(isHit, false)
             }
-            this.#updateFunction()
+            this.#updateFunction(move)
         } catch (exception) {
             this.#chessboard.handleException(move)
         }

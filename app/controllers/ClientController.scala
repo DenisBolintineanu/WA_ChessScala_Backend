@@ -4,6 +4,7 @@ import ChessScala.controller.IController
 import play.api.mvc.*
 import services.IPersistenceService
 import utils.DefaultServerResponses.{ERROR_RESPONSE, INVALID_RESPONSE, SUCCESS_RESPONSE}
+import play.api.libs.json._
 
 import javax.inject.*
 
@@ -29,14 +30,9 @@ class ClientController @Inject()(val controllerComponents: ControllerComponents,
     }
   }
 
-  def doMove(): Action[AnyContent] = Action { implicit request: Request[AnyContent] => {
-      val id = returnRequestParamAsString(request, PLAYER_ID)
-      val moveAsString = returnRequestParamAsString(request, MOVE_ID)
-      persistenceService.updateGame(moveAsString, id) match {
-        case Some(board) => Ok(board.returnBoardAsJson())
-        case _ => Ok(ERROR_RESPONSE)
-      }
-    }
+  def doMove(): Action[AnyContent] = Action {
+    val json: JsValue = Json.parse("""{"result": "it works"}""")
+    Ok(json)
   }
 
   def deleteGame(): Action[AnyContent] = Action { implicit request: Request[AnyContent] => {

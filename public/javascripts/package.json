@@ -11,6 +11,11 @@
   "jest": {
     "testEnvironment": "jsdom",
     "collectCoverage": true,
-    "coverageReporters": ["html"]
+    "coverageReporters": [
+      "html"
+    ]
+  },
+  "dependencies": {
+    "jquery": "^3.7.1"
   }
 }

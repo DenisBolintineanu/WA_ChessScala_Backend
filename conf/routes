@@ -26,7 +26,13 @@ GET     /                   controllers.HomeController.index()
 GET     /game               controllers.HomeController.newGame()
 
 + nocsrf
-POST    /game/id=:id        controllers.HomeController.doMove(id)
+POST    /game               controllers.HomeController.doMove()
+
++ nocsrf
+POST    /do_move            controllers.HomeController.doMove()
+
++ nocsrf
+POST    /get_move            controllers.HomeController.doMove()
 
 GET     /game/id=:id        controllers.HomeController.updateGame(id)
 
@@ -43,6 +49,9 @@ GET     /changeLang/:lang   controllers.HomeController.reloadCurrentPageWithLang
 GET     /singleplayer       controllers.HomeController.singleplayer()
 
 GET     /local_multiplayer  controllers.HomeController.localMultiplayer()
+
+GET     /online_multiplayer controllers.HomeController.newGame()
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file       controllers.Assets.versioned(path="/public", file: Asset)

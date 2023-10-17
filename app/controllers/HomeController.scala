@@ -5,6 +5,8 @@ import play.api.i18n.{I18nSupport, Lang}
 import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents, Request, Result}
 import services.IPersistenceService
 import utils.ChesspieceImageManager
+import play.api.libs.json._
+
 
 import javax.inject.{Inject, Singleton}
 
@@ -17,18 +19,18 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
     Ok(views.html.index())
   }
 
-  def doMove(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val move: String = request.body.asFormUrlEncoded.get(MOVE_ID).headOption.getOrElse("")
-    persistenceService.updateGame(move, id) match {
-      case Some(controller) => chessFromController(id, controller)
-      case None => Ok(views.html.error())
-    }
+  def doMove(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    val json: JsValue = Json.parse("""{"result": "it works"}""")
+    Ok(json)
   }
 
   def newGame(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     val gameId: String = persistenceService.createGame()
     val playerID: String = persistenceService.gameSessionCollection.get(gameId).get.playerOneID
-    Redirect(routes.HomeController.updateGame(playerID))
+    persistenceService.readGame(playerID) match {
+      case Some(controller) => chessFromController(playerID, controller)
+      case None => Ok(views.html.error())
+    }
   }
 
   def updateGame(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
@@ -61,8 +63,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
 
   private def chessFromController(id: String, controller: IController)(implicit request: Request[AnyContent]): Result = {
     val gameID = persistenceService.gameSessionCollection.get(id).get.gameID
-    //Ok(views.html.chess(controller.output, id, gameID, controller.returnMoveList(), ChesspieceImageManager(controller.state.board)))
-    Ok(views.html.index())
+    Ok(views.html.online_multiplayer(id, gameID))
   }
 
   def singleplayer():Action[AnyContent] = Action { implicit request: Request[AnyContent] =>

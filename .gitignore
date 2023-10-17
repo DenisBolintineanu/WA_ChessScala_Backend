@@ -31,4 +31,4 @@ project/metals.sbt
 
 # Miscellaneous
 src/main/scala/ChessScala/Test.sc
-application.log
+logs/

@@ -4,7 +4,6 @@ import ChessScala.controller.Controller
 import play.api.Configuration
 import play.api.mvc._
 import services.IPersistenceService
-import services.db.MongoDBService
 import services.local.LocalPersistenceService
 import utils.DefaultServerResponses.{ERROR_RESPONSE, INVALID_RESPONSE, SUCCESS_RESPONSE}
 

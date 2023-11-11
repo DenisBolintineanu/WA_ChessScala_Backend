@@ -27,12 +27,20 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
     persistenceService.gameSessionCollection.get(playerID) match {
       case Some(session) => {
         if (playerID == session.playerOneID) {
-          session.PlayerOneMove = Some(move)
-          Ok(Json.parse("""{"result": "success"}"""))
+          persistenceService.updateGame(move, session.gameID) match {
+            case Some(value) =>
+              session.PlayerOneMove = Some(move)
+              Ok(Json.parse("""{"result": "success"}"""))
+            case None => Ok(Json.parse("""{"result": "error"}"""))
+          }
         }
         else if (playerID == session.playerTwoID) {
-          session.PlayerTwoMove = Some(move)
-          Ok(Json.parse("""{"result": "success"}"""))
+          persistenceService.updateGame(move, session.gameID) match {
+            case Some(value) =>
+              session.PlayerTwoMove = Some(move)
+              Ok(Json.parse("""{"result": "success"}"""))
+            case None => Ok(Json.parse("""{"result": "error"}"""))
+          }
         }
         else {
           Ok(Json.parse("""{"result": "error"}"""))

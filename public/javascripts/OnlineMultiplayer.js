@@ -9,7 +9,7 @@ document.cookie = "playerID=" + playerID
 let connectionHandler = new ConnectionHandler()
 
 function update(move) {
-    connectionHandler.sendMove(playerID, move)
+    connectionHandler.sendMove(playerID, chess.history({verbose: true}).pop().lan)
     getMove()
 }
 
@@ -33,7 +33,12 @@ function getMove(){
 }
 
 function proofMove(move){
-    chessBoard.asciiMove(move.substring(0, 4), null, false)
+    if (move.length  === 4) {
+        chessBoard.asciiMove(move.substring(0, 4), null, false)
+    }
+    else {
+        chessBoard.asciiMove(move.substring(0, 4), move.substring(4,5), false)
+    }
 }
 
 function checkIfParameterExists() {

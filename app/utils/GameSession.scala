@@ -7,4 +7,6 @@ case class GameSession(){
   val gameID: String = java.util.UUID.randomUUID().toString
   val playerOneID: String = java.util.UUID.randomUUID().toString
   val playerTwoID: String = java.util.UUID.randomUUID().toString
+  var PlayerOneMove: Option[String] = None
+  var PlayerTwoMove: Option[String] = None
 }

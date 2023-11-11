@@ -32,7 +32,7 @@ POST    /game               controllers.HomeController.doMove()
 POST    /do_move            controllers.HomeController.doMove()
 
 + nocsrf
-POST    /get_move            controllers.HomeController.doMove()
+POST    /get_move            controllers.HomeController.getMove()
 
 GET     /game/id=:id        controllers.HomeController.updateGame(id)
 
@@ -50,7 +50,11 @@ GET     /singleplayer       controllers.HomeController.singleplayer()
 
 GET     /local_multiplayer  controllers.HomeController.localMultiplayer()
 
+GET     /online_multiplayer/:id     controllers.HomeController.joinGame(id)
+
 GET     /online_multiplayer controllers.HomeController.newGame()
+
+
 
 
 # Map static resources from the /public folder to the /assets URL path

@@ -85,7 +85,7 @@ export class Chessboard {
             "p": "Pawn"
         };
 
-        return `assets/images/chesspieces/${ColorMap[color]}${PieceMap[piece]}.png`;
+        return `../assets/images/chesspieces/${ColorMap[color]}${PieceMap[piece]}.png`;
     }
 
     selectField(field) {

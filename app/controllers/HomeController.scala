@@ -4,9 +4,11 @@ import ChessScala.controller.IController
 import play.api.i18n.{I18nSupport, Lang}
 import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents, Request, Result}
 import services.IPersistenceService
-import utils.ChesspieceImageManager
-import play.api.libs.json._
+import utils.{ChesspieceImageManager, GameSession}
+import play.api.libs.json.*
 
+import scala.util.{Failure, Success, Try}
+import utils.DefaultServerResponses.{ERROR_RESPONSE, INVALID_RESPONSE, SUCCESS_RESPONSE}
 
 import javax.inject.{Inject, Singleton}
 
@@ -20,8 +22,59 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
   }
 
   def doMove(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val json: JsValue = Json.parse("""{"result": "it works"}""")
-    Ok(json)
+    val playerID = returnRequestParamAsString(request, "PlayerID")
+    val move = returnRequestParamAsString(request, "move")
+    persistenceService.gameSessionCollection.get(playerID) match {
+      case Some(session) => {
+        if (playerID == session.playerOneID) {
+          session.PlayerOneMove = Some(move)
+          Ok(Json.parse("""{"result": "success"}"""))
+        }
+        else if (playerID == session.playerTwoID) {
+          session.PlayerTwoMove = Some(move)
+          Ok(Json.parse("""{"result": "success"}"""))
+        }
+        else {
+          Ok(Json.parse("""{"result": "error"}"""))
+        }
+      }
+      case None => Ok(Json.parse("""{"result": "error"}"""))
+    }
+  }
+
+  def getMove: Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    val playerID = returnRequestParamAsString(request, "PlayerID")
+    persistenceService.gameSessionCollection.get(playerID) match {
+      case Some(session) =>
+        if (playerID == session.playerOneID) {
+          session.PlayerTwoMove match
+            case Some(value) => {
+              session.PlayerTwoMove = None
+              val jsonResponse = Json.obj(
+                "result" -> "success",
+                "move" -> value
+              )
+              Ok(jsonResponse)
+            }
+            case None => NoContent
+        }
+        else if (playerID == session.playerTwoID) {
+          session.PlayerOneMove match
+            case Some(value) => {
+              session.PlayerOneMove = None
+              val jsonResponse = Json.obj(
+                "result" -> "success",
+                "move" -> value
+              )
+              Ok(jsonResponse)
+            }
+            case None => NoContent
+        }
+        else {
+          Ok(Json.parse("""{"result": "error"}"""))
+        }
+      case None => Ok(Json.parse("""{"result": "error"}"""))
+    }
   }
 
   def newGame(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
@@ -33,6 +86,20 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
     }
   }
 
+  def joinGame(gameId: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    Try{ persistenceService.gameSessionCollection.get(gameId).get.playerTwoID} match {
+      case Success(playerID) => {
+        persistenceService.readGame(playerID) match {
+          case Some(controller) => chessFromController(playerID, controller)
+          case None => Ok(views.html.error())
+        }
+      }
+      case Failure(_) => Ok(views.html.error())
+    }
+  }
+
+
+
   def updateGame(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     persistenceService.readGame(id) match {
       case Some(controller) => chessFromController(id, controller)
@@ -40,10 +107,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
     }
   }
 
-  def joinGame(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val playerID: String = persistenceService.joinGame(id)
-    Redirect(routes.HomeController.updateGame(playerID))
-  }
+
 
   def reloadCurrentPageWithLang(lang: String): Action[AnyContent] = Action { implicit request =>
     Redirect(request.headers.get(REFERER).getOrElse(routes.HomeController.index().url)).withLang(Lang(lang))
@@ -72,6 +136,10 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
 
   def localMultiplayer(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.local_multiplayer())
+  }
+
+  private def returnRequestParamAsString(request: Request[AnyContent], key: String): String = {
+    request.body.asFormUrlEncoded.get(key).headOption.getOrElse(INVALID_RESPONSE)
   }
 }
 

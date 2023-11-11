@@ -74,7 +74,7 @@ export class ChessBoardBuilder {
         }
     }
 
-    #serialMoveFunction = (move, promotion) => {
+    #serialMoveFunction = (move, promotion, update=true) => {
         try {
             let isHit = this.#chess.get(move.substring(2, 4)) !== false
             if (promotion) {
@@ -96,7 +96,9 @@ export class ChessBoardBuilder {
             else {
                 this.#playSound(isHit, false)
             }
-            this.#updateFunction(move)
+            if(update) {
+                this.#updateFunction(move)
+            }
         } catch (exception) {
             this.#chessboard.handleException(move)
         }

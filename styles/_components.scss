@@ -1,0 +1,189 @@
+// Cards related
+$dark-green: #0a3f20;
+$light-green: #3f784c;
+$hover-green: #4caf50;
+
+$dark-red: #7b241c;
+$light-red: #c0392b;
+$hover-red: #e74c3c;
+
+$dark-blue: #154360;
+$light-blue: #2e86c1;
+$hover-blue: #3498db;
+
+$text-color: #fff;
+
+// Mixin for card gradients and hover effects
+@mixin card-style($color-start, $color-end, $color-hover) {
+  background: linear-gradient(to bottom right, $color-start, $color-end);
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px $color-hover;
+  }
+}
+
+// Base styles for all cards
+.card {
+  position: relative;
+  background-color: rgba(25, 25, 25, 0.85);
+  backdrop-filter: blur(20px);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:before {
+    content: '';
+    content: '';
+    position: absolute;
+    top: -50%; 
+    left: -50%; 
+    right: -50%;
+    bottom: -50%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+    transform: translateX(-350px) rotate(-45deg);
+    transition: transform 0.7s ease-in;
+  }
+
+  &:hover::before {
+    transform: translateX(300%) rotate(-45deg);
+  }
+
+}
+
+@keyframes shine {
+  0% {
+    background-position: -100px;
+  }
+  100% {
+    background-position: 140%;
+  }
+}
+
+/*.card {
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  .card-content {
+    position: relative;
+    text-align: center;
+    // Additional content styles...
+  }
+  // Nested styles for card elements...
+}*/
+
+// Styles for the green card
+.green-card {
+  @include card-style($dark-green, $light-green, $hover-green);
+  // Additional styles specific to the green card
+}
+
+// Styles for the red card
+.red-card {
+  @include card-style($dark-red, $light-red, $hover-red);
+  // Additional styles specific to the red card
+}
+
+// Styles for the blue card
+.blue-card {
+  @include card-style($dark-blue, $light-blue, $hover-blue);
+  // Additional styles specific to the blue card
+}
+
+// Styles for card content
+.card-content {
+  .card-header {
+    margin-bottom: 20px;
+  }
+
+  .card-title {
+    font-size: 1.5em;
+    color: $text-color;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .card-body {
+    .chess-piece {
+      //background-image: url('path-to-chess-piece-image.png');
+      background-size: contain;
+      height: 100px;
+      width: 100px;
+      margin: 0 auto;
+    }
+  }
+
+  .card-footer {
+    margin-top: 20px;
+  }
+
+  .mouse-pointer {
+    color: $text-color;
+    font-size: 1em;
+  }
+}
+
+// GameID Input Field
+.input-container {
+    position: relative;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    box-sizing: border-box; /* Ensures padding doesn't affect the total width */
+    transition: border-color 0.3s;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #3a77ff; /* A modern blue */
+  }
+  
+  input[type="text"]::placeholder {
+    color: #aaa;
+  }
+  
+  label {
+    position: absolute;
+    display: none;
+    right: 0px;
+    left: 5px;
+    top: -25px;
+    padding: 0 5px;
+    font-size: 14px;
+    color: #777;
+    transition: all 0.3s;
+  }
+
+  input:not(:placeholder-shown) + label {
+    display: block;
+}
+
+.help-card {
+    display: inline-block;
+    background-color: #5cb85c; /* A vibrant color for contrast */
+    padding: 10px 20px;
+    border-radius: 5px; /* Slightly rounded corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #4cae4c; /* A slightly darker shade on hover */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    }
+    
+    .help-icon {
+      font-size: 20px;
+      color: #fff;
+      font-weight: bold;
+      display: inline-block;
+      line-height: 1;
+    }
+  }
+  
+  

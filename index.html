@@ -1,19 +1,144 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>WAChess</title>
-    </head>
-    <body>
-        <div id="app">
-            <header class="bg-slate-900/75 w-full max-h-96">
-                <h1 class="">
-                    WA Chess
-                </h1>
-            </header>
-            <footer>
-            </footer>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-800 text-white p-4">
+
+    <div class="flex w-full h-screen">
+        <!-- Sidebar -->
+        <div class="w-2/12 bg-gray-900 h-full overflow-auto p-4">
+            <div class="mb-4">
+                <img src="LOGO.png" alt="Logo" class="w-24 h-24 mx-auto">
+            </div>
+            <div class="mb-4">
+                <!-- User Information -->
+                <img src="USER.png" alt="User" class="w-12 h-12 rounded-full mx-auto">
+                <p class="text-center mt-2">Username</p>
+            </div>
+            <div class="border-t border-gray-300 my-4"></div>
+            <nav>
+                <!-- Navigation Items -->
+                <a href="#" class="block py-2 px-4 hover:bg-gray-700">Home</a>
+                <a href="#" class="block py-2 px-4 hover:bg-gray-700">Play Games</a>
+                <!-- Add more links as needed -->
+            </nav>
         </div>
-        
-        <script src="dist/bundle.js"></script>
-    </body>
+
+        <div class="w-10/12 bg-gray-800 h-full overflow-auto">
+            <!-- Header -->
+            <div class="bg-gray-900 p-4"></div>
+            <!-- Main Content -->
+            <div class="bg-gray-900 p-6 ml-2 mt-2">
+                <!-- Game Modi Widget-->
+                <div class="mb-12">
+                    <!-- Widget Title -->
+                    <div class="border-b mb-12">
+                        <h2 class="font-semibold">Play Now</h2>
+                    </div>
+                    <!-- Game Modi Selection -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-blue-500 card bg-opacity-50 bg-gray-100 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-4 green-card">Local Multiplayer</div>
+                        <div class="bg-blue-500 card bg-opacity-50 bg-gray-100 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-4 red-card">Online Multiplayer</div>
+                        <div class="bg-blue-500 card bg-opacity-50 bg-gray-100 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-4 blue-card">Against the AI</div>
+                    </div>
+                </div>
+                <!-- Simple 2 Column Widget Grid -->
+                <div class="mb-12 grid md:grid-cols-4 md:gap-4">
+                    <!-- Join Game Widget -->
+                    <div class="col-span-2">
+                        <!-- Widget Title -->
+                        <div class="border-b mb-12">
+                            <h2 class="font-semibold">Join Now</h2>
+                        </div>
+                        <div class="input-container">
+                            <input type="text" id="game.id-input" placeholder="Enter GameID"
+                                class="w-full border-2 border-transparent bg-gray-700 focus:border-solid focus:border-2 focus:border-indigo-500/100 focus:bg-gray-800">
+                            <label for="game-id-input">Enter GameID</label>
+                        </div>
+                    </div>
+                    <!-- Help Widget-->
+                    <div class="place-self-end">
+                        <!-- Widget Title -->
+                        <div class="border-b mb-12">
+                            <h2 class="font-semibold">Help</h2>
+                        </div>
+                        <div class="help-card">
+                            <div class="help-icon">?</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Responsives 8x8 Widget Grid -->
+                <div class="grid gap-4 mb-12 md:grid-cols-2 lg:grid-cols-8 lg:grid-rows-8">
+                    <!-- History Widget-->
+                    <div class="col-span-2 lg:col-span-3 lg:row-span-5">
+                        <!-- Widget Title -->
+                        <div class="mb-12 border-b">
+                            <h2 class="font-semibold">History</h2>
+                        </div>
+                        <!-- History Content -->
+                        <div class="p-4 bg-blue-600 rounded-lg shadow-md">
+                            <!-- Dummy Table -->
+                            <table class="table-fixed">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Event</th>
+                                </tr>
+                                <tr>
+                                    <td>01/01/2023</td>
+                                    <td>Event 1</td>
+                                </tr>
+                                <tr>
+                                    <td>02/01/2023</td>
+                                    <td>Event 2</td>
+                                </tr>
+                                <!-- Weitere Zeilen -->
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Download Client Widget -->
+                    <div class="col-span-2 lg:col-span-5">
+                        <!-- Widget Title -->
+                        <div class="mb-12 border-b">
+                            <h2 class="font-semibold">Download Our Client</h2>
+                        </div>
+                        <div class="p-4 bg-blue-500 rounded-md">Download Now</div>
+                    </div>
+                    <!-- News Widget -->
+                    <div class="col-span-2 lg:col-span-5 lg:row-span-5">
+                        <!-- Widget Title -->
+                        <div class="mb-12 border-b">
+                            <h2 class="font-semibold">News</h2>
+                        </div>
+                        <!-- News Content -->
+                        <div class="grid grid-cols-2 gap-4 p-2">
+                            <div class="bg-blue-500 rounded-md">News Item 1</div>
+                            <div class="bg-blue-500 rounded-md">News Item 2</div>
+                            <div class="bg-blue-500 rounded-md">News Item 3</div>
+                            <div class="bg-blue-500 rounded-md">News Item 4</div>
+                            <!-- Weitere News Items -->
+                        </div>
+                    </div>
+                    <!-- Messages Widget -->
+                    <div class="row-span-2">
+                        <!-- Widget Title -->
+                        <div class="mb-12 border-b">
+                            <h2 class="font-semibold">Messages</h2>
+                        </div>
+                        <div class="p-4 bg-blue-500 rounded-md">Messages</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+<script src="dist/bundle.js"></script>
+
 </html>

@@ -4,6 +4,8 @@ chess.board.name=Chessboard
 chess.color.black=black
 chess.color.white=white
 
+gameID.copied=GameID copied to clipboard!
+
 chess.figure.king.name=King
 chess.figure.queen.name=Queen
 chess.figure.rook.name=Rook

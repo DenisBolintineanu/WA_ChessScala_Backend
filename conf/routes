@@ -55,7 +55,8 @@ GET     /online_multiplayer/:id     controllers.HomeController.joinGame(id)
 GET     /online_multiplayer controllers.HomeController.newGame()
 
 
-
+# API for client side translation requests
+GET /api/getMessage/:key controllers.I18nController.getMessage(key)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file       controllers.Assets.versioned(path="/public", file: Asset)

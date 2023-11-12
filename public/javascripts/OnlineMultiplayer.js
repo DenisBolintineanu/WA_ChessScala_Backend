@@ -8,6 +8,12 @@ let gameID = document.getElementById('gameID').innerText
 document.cookie = "playerID=" + playerID
 let connectionHandler = new ConnectionHandler()
 
+let gameIdClipboard = document.getElementById('game-id')
+gameIdClipboard.style.display = "block"
+gameIdClipboard.addEventListener('click', function() {
+        copyGameID();
+});
+
 function update(move) {
     connectionHandler.sendMove(playerID, chess.history({verbose: true}).pop().lan)
     getMove()
@@ -52,4 +58,22 @@ function checkIfParameterExists() {
     } else {
         return null;
     }
+}
+
+function fetchTranslation(key) {
+    return fetch('/api/getMessage/' + key)
+        .then(response => response.text())
+        .catch(error => {
+            console.error('Error fetching translation:', error);
+            return '';
+        });
+}
+
+function copyGameID() {
+    let gameID = document.getElementById('gameID').innerText
+    fetchTranslation('gameID.copied').then(msg => {
+        navigator.clipboard.writeText(gameID).then(() => {
+            alert(msg)
+        });
+    });
 }

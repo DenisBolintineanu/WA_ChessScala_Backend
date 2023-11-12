@@ -17,9 +17,12 @@ let chess = new Chess()
 let chessboardBuilder
 if (!checkIfParameterExists()){
     chessboardBuilder = new ChessBoardBuilder(chess,'w', update)
+    document.cookie += "; color=w"
 }
 else {
     chessboardBuilder = new ChessBoardBuilder(chess,'b', update)
+    history.replaceState(null, "", ".")
+    document.cookie += "; color=b"
 }
 
 let chessBoard = chessboardBuilder.createChessBoard(document.querySelector("#Chessboard"),true)

@@ -23,6 +23,7 @@ else {
     chessboardBuilder = new ChessBoardBuilder(chess,'b', update)
     history.replaceState(null, "", ".")
     document.cookie += "; color=b"
+    getMove()
 }
 
 let chessBoard = chessboardBuilder.createChessBoard(document.querySelector("#Chessboard"),true)

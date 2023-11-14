@@ -4,20 +4,12 @@ import {ChessBoardBuilder} from "./ChessBoardBuilder.js";
 import {Chessboard} from "./Chessboard.js";
 
 let connectionHandler = new ConnectionHandler()
-
-
-let gameIdClipboard = document.getElementById('game-id')
-gameIdClipboard.style.display = "block"
-gameIdClipboard.addEventListener('click', function() {
-        copyGameID();
-});
-
-
 let chess = new Chess()
 let chessBoard
 let playerID
 let gameID
 let color
+
 
 if (connectionHandler.getCookie("PlayerID") && connectionHandler.getCookie("GameID") && connectionHandler.getCookie("color"))
     use_existing_game().then(() => {
@@ -90,10 +82,16 @@ function fetchTranslation(key) {
         });
 }
 
+let gameIdClipboard = document.getElementById('game-id')
+gameIdClipboard.style.display = "block"
+gameIdClipboard.addEventListener('click', function() {
+    copyGameID();
+});
+
 function copyGameID() {
-    let gameID = document.getElementById('gameID').innerText
+    const path_for_invite_link = window.location.href + "/join_game/"
     fetchTranslation('gameID.copied').then(msg => {
-        navigator.clipboard.writeText(gameID).then(() => {
+        navigator.clipboard.writeText(path_for_invite_link +gameID).then(() => {
             alert(msg)
         });
     });

@@ -27,6 +27,7 @@ GET     /online_multiplayer                 controllers.MultiplayerController.ge
 
 GET     /online_multiplayer/new_game        controllers.MultiplayerController.start_new_game()
 
+
 + nocsrf
 POST    /online_multiplayer/join_game       controllers.MultiplayerController.use_existing_game()
 
@@ -37,6 +38,11 @@ POST    /online_multiplayer/do_move         controllers.MultiplayerController.do
 POST    /online_multiplayer/get_move        controllers.MultiplayerController.getMove()
 
 GET     /online_multiplayer/join_game/:id   controllers.MultiplayerController.joinGame(id)
+
+
+# API for client side translation requests
+GET /api/getMessage/:key controllers.I18nController.getMessage(key)
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file       controllers.Assets.versioned(path="/public", file: Asset)

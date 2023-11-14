@@ -4,6 +4,15 @@ import {ChessBoardBuilder} from "./ChessBoardBuilder.js";
 import {Chessboard} from "./Chessboard.js";
 
 let connectionHandler = new ConnectionHandler()
+
+
+let gameIdClipboard = document.getElementById('game-id')
+gameIdClipboard.style.display = "block"
+gameIdClipboard.addEventListener('click', function() {
+        copyGameID();
+});
+
+
 let chess = new Chess()
 let chessBoard
 let playerID
@@ -59,4 +68,33 @@ function proofMove(move){
     else {
         chessBoard.asciiMove(move.substring(0, 4), move.substring(4,5), false)
     }
+
+}
+
+function checkIfParameterExists() {
+    const pathSegments = window.location.pathname.split('/').filter(segment => segment.trim() !== '');
+    const multiplayerIndex = pathSegments.indexOf('online_multiplayer');
+    if (multiplayerIndex !== -1 && pathSegments.length > multiplayerIndex + 1) {
+        return pathSegments[multiplayerIndex + 1];
+    } else {
+        return null;
+    }
+}
+
+function fetchTranslation(key) {
+    return fetch('/api/getMessage/' + key)
+        .then(response => response.text())
+        .catch(error => {
+            console.error('Error fetching translation:', error);
+            return '';
+        });
+}
+
+function copyGameID() {
+    let gameID = document.getElementById('gameID').innerText
+    fetchTranslation('gameID.copied').then(msg => {
+        navigator.clipboard.writeText(gameID).then(() => {
+            alert(msg)
+        });
+    });
 }

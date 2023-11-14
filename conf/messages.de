@@ -4,6 +4,8 @@ chess.board.name=Schachbrett
 chess.color.black=schwarz
 chess.color.white=weiß
 
+gameID.copied=GameID in die Zwischenablage kopiert!
+
 chess.figure.king.name=König
 chess.figure.queen.name=Dame
 chess.figure.rook.name=Turm

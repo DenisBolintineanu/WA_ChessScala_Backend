@@ -5,7 +5,7 @@
         <div class="row">
             <button type="button" class="navbar-toggler shadow-none border-0 btn-sidebar col-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"></button>
             <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                @gamesidebar()
+            @gamesidebar()
             </div>
             <div class="chessboard-page col-11">
                 <div class="game-container">
@@ -14,9 +14,9 @@
                     </div>
                 </div>
 
-
                 <div class="game-information-container">
                     <div id="game-id">
+                        <span style="cursor: pointer; font-size: 1.25rem;"><i class="fa-regular fa-clipboard" style="font-size: 2rem;margin-right: 10px"></i>Copy GameID</span>
                     </div>
                     <div class="move-input-controls">
                         <div class="btn" id="newGameButton" style="display: none">New game</div>
@@ -43,5 +43,4 @@
     <audio id="notificationSound" src="@routes.Assets.versioned("sounds/notification.wav")" preload="auto"></audio>
     <audio id="moveSound" src="@routes.Assets.versioned("sounds/move.wav")" preload="auto"></audio>
     <audio id="captureSound" src="@routes.Assets.versioned("sounds/capture.wav")" preload="auto"></audio>
-
 }

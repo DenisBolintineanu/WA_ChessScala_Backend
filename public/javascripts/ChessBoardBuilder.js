@@ -162,6 +162,7 @@ export class ChessBoardBuilder {
         this.#chess.reset()
         this.#chessboard.update()
         this.#chessboard.initializeEventListener()
+        document.getElementById("game-id").style.display = "none"
         document.getElementById("resignButton").style.display = "block"
         document.getElementById("undoButton").style.display = "block"
         document.getElementById("newGameButton").style.display = "none"

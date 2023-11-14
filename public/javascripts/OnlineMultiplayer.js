@@ -10,6 +10,7 @@ let playerID
 let gameID
 let color
 
+
 if (connectionHandler.getCookie("PlayerID") && connectionHandler.getCookie("GameID") && connectionHandler.getCookie("color"))
     use_existing_game().then(() => {
         console.log(color)
@@ -59,4 +60,39 @@ function proofMove(move){
     else {
         chessBoard.asciiMove(move.substring(0, 4), move.substring(4,5), false)
     }
+
+}
+
+function checkIfParameterExists() {
+    const pathSegments = window.location.pathname.split('/').filter(segment => segment.trim() !== '');
+    const multiplayerIndex = pathSegments.indexOf('online_multiplayer');
+    if (multiplayerIndex !== -1 && pathSegments.length > multiplayerIndex + 1) {
+        return pathSegments[multiplayerIndex + 1];
+    } else {
+        return null;
+    }
+}
+
+function fetchTranslation(key) {
+    return fetch('/api/getMessage/' + key)
+        .then(response => response.text())
+        .catch(error => {
+            console.error('Error fetching translation:', error);
+            return '';
+        });
+}
+
+let gameIdClipboard = document.getElementById('game-id')
+gameIdClipboard.style.display = "block"
+gameIdClipboard.addEventListener('click', function() {
+    copyGameID();
+});
+
+function copyGameID() {
+    const path_for_invite_link = window.location.href + "/join_game/"
+    fetchTranslation('gameID.copied').then(msg => {
+        navigator.clipboard.writeText(path_for_invite_link +gameID).then(() => {
+            alert(msg)
+        });
+    });
 }

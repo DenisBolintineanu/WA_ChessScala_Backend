@@ -4,7 +4,11 @@ import ChessScala.controller.IController
 import play.api.i18n.{I18nSupport, Lang}
 import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents, Request, Result}
 import services.IPersistenceService
-import utils.ChesspieceImageManager
+import utils.{ChesspieceImageManager, GameSession}
+import play.api.libs.json.*
+
+import scala.util.{Failure, Success, Try}
+import utils.DefaultServerResponses.{ERROR_RESPONSE, INVALID_RESPONSE, SUCCESS_RESPONSE}
 
 import javax.inject.{Inject, Singleton}
 
@@ -15,32 +19,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
 
   def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
-  }
-
-  def doMove(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val move: String = request.body.asFormUrlEncoded.get(MOVE_ID).headOption.getOrElse("")
-    persistenceService.updateGame(move, id) match {
-      case Some(controller) => chessFromController(id, controller)
-      case None => Ok(views.html.error())
-    }
-  }
-
-  def newGame(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val gameId: String = persistenceService.createGame()
-    val playerID: String = persistenceService.gameSessionCollection.get(gameId).get.playerOneID
-    Redirect(routes.HomeController.updateGame(playerID))
-  }
-
-  def updateGame(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    persistenceService.readGame(id) match {
-      case Some(controller) => chessFromController(id, controller)
-      case None => Ok(views.html.error())
-    }
-  }
-
-  def joinGame(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val playerID: String = persistenceService.joinGame(id)
-    Redirect(routes.HomeController.updateGame(playerID))
   }
 
   def reloadCurrentPageWithLang(lang: String): Action[AnyContent] = Action { implicit request =>
@@ -59,11 +37,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
     Ok(views.html.about())
   }
 
-  private def chessFromController(id: String, controller: IController)(implicit request: Request[AnyContent]): Result = {
-    val gameID = persistenceService.gameSessionCollection.get(id).get.gameID
-    //Ok(views.html.chess(controller.output, id, gameID, controller.returnMoveList(), ChesspieceImageManager(controller.state.board)))
-    Ok(views.html.index())
-  }
 
   def singleplayer():Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.singleplayer())
@@ -71,6 +44,10 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
 
   def localMultiplayer(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.local_multiplayer())
+  }
+
+  private def returnRequestParamAsString(request: Request[AnyContent], key: String): String = {
+    request.body.asFormUrlEncoded.get(key).headOption.getOrElse(INVALID_RESPONSE)
   }
 }
 

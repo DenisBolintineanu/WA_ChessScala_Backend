@@ -1,6 +1,4 @@
-@(playerID: String, gameID: String)(implicit messages: Messages)
+@()(implicit messages: Messages)
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<div id="playerID" style="display: none;">@playerID</div>
-<div id="gameID" style="display: none;">@gameID</div>
 @chesspage()
 <script type="module" src="@routes.Assets.versioned("javascripts/OnlineMultiplayer.js")"></script>

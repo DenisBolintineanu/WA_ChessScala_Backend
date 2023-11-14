@@ -3,10 +3,8 @@ import {Chess} from "./chess.js";
 import {ChessBoardBuilder} from "./ChessBoardBuilder.js";
 import {Chessboard} from "./Chessboard.js";
 
-let playerID = document.getElementById('playerID').innerText
-let gameID = document.getElementById('gameID').innerText
-document.cookie = "playerID=" + playerID
 let connectionHandler = new ConnectionHandler()
+
 
 let gameIdClipboard = document.getElementById('game-id')
 gameIdClipboard.style.display = "block"
@@ -14,26 +12,48 @@ gameIdClipboard.addEventListener('click', function() {
         copyGameID();
 });
 
-function update(move) {
-    connectionHandler.sendMove(playerID, chess.history({verbose: true}).pop().lan)
-    getMove()
-}
 
 let chess = new Chess()
-let chessboardBuilder
-if (!checkIfParameterExists()){
-    chessboardBuilder = new ChessBoardBuilder(chess,'w', update)
-    document.cookie += "; color=w"
-}
+let chessBoard
+let playerID
+let gameID
+let color
+
+if (connectionHandler.getCookie("PlayerID") && connectionHandler.getCookie("GameID") && connectionHandler.getCookie("color"))
+    use_existing_game().then(() => {
+        console.log(color)
+        if (color !== chess.turn())
+            getMove()
+    })
 else {
-    chessboardBuilder = new ChessBoardBuilder(chess,'b', update)
-    history.replaceState(null, "", ".")
-    document.cookie += "; color=b"
+    start_new_game().then()
 }
 
-let chessBoard = chessboardBuilder.createChessBoard(document.querySelector("#Chessboard"),true)
+async function start_new_game(){
+    const player_info = await connectionHandler.requestPlayerId()
+    playerID = player_info.playerId
+    gameID = player_info.gameId
+    color = player_info.color
+    let chessboardBuilder = new ChessBoardBuilder(chess,'w', update)
+    document.cookie += "; color=w"
+    chessBoard = chessboardBuilder.createChessBoard(document.querySelector("#Chessboard"),true)
+}
 
-if (checkIfParameterExists()){
+async function use_existing_game(){
+    const game_info = await connectionHandler.requestGameSession()
+    playerID = connectionHandler.getCookie("PlayerID")
+    gameID = connectionHandler.getCookie("GameID")
+    color = connectionHandler.getCookie("color")
+    if (game_info.Success === false){
+        start_new_game()
+        return
+    }
+    chess.load(game_info.FEN)
+    let chessboardBuilder = new ChessBoardBuilder(chess, color, update)
+    chessBoard = chessboardBuilder.createChessBoard(document.querySelector("#Chessboard"),true)
+}
+function update(move) {
+    connectionHandler.sendMove(playerID, chess.history({verbose: true}).pop().lan, chess.fen())
     getMove()
 }
 
@@ -48,6 +68,7 @@ function proofMove(move){
     else {
         chessBoard.asciiMove(move.substring(0, 4), move.substring(4,5), false)
     }
+
 }
 
 function checkIfParameterExists() {

@@ -23,21 +23,6 @@ POST    /clientRequest/join                  controllers.ClientController.joinGa
 # Server routes
 GET     /                   controllers.HomeController.index()
 
-GET     /game               controllers.HomeController.newGame()
-
-+ nocsrf
-POST    /game               controllers.HomeController.doMove()
-
-+ nocsrf
-POST    /do_move            controllers.HomeController.doMove()
-
-+ nocsrf
-POST    /get_move            controllers.HomeController.getMove()
-
-GET     /game/id=:id        controllers.HomeController.updateGame(id)
-
-GET     /join/id=:id        controllers.HomeController.joinGame(id)
-
 GET     /admin              controllers.HomeController.adminPage()
 
 GET     /rules              controllers.HomeController.rules()
@@ -50,12 +35,23 @@ GET     /singleplayer       controllers.HomeController.singleplayer()
 
 GET     /local_multiplayer  controllers.HomeController.localMultiplayer()
 
-GET     /online_multiplayer/:id     controllers.HomeController.joinGame(id)
-
-GET     /online_multiplayer controllers.HomeController.newGame()
 
 
+# online_multiplayer
+GET     /online_multiplayer                 controllers.MultiplayerController.getMultiplayerPage()
 
+GET     /online_multiplayer/new_game        controllers.MultiplayerController.start_new_game()
+
++ nocsrf
+POST    /online_multiplayer/join_game       controllers.MultiplayerController.use_existing_game()
+
++ nocsrf
+POST    /online_multiplayer/do_move         controllers.MultiplayerController.doMove()
+
++ nocsrf
+POST    /online_multiplayer/get_move        controllers.MultiplayerController.getMove()
+
+GET     /online_multiplayer/join_game/:id   controllers.MultiplayerController.joinGame(id)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file       controllers.Assets.versioned(path="/public", file: Asset)

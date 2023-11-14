@@ -21,102 +21,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
     Ok(views.html.index())
   }
 
-  def doMove(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val playerID = returnRequestParamAsString(request, "PlayerID")
-    val move = returnRequestParamAsString(request, "move")
-    persistenceService.gameSessionCollection.get(playerID) match {
-      case Some(session) => {
-        if (playerID == session.playerOneID) {
-          persistenceService.updateGame(move, session.gameID) match {
-            case Some(value) =>
-              session.PlayerOneMove = Some(move)
-              Ok(Json.parse("""{"result": "success"}"""))
-            case None => Ok(Json.parse("""{"result": "error"}"""))
-          }
-        }
-        else if (playerID == session.playerTwoID) {
-          persistenceService.updateGame(move, session.gameID) match {
-            case Some(value) =>
-              session.PlayerTwoMove = Some(move)
-              Ok(Json.parse("""{"result": "success"}"""))
-            case None => Ok(Json.parse("""{"result": "error"}"""))
-          }
-        }
-        else {
-          Ok(Json.parse("""{"result": "error"}"""))
-        }
-      }
-      case None => Ok(Json.parse("""{"result": "error"}"""))
-    }
-  }
-
-  def getMove: Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val playerID = returnRequestParamAsString(request, "PlayerID")
-    persistenceService.gameSessionCollection.get(playerID) match {
-      case Some(session) =>
-        if (playerID == session.playerOneID) {
-          session.PlayerTwoMove match
-            case Some(value) => {
-              session.PlayerTwoMove = None
-              val jsonResponse = Json.obj(
-                "result" -> "success",
-                "move" -> value
-              )
-              Ok(jsonResponse)
-            }
-            case None => NoContent
-        }
-        else if (playerID == session.playerTwoID) {
-          session.PlayerOneMove match
-            case Some(value) => {
-              session.PlayerOneMove = None
-              val jsonResponse = Json.obj(
-                "result" -> "success",
-                "move" -> value
-              )
-              Ok(jsonResponse)
-            }
-            case None => NoContent
-        }
-        else {
-          Ok(Json.parse("""{"result": "error"}"""))
-        }
-      case None => Ok(Json.parse("""{"result": "error"}"""))
-    }
-  }
-
-  def newGame(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val gameId: String = persistenceService.createGame()
-    val playerID: String = persistenceService.gameSessionCollection.get(gameId).get.playerOneID
-    persistenceService.readGame(playerID) match {
-      case Some(controller) => chessFromController(playerID, controller)
-      case None => Ok(views.html.error())
-    }
-  }
-
-  def joinGame(gameId: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Try{ persistenceService.gameSessionCollection.get(gameId).get.playerTwoID} match {
-      case Success(playerID) => {
-        persistenceService.readGame(playerID) match {
-          case Some(controller) => chessFromController(playerID, controller)
-          case None => Ok(views.html.error())
-        }
-      }
-      case Failure(_) => Ok(views.html.error())
-    }
-  }
-
-
-
-  def updateGame(id: String): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    persistenceService.readGame(id) match {
-      case Some(controller) => chessFromController(id, controller)
-      case None => Ok(views.html.error())
-    }
-  }
-
-
-
   def reloadCurrentPageWithLang(lang: String): Action[AnyContent] = Action { implicit request =>
     Redirect(request.headers.get(REFERER).getOrElse(routes.HomeController.index().url)).withLang(Lang(lang))
   }
@@ -133,10 +37,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents, v
     Ok(views.html.about())
   }
 
-  private def chessFromController(id: String, controller: IController)(implicit request: Request[AnyContent]): Result = {
-    val gameID = persistenceService.gameSessionCollection.get(id).get.gameID
-    Ok(views.html.online_multiplayer(id, gameID))
-  }
 
   def singleplayer():Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.singleplayer())

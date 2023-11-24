@@ -33,6 +33,7 @@ $text-color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.5);
   overflow: hidden;
   transition: all 0.3s ease;
+  cursor: pointer;
 
   &:before {
     content: '';
@@ -43,8 +44,8 @@ $text-color: #fff;
     right: -50%;
     bottom: -50%;
     background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
-    transform: translateX(-350px) rotate(-45deg);
-    transition: transform 0.7s ease-in;
+    transform: translateX(-700px) rotate(-45deg);
+    transition: transform 0.7s ease-in-out;
   }
 
   &:hover::before {
@@ -92,6 +93,12 @@ $text-color: #fff;
 .blue-card {
   @include card-style($dark-blue, $light-blue, $hover-blue);
   // Additional styles specific to the blue card
+}
+
+.subheading {
+  line-height: 1.5rem;
+  letter-spacing: .3rem;
+  color:rgba(0, 0, 0, .7)
 }
 
 // Styles for card content

@@ -39,6 +39,7 @@ POST    /online_multiplayer/get_move        controllers.MultiplayerController.ge
 
 GET     /online_multiplayer/join_game/:id   controllers.MultiplayerController.joinGame(id)
 
+GET     /websocket                          controllers.MultiplayerWebSocketController.socket
 
 # API for client side translation requests
 GET /api/getMessage/:key controllers.I18nController.getMessage(key)

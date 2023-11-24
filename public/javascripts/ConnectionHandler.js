@@ -1,9 +1,11 @@
 import './node_modules/jquery/dist/jquery.js'
 
-export class ConnectionHandler {
+export class ConnectionHandler
+{
+    socket;
 
     sendMove(playerID, move, fen) {
-        $.post("/online_multiplayer/do_move", {PlayerID: playerID, UCI: move, FEN: fen})
+        this.socket.send(JSON.stringify({"type": "move", "PlayerID": playerID, "UCI": move, "FEN": fen}))
     }
 
     async requestPlayerId() {
@@ -18,31 +20,34 @@ export class ConnectionHandler {
         };
     }
 
+    async connectToWebSocket(playerID, update_function) {
+        this.socket = new WebSocket("ws://localhost:9000/websocket");
+
+        try {
+            await this.waitForSocketOpen(this.socket);
+
+            this.socket.send(JSON.stringify({"type": "register", "PlayerID": playerID}));
+            this.socket.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                update_function(data.UCI);
+            };
+
+            setInterval(() => {
+                if (this.socket.readyState === WebSocket.OPEN) {
+                    this.socket.send(JSON.stringify({ type: 'timeout' }));
+                }
+            }, 70000);
+
+        } catch (error) {
+            console.error('Fehler beim Verbinden mit dem WebSocket:', error);
+        }
+    }
+
     async requestGameSession(){
         const playerID = this.getCookie("PlayerID")
         return await $.post("online_multiplayer/join_game", {PlayerID: playerID})
     }
 
-    update(playerID, handler){
-        this.startPolling(playerID,handler)
-    }
-
-    startPolling(playerID, handler) {
-        const pollingInterval = 1000;
-        let intervalId = setInterval(() => {
-            $.post("/online_multiplayer/get_move", { PlayerID: playerID })
-                .done((result) => {
-                    if (result && $.trim(result) !== "") {
-                        clearInterval(intervalId);
-                        handler(result.UCI);
-                    }
-                })
-                .fail(() => {
-                    clearInterval(intervalId);
-                    this.startPolling(playerID, handler);
-                });
-        }, pollingInterval);
-    }
 
     getCookie(name) {
         const value = `; ${document.cookie}`;
@@ -50,4 +55,23 @@ export class ConnectionHandler {
         if (parts.length === 2) return parts.pop().split(';').shift();
         return null
     }
+
+    waitForSocketOpen(socket, timeout = 5000) {
+    return new Promise((resolve, reject) => {
+        const timer = setTimeout(() => {
+            reject(new Error('WebSocket opening timeout exceeded'));
+        }, timeout);
+
+        socket.onopen = () => {
+            clearTimeout(timer);
+            resolve();
+        };
+
+        socket.onerror = (err) => {
+            clearTimeout(timer);
+            reject(err);
+        };
+    });
+}
+
 }

@@ -28,6 +28,11 @@
   "author": "Denis Bolintineanu & André Königer",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^6.4.2",
+    "@fortawesome/free-regular-svg-icons": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/vue-fontawesome": "^3.0.5",
     "axios": "^1.6.2",
     "sass": "^1.69.5",
     "vue": "^3.2.36"

@@ -6,125 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaming Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+<script src="components/html-components/BoxBackgroundComponent.js" defer></script>
 </head>
 
-<body class="bg-gray-200 text-white p-4">
-
-    <div class="flex w-full h-screen">
-        <!-- Sidebar -->
-        <div class="w-2/12 bg-gray-200 h-full overflow-auto p-4">
-            <div class="mb-4">
-                <img src="assets/images/logo.png" alt="Logo" class="w-50 h-50 mx-auto">
-                <h3 id="title">Chess Scala</h3>
+<body class="overflow-hidden p-0 m-0">
+    <div id="app">
+        <div :class="[darkModeEnabled ? 'bg-custom-dark' : 'bg-custom-light', 'bg-custom-dark', 'flex', 'flex-col', 'h-screen', 'items-center', 'justify-center', 'overflow-hidden']">
+            <div @click="toggleDarkMode" class="z-10 w-full">
+                <font-awesome-icon :icon="['fas', 'lightbulb']" :class="[icon_classes, 'relative', 'left-[90%]', 'top-10', 'hover:cursor-pointer', 'hover:drop-shadow-icon-bulb']"/>
             </div>
-            <div class="mb-4">
-                <!-- User Information -->
-                <img src="USER.png" alt="User" class="w-12 h-12 rounded-full mx-auto">
-                <p class="text-center mt-2">Username</p>
+            <img src="assets/images/chesslogo.png" :class="[darkModeEnabled ? 'drop-shadow-logo-dark-bg' : 'drop-shadow-logo-light-bg', `max-w-[40%] lg:max-w-[20%] pb-20 z-10`]">
+            <img src="assets/images/chess.png" class="main max-w-[70%] 2xl:max-w-[65%] z-10">
+            <div class="w-full z-10">
+                <div id="iconbar" class="flex justify-center sm:flex-wrap gap-5 md:gap-10 2xl:gap-16 2xl:mb-10">
+                    <div v-tooltip="{ text: 'Home', position: 'top' }">
+                        <font-awesome-icon :icon="['fas', 'house']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']" />
+                    </div>
+                    <div v-tooltip="{ text: 'Play', position: 'top' }">
+                        <font-awesome-icon :icon="['fas', 'circle-play']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']"/>
+                    </div>
+                    <div v-tooltip="{ text: 'Learn more about the rules of chess and this project', position: 'top' }">
+                        <font-awesome-icon :icon="['fas', 'circle-info']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']" />
+                    </div>
+                    <div>
+                        <div v-if="isLoggedIn" v-tooltip="{ text: 'User settings', position: 'top' }">
+                            <font-awesome-icon :icon="['fas', 'circle-user']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']" />
+                        </div>
+                        <div v-else v-tooltip="{ text: 'Login/Signup', position: 'top' }">
+                            <font-awesome-icon :icon="['fas', 'right-to-bracket']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']" />
+                        </div>
+                    </div>
+                    <div v-if="isLoggedIn" v-tooltip="{ text: 'Messages', position: 'top' }">
+                        <font-awesome-icon :icon="['fas', 'message']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']" />
+                    </div>
+                    <div v-if="isLoggedIn" v-tooltip="{ text: 'History', position: 'top' }">
+                        <font-awesome-icon :icon="['fas', 'table-list']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']" />
+                    </div>
+                </div>
             </div>
-            <div class="border-t border-gray-300 my-4"></div>
-            <nav>
-                <!-- Navigation Items -->
-                <a href="#" class="block py-2 px-4 hover:bg-gray-700">Home</a>
-                <a href="#" class="block py-2 px-4 hover:bg-gray-700">Play Games</a>
-                <!-- Add more links as needed -->
-            </nav>
+            <box-component></box-component>
         </div>
-
-        <div class="w-10/12 bg-gray-100 h-full overflow-auto">
-            <!-- Header -->
-            <div class="bg-gray-200 p-4"></div>
-            <!-- Main Content -->
-            <div class="bg-gray-200 p-6 ml-2 mt-2">
-                <!-- Game Modi Widget-->
-                <div class="mb-12">
-                    <!-- Widget Title -->
-                    <div class="border-b border-gray-600 mb-12">
-                        <h2 class="font-semibold subheading">Play Now</h2>
-                    </div>
-                    <!-- Game Modi Selection -->
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div class="bg-blue-500 card bg-opacity-50 bg-gray-100 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-4 green-card">Local Multiplayer</div>
-                        <div class="bg-blue-500 card bg-opacity-50 bg-gray-100 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-4 red-card">Online Multiplayer</div>
-                        <div class="bg-blue-500 card bg-opacity-50 bg-gray-100 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-4 blue-card">Against the AI</div>
-                    </div>
-                </div>
-                <!-- Simple 4 Column Widget Grid -->
-                <div class="mb-12 grid md:grid-cols-4 md:gap-4">
-                    <!-- Join Game Widget -->
-                    <div class="col-span-1">
-                        <!-- Widget Title -->
-                        <div class="border-b border-gray-600 mb-12">
-                            <h2 class="font-semibold subheading">Join Now</h2>
-                        </div>
-                        <div class="input-container">
-                            <input type="text" id="game-id-input" placeholder="Enter GameID"
-                                class="w-full border-2 border-transparent bg-gray-300 focus:border-solid focus:border-2 focus:border-indigo-500/100 focus:bg-gray-400">
-                            <label for="game-id-input">Enter GameID</label>
-                        </div>
-                    </div>
-                    <!-- Download Client Widget -->
-                    <div class="col-span-3">
-                        <!-- Widget Title -->
-                        <div class="mb-12 border-b border-gray-600">
-                            <h2 class="font-semibold subheading">Download Our Client</h2>
-                        </div>
-                        <div class="p-4 bg-blue-500 rounded-md">Download Now</div>
-                    </div>                    
-                </div>
-                <!-- Responsives 8x8 Widget Grid -->
-                <div class="grid gap-4 mb-12 md:grid-cols-2 lg:grid-cols-8 lg:grid-rows-8">
-                    <!-- History Widget-->
-                    <div class="col-span-2 lg:col-span-3 lg:row-span-5">
-                        <!-- Widget Title -->
-                        <div class="mb-12 border-b border-gray-600">
-                            <h2 class="font-semibold subheading">History</h2>
-                        </div>
-                        <!-- History Content -->
-                        <div class="p-4 bg-blue-600 rounded-lg shadow-md">
-                            <!-- Dummy Table -->
-                            <table class="table-fixed">
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Event</th>
-                                </tr>
-                                <tr>
-                                    <td>01/01/2023</td>
-                                    <td>Event 1</td>
-                                </tr>
-                                <tr>
-                                    <td>02/01/2023</td>
-                                    <td>Event 2</td>
-                                </tr>
-                                <!-- Weitere Zeilen -->
-                            </table>
-                        </div>
-                    </div>
-                    <!-- Help Widget-->
-                    <div class="">
-                        <!-- Widget Title -->
-                        <div class="border-b border-gray-600 mb-12">
-                            <h2 class="font-semibold subheading">Help</h2>
-                        </div>
-                        <div class="help-card">
-                            <div class="help-icon">?</div>
-                        </div>
-                    </div>
-                    <!-- Messages Widget -->
-                    <div class="row-span-2">
-                        <!-- Widget Title -->
-                        <div class="mb-12 border-b border-gray-600">
-                            <h2 class="font-semibold subheading">Messages</h2>
-                        </div>
-                        <div id="messages" class="p-4 bg-blue-500 rounded-md">
-                            <i class="fa-regular fa-message"></i>
-                            Messages
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
 </body>
 

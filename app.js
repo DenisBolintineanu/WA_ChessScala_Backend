@@ -4,15 +4,27 @@ import { createApp } from 'vue';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCircleUser, faHouse, faInfoCircle, faMessage, faPlayCircle, faTableList, faLightbulb, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+// Directives
 import tooltip from './directives/tooltip';
+// Components
+import LoginSignupModal from './components/views/LoginSignupModal.vue';
+import GameSetupModal from './components/views/LoginSignupModal.vue';
 
 library.add(faHouse, faPlayCircle, faInfoCircle, faCircleUser, faMessage, faTableList, faLightbulb, faRightToBracket);
 
 const app = createApp({
+    components: {
+        LoginSignupModal,
+        GameSetupModal,
+    },
     data() { 
         return {
+            templateShown: true,
+            showGameSetupModal: false,
+            showLoginSignupModal: false,
             darkModeEnabled: false,
-            isLoggedIn: false, // retrieve from server
+            isLoggedIn: false,
+            isPlaying: false,
         }
      },
     computed: { 
@@ -42,6 +54,27 @@ const app = createApp({
     methods: {
         toggleDarkMode() {
             this.darkModeEnabled = !this.darkModeEnabled;
+        },
+        toggleLoginSignup() {
+            if (this.showLoginSignupModal) {
+                this.closeAllModals();
+            } else {
+                this.showLoginSignupModal = true;
+            }
+        },
+        toggleGamesetupModal() {
+            if (this.showGameSetupModal) {
+                this.closeAllModals();
+            } else {
+                this.showGameSetupModal = true;
+            }
+        },
+        toggleGame() {
+            this.isPlaying = !this.isPlaying;
+        },
+        closeAllModals() {
+            this.showLoginSignupModal = false;
+            this.showGameSetupModal = false;
         }
     }
 });
@@ -49,5 +82,7 @@ const app = createApp({
 app.config.compilerOptions.isCustomElement = tag => tag === 'box-component';
 
 app.directive('tooltip', tooltip);
+app.component('loginsignupmodal', LoginSignupModal);
+app.component('gamesetupmodal', GameSetupModal);
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.mount("#app");

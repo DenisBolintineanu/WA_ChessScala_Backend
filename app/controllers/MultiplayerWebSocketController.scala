@@ -60,6 +60,6 @@ class MultiplayerWebSocketController @Inject()(val persistenceService: IPersiste
             (if (playerID == session.playerOneID) session.playerTwoWebSocket else session.playerOneWebSocket) match
                 case None =>
                 case Some(opponent) =>
-                    opponent ! Json.obj("UCI" -> move).toString
+                    opponent ! Json.obj("type" -> "UCI", "UCI" -> move).toString
     }
 }

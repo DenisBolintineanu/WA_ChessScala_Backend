@@ -39,7 +39,6 @@ export class ConnectionHandler
             }, 70000);
 
         } catch (error) {
-            console.error('Fehler beim Verbinden mit dem WebSocket:', error);
         }
     }
 

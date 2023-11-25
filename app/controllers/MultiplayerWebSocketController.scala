@@ -3,7 +3,7 @@ package controllers
 import akka.actor.*
 import akka.stream.Materializer
 import com.google.inject.Singleton
-import play.api.libs.json.{JsValue, Json}
+import play.api.libs.json.{JsError,JsSuccess, JsValue, Json}
 import play.api.libs.streams.ActorFlow
 import play.api.mvc.*
 import services.IPersistenceService
@@ -31,9 +31,23 @@ class MultiplayerWebSocketController @Inject()(val persistenceService: IPersiste
                 (json \ "type").as[String] match
                     case "register" => register(json)
                     case "move" => doMove(json)
-                    case "timeout" =>
+                    case "message" => sendMessage(json)
+                    case "timeout" => out ! Json.obj("type" -> "timeout").toString
                     case _ => println("not supported")
         }
+
+        private def sendMessage(msg: JsValue): Unit =
+            persistenceService.gameSessionCollection.get((msg \ "PlayerID").as[String]) match
+                case None =>
+                case Some(session) =>
+                    (msg \ "message").validate[String] match
+                        case JsError(errors) =>
+                        case JsSuccess(message, _) =>
+                            (if ((msg \ "PlayerID").as[String] == session.playerOneID) session.playerTwoWebSocket else session.playerOneWebSocket) match
+                                case None =>
+                                case Some(opponent) =>
+                                    opponent ! Json.obj("type" -> "message", "message" -> message).toString
+
 
         private def register(msg: JsValue): Unit =
             persistenceService.gameSessionCollection.get((msg \ "PlayerID").as[String]) match

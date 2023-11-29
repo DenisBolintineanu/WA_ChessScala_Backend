@@ -7,56 +7,14 @@
     <title>Gaming Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-<script src="components/html-components/BoxBackgroundComponent.js" defer></script>
+    <script src="components/html-components/BoxBackgroundComponent.js" defer></script>
 </head>
 
-<body class="overflow-hidden p-0 m-0">
-    <div id="app">
-        <div :class="[darkModeEnabled ? 'bg-custom-dark' : 'bg-custom-light', 'relative', 'bg-custom-dark', 'flex', 'flex-col', 'h-screen', 'items-center', 'justify-center', 'overflow-hidden']">
-            <div @click="toggleDarkMode" class="z-10 w-full">
-                <font-awesome-icon :icon="['fas', 'lightbulb']" :class="[icon_classes, 'relative', 'left-[90%]', 'top-10', 'hover:cursor-pointer', 'hover:drop-shadow-icon-bulb']"/>
-            </div>
-            <div v-if="isPlaying == false" class="flex flex-col items-center justify-center w-full">
-                <img src="assets/images/chesslogo.png" :class="[darkModeEnabled ? 'drop-shadow-logo-dark-bg' : 'drop-shadow-logo-light-bg', `max-w-[40%] lg:max-w-[20%] pb-20 z-10`]">
-                <img src="assets/images/chess.png" class="main max-w-[70%] 2xl:max-w-[65%] z-10">
-            </div>
-             <div v-else>
-                
-            </div>
-            <div>
-                <LoginSignupModal v-if="showLoginSignupModal" @close="showLoginSignupModal = false" :class="[darkModeEnabled ? 'bg-custom-dark border-solid border-2 border-indigo-200' : 'bg-custom-light border-solid border-2 border-indigo-800', `absolute translate-x-[-50%] translate-y-[-600%] z-30 p-10`]"></LoginSignupModal>
-                <GameSetupModal v-if="showGameSetupModal" @close="showGameSetupModal = false" :class="[darkModeEnabled ? 'bg-custom-dark border-solid border-2 border-indigo-200' : 'bg-custom-light border-solid border-2 border-indigo-800', `absolute translate-x-[-50%] translate-y-[-600%] z-30 p-10`]"></GameSetupModal>
-            </div>
-            <div class="w-full z-10">
-                <div id="iconbar" class="flex justify-center sm:flex-wrap gap-5 md:gap-10 2xl:gap-16 2xl:mb-10">
-                    <div v-tooltip="{ text: 'Home', position: 'top' }">
-                        <font-awesome-icon :icon="['fas', 'house']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']" />
-                    </div>
-                    <div v-tooltip="{ text: 'Play', position: 'top' }" @click="toggleGamesetupModal">
-                        <font-awesome-icon :icon="['fas', 'circle-play']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']"/>
-                    </div>
-                    <div v-tooltip="{ text: 'Learn more about the rules of chess and this project', position: 'top' }">
-                        <font-awesome-icon :icon="['fas', 'circle-info']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']" />
-                    </div>
-                    <div>
-                        <div v-if="isLoggedIn" v-tooltip="{ text: 'User settings', position: 'top' }">
-                            <font-awesome-icon :icon="['fas', 'circle-user']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']" />
-                        </div>
-                        <div v-else v-tooltip="{ text: 'Login/Signup', position: 'top' }" @click="toggleLoginSignup">
-                            <font-awesome-icon :icon="['fas', 'right-to-bracket']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']" />
-                        </div>
-                    </div>
-                    <div v-if="isLoggedIn" v-tooltip="{ text: 'Messages', position: 'top' }">
-                        <font-awesome-icon :icon="['fas', 'message']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']" />
-                    </div>
-                    <div v-if="isLoggedIn" v-tooltip="{ text: 'History', position: 'top' }">
-                        <font-awesome-icon :icon="['fas', 'table-list']" :class="[icon_classes, 'hover:scale-110', 'hover:cursor-pointer', 'hover:drop-shadow-icon-dark']" />
-                    </div>
-                </div>
-            </div>
-            <box-component></box-component>
-        </div>
+<body class="overflow-hidden min-h-[100%] p-0 m-0">
+    <div id="app" v-cloak class="overflow-hidden min-h-screen w-full">
+        <App></App>
     </div>
+    <box-component></box-component>
 </body>
 
 <script src="dist/bundle.js"></script>

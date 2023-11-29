@@ -23,6 +23,7 @@ class BoxBackgroundComponent extends HTMLElement {
                 height: 60px;
                 background-color: transparent;
                 border: 6px solid rgba(50, 3, 48, 0.358);
+                z-index: 0;
               }
               
               .box div:nth-child(1) {

@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.vue', './src/**/*.js', './index.html'],
+  darkMode: 'class',
+  content: ['./**/*.vue', './src/**/*.js', './index.html'],
   theme: {
     extend: {
       dropShadow: {
@@ -10,6 +11,7 @@ module.exports = {
         'icon-bulb': '0 4px 6px rgba(194, 187, 9, 0.8)',
         'logo-light-bg': '8px 1px 8px black',
         'logo-dark-bg': '0 4px 6px rgba(0,0,0,.8)',
+        'main': '0px 30px 50px rgba(0,0,0,0.7)'
       },
       backgroundImage: {
         'custom-dark': 'linear-gradient(to right, #24243e, #6f59a0, #0f0c29)',

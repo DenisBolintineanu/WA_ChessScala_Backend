@@ -3,7 +3,7 @@ import {Chess} from "./chess.js";
 import {ChessBoardBuilder} from "./ChessBoardBuilder.js";
 import {Chessboard} from "./Chessboard.js";
 
-let connectionHandler = new ConnectionHandler()
+let connectionHandler = new ConnectionHandler(proofMove, handleIncomingChatMessage)
 let chess = new Chess()
 let chessBoard
 let playerID
@@ -12,11 +12,7 @@ let color
 
 
 if (connectionHandler.getCookie("PlayerID") && connectionHandler.getCookie("GameID") && connectionHandler.getCookie("color"))
-    use_existing_game().then(() => {
-        console.log(color)
-        if (color !== chess.turn())
-            getMove()
-    })
+    use_existing_game().then()
 else {
     start_new_game().then()
 }
@@ -26,6 +22,7 @@ async function start_new_game(){
     playerID = player_info.playerId
     gameID = player_info.gameId
     color = player_info.color
+    await connectionHandler.connectToWebSocket(playerID)
     let chessboardBuilder = new ChessBoardBuilder(chess,'w', update)
     document.cookie += "; color=w"
     chessBoard = chessboardBuilder.createChessBoard(document.querySelector("#Chessboard"),true)
@@ -37,20 +34,16 @@ async function use_existing_game(){
     gameID = connectionHandler.getCookie("GameID")
     color = connectionHandler.getCookie("color")
     if (game_info.Success === false){
-        start_new_game()
+        await start_new_game()
         return
     }
     chess.load(game_info.FEN)
     let chessboardBuilder = new ChessBoardBuilder(chess, color, update)
     chessBoard = chessboardBuilder.createChessBoard(document.querySelector("#Chessboard"),true)
+    await connectionHandler.connectToWebSocket(playerID)
 }
 function update(move) {
     connectionHandler.sendMove(playerID, chess.history({verbose: true}).pop().lan, chess.fen())
-    getMove()
-}
-
-function getMove(){
-    connectionHandler.update(playerID, proofMove)
 }
 
 function proofMove(move){
@@ -63,15 +56,7 @@ function proofMove(move){
 
 }
 
-function checkIfParameterExists() {
-    const pathSegments = window.location.pathname.split('/').filter(segment => segment.trim() !== '');
-    const multiplayerIndex = pathSegments.indexOf('online_multiplayer');
-    if (multiplayerIndex !== -1 && pathSegments.length > multiplayerIndex + 1) {
-        return pathSegments[multiplayerIndex + 1];
-    } else {
-        return null;
-    }
-}
+
 
 function fetchTranslation(key) {
     return fetch('/api/getMessage/' + key)
@@ -87,6 +72,15 @@ gameIdClipboard.style.display = "block"
 gameIdClipboard.addEventListener('click', function() {
     copyGameID();
 });
+
+document.getElementById("messageButton").addEventListener('click', () => {
+    if (!playerID) return
+    connectionHandler.sendMessage(playerID, document.getElementById("meinTextfeld").value)
+})
+
+function handleIncomingChatMessage(){
+    console.log(connectionHandler.message_stack)
+}
 
 function copyGameID() {
     const path_for_invite_link = window.location.href + "/join_game/"

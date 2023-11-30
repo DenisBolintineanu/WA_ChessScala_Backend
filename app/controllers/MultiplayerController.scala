@@ -10,12 +10,7 @@ import utils.GameSession
 import javax.inject.{Inject, Singleton}
 
 @Singleton
-class MultiplayerController @Inject()(val controllerComponents: ControllerComponents, val persistenceService: IPersistenceService) extends BaseController with I18nSupport {
-
-    def getMultiplayerPage: Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-        Ok(views.html.online_multiplayer())
-    }
-
+class MultiplayerController @Inject()(val controllerComponents: ControllerComponents, val persistenceService: IPersistenceService) extends BaseController{
     def start_new_game():Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
         val gameID = persistenceService.createGame()
         val session: GameSession = persistenceService.gameSessionCollection.get(gameID).get
@@ -34,16 +29,6 @@ class MultiplayerController @Inject()(val controllerComponents: ControllerCompon
             case None => Json.obj("Success" -> false)
         }
         Ok(jsonResponse)
-    }
-
-    def joinGame(id: String): Action[AnyContent] = Action { implicit request =>
-        persistenceService.gameSessionCollection.get(id) match
-            case Some(session) =>
-                val playerID = Cookie("PlayerID", session.playerTwoID, sameSite = Some(Cookie.SameSite.Strict), secure = true, httpOnly = false)
-                val gameID = Cookie("GameID", id, sameSite = Some(Cookie.SameSite.Strict), secure = true, httpOnly = false)
-                val color = Cookie("color", "b", sameSite = Some(Cookie.SameSite.Strict), secure = true, httpOnly = false)
-                Redirect("/online_multiplayer").withCookies(playerID, gameID, color)
-            case None => Ok(views.html.error())
     }
 
     private def setInternalMove(session: GameSession, move: String): Unit = {
